@@ -1,0 +1,141 @@
+  <!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Home | Portfolio</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+font-family:Arial,"Noto Sans Thai",sans-serif;
+background:linear-gradient(135deg,#fff5f8,#effbf3);
+color:#4f5d55;
+min-height:100vh;
+}
+
+nav{
+width:100%;
+padding:18px 25px;
+background:#ffffffd9;
+backdrop-filter:blur(10px);
+border-bottom:1px solid #f3d9e2;
+display:flex;
+justify-content:center;
+gap:12px;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+nav a{
+text-decoration:none;
+color:#61746a;
+background:#edf8f0;
+padding:10px 20px;
+border-radius:30px;
+font-weight:bold;
+transition:.25s;
+}
+
+nav a:hover,
+nav a.active{
+background:#f5c9d8;
+color:#fff;
+transform:translateY(-2px);
+}
+
+.hero{
+max-width:1000px;
+margin:60px auto;
+padding:70px 30px;
+text-align:center;
+}
+
+.hero .flower{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.hero h1{
+font-size:clamp(40px,8vw,72px);
+color:#df91ad;
+margin-bottom:10px;
+}
+
+.hero h2{
+font-size:24px;
+color:#8bb89d;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:650px;
+margin:auto;
+line-height:1.8;
+font-size:17px;
+}
+
+.button{
+display:inline-block;
+margin-top:30px;
+padding:13px 28px;
+border-radius:30px;
+background:#e9a8bd;
+color:white;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 8px 20px #d99caf55;
+transition:.25s;
+}
+
+.button:hover{
+background:#8fc3a2;
+transform:translateY(-3px);
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#91a098;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="index1.html" class="active">Home</a>
+<a href="about1.html">About Me</a>
+<a href="portfolio1.html">Portfolio</a>
+</nav>
+
+<main class="hero">
+
+<div class="flower">🌷</div>
+
+<h1>My Portfolio</h1>
+
+<h2>Welcome to My Personal Website</h2>
+
+<p>
+ยินดีต้อนรับเข้าสู่เว็บไซต์แฟ้มสะสมผลงานของฉัน
+เว็บไซต์นี้รวบรวมข้อมูลแนะนำตัว ความสามารถ
+และผลงานต่าง ๆ ที่ฉันได้สร้างสรรค์และสะสมเอาไว้
+</p>
+
+<a href="about1.html" class="button">
+รู้จักฉันมากขึ้น →
+</a>
+
+</main>
+
+<footer>
+© 2026 My Portfolio · Made with ♡
+</footer>
+
+</body>
+</html>
