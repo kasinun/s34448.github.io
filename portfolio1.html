@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Portfolio | Portfolio</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Arial,"Noto Sans Thai",sans-serif;
+background:linear-gradient(135deg,#fff5f8,#effbf3);
+color:#4f5d55;
+min-height:100vh;
+}
+
+nav{
+width:100%;
+padding:18px 25px;
+background:#ffffffd9;
+backdrop-filter:blur(10px);
+border-bottom:1px solid #f3d9e2;
+display:flex;
+justify-content:center;
+gap:12px;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+nav a{
+text-decoration:none;
+color:#61746a;
+background:#edf8f0;
+padding:10px 20px;
+border-radius:30px;
+font-weight:bold;
+transition:.25s;
+}
+
+nav a:hover,
+nav a.active{
+background:#f5c9d8;
+color:#fff;
+transform:translateY(-2px);
+}
+
+.container{
+max-width:1050px;
+margin:50px auto;
+padding:20px;
+}
+
+.title{
+text-align:center;
+margin-bottom:40px;
+}
+
+.title h1{
+color:#df91ad;
+font-size:45px;
+margin-bottom:8px;
+}
+
+.title p{
+color:#8bb89d;
+}
+
+.portfolio-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.certificate{
+background:#fff;
+border:1px solid #f1dce3;
+border-radius:22px;
+padding:15px;
+box-shadow:0 10px 30px #dbaebe25;
+transition:.3s;
+}
+
+.certificate:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 35px #dbaebe40;
+}
+
+.certificate img{
+width:100%;
+display:block;
+aspect-ratio:4/3;
+object-fit:cover;
+border-radius:15px;
+background:#f4f9f5;
+}
+
+.certificate h2{
+font-size:18px;
+color:#df91ad;
+margin:15px 5px 5px;
+}
+
+.certificate p{
+font-size:14px;
+color:#829087;
+margin:0 5px 5px;
+}
+
+.number{
+display:inline-block;
+background:#dff1e3;
+color:#6c9a7a;
+padding:5px 12px;
+border-radius:20px;
+font-size:12px;
+margin-top:5px;
+}
+
+@media(max-width:700px){
+
+.portfolio-grid{
+grid-template-columns:1fr;
+}
+
+nav{
+gap:6px;
+padding:15px 10px;
+}
+
+nav a{
+padding:9px 12px;
+font-size:14px;
+}
+
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#91a098;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="index1.html">Home</a>
+<a href="about1.html">About Me</a>
+<a href="portfolio1.html" class="active">Portfolio</a>
+</nav>
+
+<main class="container">
+
+<div class="title">
+<h1>Portfolio</h1>
+<p>เกียรติบัตรและผลงานของฉัน</p>
+</div>
+
+<section class="portfolio-grid">
+
+<div class="certificate">
+
+<img src="(ลิ้งค์รูปไว้)" alt="เกียรติบัตรใบที่ 1">
+
+<span class="number">
+Certificate 01
+</span>
+
+<h2>
+เกียรติบัตรใบที่ 1
+</h2>
+
+<p>
+(เติมข้อมูล)
+</p>
+
+</div>
+
+
+<div class="certificate">
+
+<img src="(ลิ้งค์รูปไว้)" alt="เกียรติบัตรใบที่ 2">
+
+<span class="number">
+Certificate 02
+</span>
+
+<h2>
+เกียรติบัตรใบที่ 2
+</h2>
+
+<p>
+(เติมข้อมูล)
+</p>
+
+</div>
+
+
+<div class="certificate">
+
+<img src="(ลิ้งค์รูปไว้)" alt="เกียรติบัตรใบที่ 3">
+
+<span class="number">
+Certificate 03
+</span>
+
+<h2>
+เกียรติบัตรใบที่ 3
+</h2>
+
+<p>
+(เติมข้อมูล)
+</p>
+
+</div>
+
+
+<div class="certificate">
+
+<img src="(ลิ้งค์รูปไว้)" alt="เกียรติบัตรใบที่ 4">
+
+<span class="number">
+Certificate 04
+</span>
+
+<h2>
+เกียรติบัตรใบที่ 4
+</h2>
+
+<p>
+(เติมข้อมูล)
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+© 2026 My Portfolio · Made with ♡
+</footer>
+
+</body>
+</html>
