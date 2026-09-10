@@ -1,28 +1,223 @@
-<!-- ส่วนมหาวิทยาลัยและคณะที่สนใจ -->
-<div class="section-title">
-<h2>มหาวิทยาลัยที่สนใจ</h2>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Portfolio | มหาวิทยาลัยที่สนใจ</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box
+}
+
+body{
+font-family:Arial,"Noto Sans Thai",sans-serif;
+background:linear-gradient(135deg,#fff5f8,#effbf3);
+color:#4f5d55;
+min-height:100vh;
+}
+
+nav{
+width:100%;
+padding:18px 25px;
+background:#ffffffd9;
+backdrop-filter:blur(10px);
+border-bottom:1px solid #f3d9e2;
+display:flex;
+justify-content:center;
+gap:12px;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+nav a{
+text-decoration:none;
+color:#61746a;
+background:#edf8f0;
+padding:10px 20px;
+border-radius:30px;
+font-weight:bold;
+transition:.25s;
+}
+
+nav a:hover,
+nav a.active{
+background:#f5c9d8;
+color:#fff;
+transform:translateY(-2px);
+}
+
+.container{
+max-width:1050px;
+margin:50px auto;
+padding:20px;
+}
+
+.title{
+text-align:center;
+margin-bottom:40px;
+}
+
+.title h1{
+color:#df91ad;
+font-size:45px;
+margin-bottom:8px;
+}
+
+.title p{
+color:#8bb89d;
+}
+
+.university-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.university-card{
+background:#fff;
+border:1px solid #f1dce3;
+border-radius:22px;
+padding:20px;
+box-shadow:0 10px 30px #dbaebe25;
+transition:.3s;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+}
+
+.university-card:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 35px #dbaebe40;
+}
+
+.university-logo{
+width:120px;
+height:120px;
+object-fit:contain;
+border-radius:50%;
+background:#f4f9f5;
+padding:10px;
+border:2px dashed #f1dce3;
+margin-bottom:15px;
+}
+
+.university-card h2{
+font-size:20px;
+color:#df91ad;
+margin-bottom:8px;
+}
+
+.faculty-tag{
+display:inline-block;
+background:#dff1e3;
+color:#548262;
+padding:6px 14px;
+border-radius:20px;
+font-size:13px;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.reason-box{
+width:100%;
+text-align:left;
+background:#fff8fa;
+padding:15px;
+border-radius:15px;
+border-left:4px solid #df91ad;
+margin-top:auto;
+}
+
+.reason-box h3{
+font-size:14px;
+color:#df91ad;
+margin-bottom:6px;
+}
+
+.reason-box p{
+font-size:14px;
+color:#6d7c73;
+line-height:1.6;
+}
+
+@media(max-width:700px){
+.university-grid{
+grid-template-columns:1fr;
+}
+
+nav{
+gap:6px;
+padding:15px 10px;
+}
+
+nav a{
+padding:9px 12px;
+font-size:14px;
+}
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#91a098;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About Me</a>
+<a href="portfolio.html" class="active">Portfolio</a>
+</nav>
+
+<main class="container">
+
+<div class="title">
+<h1>มหาวิทยาลัยที่สนใจ</h1>
 <p>Target Universities & Faculties</p>
 </div>
 
 <section class="university-grid">
 
+<!-- มหาวิทยาลัยที่ 1 -->
 <div class="university-card">
-<img src="https://via.placeholder.com/400x300?text=University+Image+1" alt="(ใส่รูปมหาวิทยาลัยแห่งที่ 1)">
-<span class="faculty-tag">คณะที่สนใจ: (ใส่ชื่อคณะที่สนใจ 1)</span>
-<h3>(ใส่ชื่อมหาวิทยาลัยที่ 1)</h3>
+<!-- ใส่ URL รูปตรามหาวิทยาลัยตรง src -->
+<img class="university-logo" src="https://via.placeholder.com/150?text=Logo+1" alt="(ใส่ตรามหาวิทยาลัย 1)">
+
+<h2>(ใส่ชื่อมหาวิทยาลัย 1)</h2>
+
+<span class="faculty-tag">
+คณะที่อยากเข้า: (ใส่ชื่อคณะ 1)
+</span>
+
 <div class="reason-box">
-<strong>ทำไมถึงอยากเข้า:</strong>
-<p>(ใส่เหตุผลว่าทำไมถึงอยากเข้าคณะและมหาวิทยาลัยนี้)</p>
+<h3>เหตุผลที่อยากเข้า:</h3>
+<p>(ใส่เหตุผลที่อยากเข้า)</p>
 </div>
 </div>
 
+<!-- มหาวิทยาลัยที่ 2 -->
 <div class="university-card">
-<img src="https://via.placeholder.com/400x300?text=University+Image+2" alt="(ใส่รูปมหาวิทยาลัยแห่งที่ 2)">
-<span class="faculty-tag">คณะที่สนใจ: (ใส่ชื่อคณะที่สนใจ 2)</span>
-<h3>(ใส่ชื่อมหาวิทยาลัยที่ 2)</h3>
+<!-- ใส่ URL รูปตรามหาวิทยาลัยตรง src -->
+<img class="university-logo" src="https://via.placeholder.com/150?text=Logo+2" alt="(ใส่ตรามหาวิทยาลัย 2)">
+
+<h2>(ใส่ชื่อมหาวิทยาลัย 2)</h2>
+
+<span class="faculty-tag">
+คณะที่อยากเข้า: (ใส่ชื่อคณะ 2)
+</span>
+
 <div class="reason-box">
-<strong>ทำไมถึงอยากเข้า:</strong>
-<p>(ใส่เหตุผลว่าทำไมถึงอยากเข้าคณะและมหาวิทยาลัยนี้)</p>
+<h3>เหตุผลที่อยากเข้า:</h3>
+<p>(ใส่เหตุผลที่อยากเข้า)</p>
 </div>
 </div>
 
