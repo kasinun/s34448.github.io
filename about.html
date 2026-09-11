@@ -4,21 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>About Me | Portfolio</title>
-
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box
 }
-
 body{
 font-family:Arial,"Noto Sans Thai",sans-serif;
 background:linear-gradient(135deg,#fff5f8,#effbf3);
 color:#4f5d55;
 min-height:100vh;
 }
-
+/* NAVIGATION */
 nav{
 width:100%;
 padding:18px 25px;
@@ -32,7 +30,6 @@ position:sticky;
 top:0;
 z-index:10;
 }
-
 nav a{
 text-decoration:none;
 color:#61746a;
@@ -42,42 +39,38 @@ border-radius:30px;
 font-weight:bold;
 transition:.25s;
 }
-
 nav a:hover,
 nav a.active{
 background:#f5c9d8;
 color:#fff;
 transform:translateY(-2px);
 }
-
+/* MAIN */
 .container{
 max-width:1000px;
 margin:50px auto;
 padding:20px;
 }
-
 .title{
 text-align:center;
 margin-bottom:35px;
 }
-
 .title h1{
 color:#df91ad;
 font-size:45px;
 margin-bottom:8px;
 }
-
 .title p{
 color:#8bb89d;
 }
-
+/* PROFILE */
 .profile{
 display:grid;
 grid-template-columns:300px 1fr;
 gap:35px;
 align-items:start;
 }
-
+/* PHOTO */
 .photo{
 background:#fff;
 border:3px dashed #b8dcbf;
@@ -86,7 +79,6 @@ padding:15px;
 box-shadow:0 10px 30px #9bb9a833;
 text-align:center;
 }
-
 .photo img{
 width:100%;
 aspect-ratio:1/1;
@@ -94,152 +86,227 @@ object-fit:cover;
 border-radius:18px;
 background:#f4f9f5;
 }
-
-.photo p{
-font-size:13px;
-margin-top:12px;
-color:#91a098;
-}
-
+/* INFO */
 .info{
 display:grid;
 gap:16px;
 }
-
 .card{
 background:#ffffffd9;
 border:1px solid #f1dce3;
 border-radius:20px;
 padding:22px;
 box-shadow:0 8px 25px #dbaebe22;
+transition:.25s;
 }
-
+.card:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px #dbaebe35;
+}
 .card h2{
 color:#df91ad;
 font-size:21px;
 margin-bottom:10px;
 }
-
 .card p{
 line-height:1.8;
 color:#66736c;
 }
-
-@media(max-width:700px){
-
-.profile{
-grid-template-columns:1fr;
+/* UNIVERSITY */
+.university-card{
+margin-top:5px;
+background:#ffffffd9;
+border:1px solid #f1dce3;
+border-radius:22px;
+padding:25px;
+box-shadow:0 8px 25px #dbaebe22;
+text-align:center;
+transition:.25s;
 }
-
-.photo{
-max-width:300px;
-margin:auto;
+.university-card:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px #dbaebe35;
 }
-
-nav{
-gap:6px;
-padding:15px 10px;
+.university-logo{
+width:110px;
+height:110px;
+object-fit:contain;
+margin:0 auto 15px;
+display:block;
 }
-
-nav a{
-padding:9px 12px;
+.university-card h2{
+color:#df91ad;
+font-size:22px;
+line-height:1.5;
+margin-bottom:12px;
+}
+.faculty-tag{
+display:inline-block;
+background:#edf8f0;
+color:#6c9a7a;
+padding:9px 16px;
+border-radius:25px;
 font-size:14px;
+font-weight:bold;
+margin-bottom:18px;
 }
-
+.reason-box{
+background:#fff5f8;
+border:1px solid #f3d9e2;
+border-radius:18px;
+padding:18px;
+text-align:left;
 }
-
+.reason-box h3{
+color:#8bb89d;
+font-size:18px;
+margin-bottom:8px;
+}
+.reason-box p{
+color:#66736c;
+line-height:1.8;
+font-size:15px;
+}
+/* FOOTER */
 footer{
 text-align:center;
 padding:30px;
 color:#91a098;
 font-size:14px;
 }
+/* MOBILE */
+@media(max-width:700px){
+.profile{
+grid-template-columns:1fr;
+}
+.photo{
+max-width:300px;
+margin:auto;
+}
+nav{
+gap:6px;
+padding:15px 10px;
+}
+nav a{
+padding:9px 12px;
+font-size:14px;
+}
+.title h1{
+font-size:38px;
+}
+.university-card{
+padding:20px;
+}
+.university-card h2{
+font-size:19px;
+}
+}
 </style>
 </head>
-
 <body>
-
 <nav>
 <a href="index.html">Home</a>
-<a href="about.html" class="active">About Me</a>
-<a href="portfolio.html">Portfolio</a>
+<a href="about.html" class="active">
+About Me
+</a>
+<a href="portfolio.html">
+Portfolio
+</a>
 </nav>
-
 <main class="container">
-
 <div class="title">
 <h1>About Me</h1>
 <p>เกี่ยวกับตัวฉัน</p>
 </div>
-
 <section class="profile">
-
+<!-- รูปโปรไฟล์ -->
 <div class="photo">
-
-<img src="https://i.postimg.cc/PfwnRjqr/IMG-0872.jpg" alt="รูปภาพของฉัน">
-
+<img 
+src="https://i.postimg.cc/PfwnRjqr/IMG-0872.jpg" 
+alt="รูปภาพของฉัน"
+>
 </div>
-
+<!-- ข้อมูลส่วนตัว -->
 <div class="info">
-
 <div class="card">
 <h2>แนะนำตัว</h2>
+<p>
+สวัสดีค่ะ หนูชื่อกศิณ์นันท์ วงศ์เสนี ชื่อเล่นผักกาด
+เป็นคนที่สนใจด้านเทคโนโลยีและการออกแบบ
+และมีความตั้งใจที่จะพัฒนาตนเองเพื่อก้าวไปสู่เป้าหมายในอนาคต
+</p>
 </div>
-
 <div class="card">
 <h2>ชื่อ - นามสกุล</h2>
-<p>น.ส.กศิณ์นันท์ วงศ์เสนี</p>
+<p>
+น.ส.กศิณ์นันท์ วงศ์เสนี
+</p>
 </div>
-
 <div class="card">
 <h2>ชื่อเล่น</h2>
-<p>ผักกาด</p>
+<p>
+ผักกาด
+</p>
 </div>
-
 <div class="card">
 <h2>วันเกิด</h2>
-<p>5กันยายน2551</p>
+<p>
+5 กันยายน 2551
+</p>
 </div>
-
 <div class="card">
 <h2>การศึกษา</h2>
-<p>จบการศึกษาชั้นประถมศึกษาจากโรงเรียนบุญประทีปวิทยาคารและจบชั้นมัธยมศึกษาตอนต้นจากโรงเรียนบ้านบึงอุตสาหกรรมนุเคราะห์</p>
+<p>
+จบการศึกษาชั้นประถมศึกษาจากโรงเรียนบุญประทีปวิทยาคาร
+และจบชั้นมัธยมศึกษาตอนต้นจากโรงเรียนบ้านบึงอุตสาหกรรมนุเคราะห์
+</p>
 </div>
-
 <div class="card">
 <h2>ความสามารถ / ทักษะ</h2>
-<p>มีความเชี่ยวชาญในการใช้Canvaเพื่อออกแบบและนำเสนองาน</p>
+<p>
+มีความเชี่ยวชาญในการใช้ Canva เพื่อออกแบบและนำเสนองาน
+</p>
 </div>
-
 <div class="card">
 <h2>งานอดิเรก / ความสนใจ</h2>
-<p>ดูหนัง ฟังเพลง</p>
+<p>
+ดูหนัง ฟังเพลง
+</p>
 </div>
-
 <div class="card">
 <h2>เป้าหมายในอนาคต</h2>
-<p>เป็นคนที่มีความสุขและประสบความสำเร็จ</p>
+<p>
+เป็นคนที่มีความสุขและประสบความสำเร็จ
+</p>
 </div>
-
-<a 
+<!-- มหาวิทยาลัยที่อยากเข้า -->
 <div class="university-card">
-  <img class="university-logo" src="https://upload.wikimedia.org/wikipedia/th/1/15/Kmitl.png" alt="สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง">
-  <h2>สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h2>
-  <span class="faculty-tag">คณะที่อยากเข้า: (คณะเทคโนโลยีสารสนเทศ)</span>
-  <div class="reason-box">
-    <h3>เหตุผลที่อยากเข้า:</h3>
-    <p>(เพราะเทคโนโลยีสารสนเทศเป็นหัวใจสำคัญที่ขับเคลื่อนทุกอุตสาหกรรมในปัจจุบันและหนูอยากเรียนวิธีสร้างซอฟต์แวร์และแอปพลิเคชัน)</p>
-  </div>
-</div>   
+<img
+class="university-logo"
+src="https://upload.wikimedia.org/wikipedia/th/1/15/Kmitl.png"
+alt="สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง"
+>
+<h2>
+สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง
+</h2>
+<span class="faculty-tag">
+คณะที่อยากเข้า: คณะเทคโนโลยีสารสนเทศ
+</span>
+<div class="reason-box">
+<h3>
+เหตุผลที่อยากเข้า:
+</h3>
+<p>
+เพราะเทคโนโลยีสารสนเทศเป็นหัวใจสำคัญที่ขับเคลื่อนทุกอุตสาหกรรมในปัจจุบัน
+และหนูอยากเรียนวิธีสร้างซอฟต์แวร์และแอปพลิเคชัน
+</p>
 </div>
-
+</div>
+</div>
 </section>
-
 </main>
-
 <footer>
 © 2026 My Portfolio · Made with ♡
 </footer>
-
 </body>
 </html>
