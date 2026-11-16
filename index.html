@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -273,19 +273,6 @@
             font-size: 13px;
         }
 
-        /* SUBJECT LINK */
-        a.subject-card {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-        }
-
-        a.subject-card:focus {
-            outline: 3px solid #36a66b;
-            outline-offset: 4px;
-        }
-
         /* ABOUT */
         .about {
             text-align: center;
@@ -488,42 +475,38 @@
 
         <div class="subjects">
 
-            <!-- คณิตศาสตร์ -->
-            <a href="math.html" class="subject-card">
+            <!-- คลิกเพื่อไปยังหน้าข้อสอบคณิตศาสตร์ -->
+            <a href="math.html" class="subject-card"
+               style="text-decoration:none;color:inherit;display:block;">
                 <div class="icon">➗</div>
                 <h3>คณิตศาสตร์</h3>
                 <p>ฝึกคิด วิเคราะห์ และคำนวณ</p>
             </a>
 
-            <!-- วิทยาศาสตร์ -->
-            <a href="science.html" class="subject-card">
+            <div class="subject-card">
                 <div class="icon">🔬</div>
                 <h3>วิทยาศาสตร์</h3>
                 <p>เรียนรู้หลักการและกระบวนการทางวิทยาศาสตร์</p>
-            </a>
+            </div>
 
-            <!-- ภาษาไทย -->
             <div class="subject-card">
                 <div class="icon">📚</div>
                 <h3>ภาษาไทย</h3>
                 <p>พัฒนาทักษะการอ่านและการเขียน</p>
             </div>
 
-            <!-- ภาษาอังกฤษ -->
             <div class="subject-card">
                 <div class="icon">🌎</div>
                 <h3>ภาษาอังกฤษ</h3>
                 <p>ฝึกทักษะภาษาอังกฤษ</p>
             </div>
 
-            <!-- คอมพิวเตอร์ -->
             <div class="subject-card">
                 <div class="icon">💻</div>
                 <h3>คอมพิวเตอร์</h3>
                 <p>เรียนรู้เทคโนโลยีและดิจิทัล</p>
             </div>
 
-            <!-- สังคมศึกษา -->
             <div class="subject-card">
                 <div class="icon">🌍</div>
                 <h3>สังคมศึกษา</h3>
@@ -572,4 +555,3 @@
 
 </body>
 </html>
-```
