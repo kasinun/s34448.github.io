@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คลังข้อสอบ | Online Examination</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #f8f7fc;
+            color: #29253d;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            box-shadow: 0 3px 20px rgba(70, 40, 100, 0.07);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #6035a5;
+        }
+
+        .logo span {
+            color: #36a66b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #514b60;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #36a66b;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 570px;
+            padding: 85px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            background:
+                radial-gradient(circle at 85% 20%, #a8e8c4 0%, transparent 30%),
+                linear-gradient(120deg, #e3f8ed, #eee5ff 75%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: white;
+            color: #398d61;
+            padding: 9px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px #a8cbb8;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 72px);
+            font-weight: 800;
+            line-height: 1.3;
+            color: #58349b;
+        }
+
+        .hero h1 span {
+            color: #35a36a;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #656074;
+            line-height: 1.9;
+            margin: 20px 0 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(110deg, #39ad70, #6841b0);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 8px 22px rgba(91, 65, 160, 0.25);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(91, 65, 160, 0.35);
+        }
+
+        /* HERO IMAGE */
+        .hero-visual {
+            width: 390px;
+            height: 350px;
+            background: linear-gradient(140deg, #ffffff, #d9f4e5);
+            border-radius: 45% 55% 60% 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 20px 50px rgba(86, 61, 139, 0.15);
+            position: relative;
+        }
+
+        .hero-visual .book {
+            font-size: 145px;
+            filter: drop-shadow(0 12px 10px #9c91b3);
+        }
+
+        .floating {
+            position: absolute;
+            background: white;
+            padding: 13px 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px #c7c0d5;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .float-one {
+            top: 35px;
+            right: -15px;
+            color: #36a66b;
+        }
+
+        .float-two {
+            bottom: 35px;
+            left: -25px;
+            color: #6841b0;
+        }
+
+        /* SECTION */
+        section {
+            padding: 75px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            color: #6038a0;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #817b8d;
+            font-size: 15px;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(65, 43, 100, 0.06);
+            transition: 0.3s;
+            border-bottom: 4px solid #8c64c6;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card:nth-child(2) {
+            border-bottom-color: #42b77c;
+        }
+
+        .feature-card:nth-child(3) {
+            border-bottom-color: #9b77d0;
+        }
+
+        .feature-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #583a8e;
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            color: #858092;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* SUBJECT */
+        .subject-section {
+            background: linear-gradient(130deg, #e7f7ed, #eee8fa);
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 7px 25px rgba(70, 50, 100, 0.07);
+            transition: 0.3s;
+        }
+
+        .subject-card:hover {
+            transform: scale(1.04);
+        }
+
+        .subject-card .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .subject-card h3 {
+            color: #593c91;
+            margin-bottom: 10px;
+        }
+
+        .subject-card p {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* ABOUT */
+        .about {
+            text-align: center;
+        }
+
+        .about-box {
+            max-width: 750px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 25px;
+            background: linear-gradient(120deg, #e1f5e9, #eee4fa);
+        }
+
+        .about-box h2 {
+            font-size: 30px;
+            color: #58399a;
+            margin-bottom: 20px;
+        }
+
+        .about-box p {
+            color: #686273;
+            line-height: 2;
+            font-size: 15px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(110deg, #286e50, #56328c);
+            color: white;
+            padding: 45px 8% 25px;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .credits {
+            margin: 20px auto;
+            line-height: 2.1;
+            font-size: 15px;
+            color: #eee6ff;
+        }
+
+        .copyright {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 13px;
+            color: #e3dcec;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 65px 6%;
+            }
+
+            .hero-visual {
+                width: 280px;
+                height: 260px;
+            }
+
+            .hero-visual .book {
+                font-size: 110px;
+            }
+
+            .features, .subjects {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            nav {
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .features, .subjects {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 27px;
+            }
+
+            section {
+                padding: 55px 6%;
+            }
+
+            .about-box {
+                padding: 25px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">คลัง<span>ข้อสอบ.</span></div>
+
+        <div class="nav-links">
+            <a href="#home">หน้าแรก</a>
+            <a href="#features">เกี่ยวกับเรา</a>
+            <a href="#subjects">หมวดหมู่</a>
+            <a href="#contact">ผู้จัดทำ</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="home">
+
+        <div class="hero-content">
+            <div class="tag">✦ ONLINE EXAMINATION SYSTEM</div>
+
+            <h1>
+                คลัง<span>ข้อสอบ</span>
+            </h1>
+
+            <p>
+                พื้นที่แห่งการเรียนรู้และพัฒนาความรู้
+                รวบรวมข้อสอบเพื่อให้นักเรียนได้ฝึกฝน
+                ทบทวนบทเรียน และเตรียมความพร้อม
+                สู่การสอบอย่างมั่นใจ
+            </p>
+
+            <a href="#subjects" class="btn">
+                เริ่มต้นใช้งาน →
+            </a>
+        </div>
+
+        <div class="hero-visual">
+            <div class="book">📚</div>
+            <div class="floating float-one">✦ เรียนรู้ได้ทุกที่</div>
+            <div class="floating float-two">✓ ฝึกฝนสู่ความสำเร็จ</div>
+        </div>
+
+    </header>
+
+    <!-- FEATURES -->
+    <section id="features">
+
+        <div class="section-title">
+            <h2>ทำไมต้องใช้คลังข้อสอบ?</h2>
+            <p>ตัวช่วยในการเรียนรู้และเตรียมความพร้อมก่อนสอบ</p>
+        </div>
+
+        <div class="features">
+
+            <div class="feature-card">
+                <div class="feature-icon">📖</div>
+                <h3>รวบรวมข้อสอบ</h3>
+                <p>รวมแบบทดสอบและข้อสอบในหลากหลายรายวิชา เพื่อให้ง่ายต่อการค้นคว้า</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h3>ฝึกทำข้อสอบ</h3>
+                <p>ฝึกฝนทักษะการทำข้อสอบ พร้อมระบบจับเวลาเพื่อจำลองการสอบ</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>ตรวจสอบคะแนน</h3>
+                <p>ตรวจคำตอบและแสดงผลคะแนน พร้อมเฉลยเพื่อทบทวนความรู้</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SUBJECTS -->
+    <section class="subject-section" id="subjects">
+
+        <div class="section-title">
+            <h2>หมวดหมู่ข้อสอบ</h2>
+            <p>เลือกหมวดหมู่เพื่อเตรียมความพร้อมในการสอบ</p>
+        </div>
+
+        <div class="subjects">
+
+            <div class="subject-card">
+                <div class="icon">➗</div>
+                <h3>คณิตศาสตร์</h3>
+                <p>ฝึกคิด วิเคราะห์ และคำนวณ</p>
+            </div>
+
+            <div class="subject-card">
+                <div class="icon">🔬</div>
+                <h3>วิทยาศาสตร์</h3>
+                <p>เรียนรู้หลักการและกระบวนการทางวิทยาศาสตร์</p>
+            </div>
+
+            <div class="subject-card">
+                <div class="icon">📚</div>
+                <h3>ภาษาไทย</h3>
+                <p>พัฒนาทักษะการอ่านและการเขียน</p>
+            </div>
+
+            <div class="subject-card">
+                <div class="icon">🌎</div>
+                <h3>ภาษาอังกฤษ</h3>
+                <p>ฝึกทักษะภาษาอังกฤษ</p>
+            </div>
+
+            <div class="subject-card">
+                <div class="icon">💻</div>
+                <h3>คอมพิวเตอร์</h3>
+                <p>เรียนรู้เทคโนโลยีและดิจิทัล</p>
+            </div>
+
+            <div class="subject-card">
+                <div class="icon">🌍</div>
+                <h3>สังคมศึกษา</h3>
+                <p>เรียนรู้สังคม ประวัติศาสตร์ และหน้าที่พลเมือง</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about">
+        <div class="about-box">
+            <h2>เรียนรู้ ฝึกฝน พัฒนาตนเอง</h2>
+
+            <p>
+                คลังข้อสอบออนไลน์จัดทำขึ้นเพื่อเป็นแหล่งรวบรวม
+                แบบทดสอบและสื่อการเรียนรู้สำหรับนักเรียน
+                ช่วยส่งเสริมการศึกษาค้นคว้าด้วยตนเอง
+                และเพิ่มโอกาสในการเข้าถึงแหล่งความรู้
+                ได้อย่างสะดวกและทั่วถึง
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+
+        <h2>📚 คลังข้อสอบ</h2>
+
+        <p>เว็บไซต์คลังข้อสอบออนไลน์เพื่อการเรียนรู้</p>
+
+        <div class="credits">
+            <strong>จัดทำโดย</strong><br>
+            นางสาวกศิณ์นันท์ วงศ์เสนี<br>
+            นางสาวณัฐธิดา ถกลพัฒนกุล<br>
+            นางสาวสุกัลยา ชื่นชม
+        </div>
+
+        <div class="copyright">
+            © 2026 คลังข้อสอบ | Online Examination System
+            <br>
+            All Rights Reserved.
+        </div>
+
+    </footer>
+
+</body>
+</html>
