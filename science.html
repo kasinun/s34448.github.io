@@ -1,0 +1,402 @@
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบทดสอบวิทยาศาสตร์ | คลังข้อสอบ</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:'Prompt',sans-serif;background:#f6f4fb;color:#302b3d}
+nav{background:white;padding:17px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 20px rgba(70,40,100,.08);position:sticky;top:0;z-index:100}
+.logo{font-size:23px;font-weight:800;color:#6035a5}.logo span{color:#35a36a}
+.back{text-decoration:none;color:#6544a1;font-size:14px;font-weight:500}.back:hover{color:#35a36a}
+.header{background:linear-gradient(120deg,#dff5e8,#e9ddfa);padding:55px 7%;text-align:center}
+.header .tag{display:inline-block;padding:8px 20px;background:white;color:#38976a;border-radius:30px;font-size:13px;margin-bottom:18px}
+.header h1{font-size:38px;color:#60399c;font-weight:800}.header h1 span{color:#36a36b}
+.header p{color:#70697c;margin-top:12px;line-height:1.8}
+.info{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:25px}
+.info-box{background:white;padding:12px 22px;border-radius:13px;color:#60419b;font-size:14px;box-shadow:0 4px 15px rgba(70,40,100,.06)}
+.container{max-width:1000px;margin:35px auto;padding:0 20px}
+.timer-box{background:white;padding:20px 25px;border-radius:18px;box-shadow:0 5px 20px rgba(70,40,100,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:25px}
+.timer-title{color:#6c5a84;font-size:14px}.timer{font-size:28px;font-weight:800;color:#36a36b;font-variant-numeric:tabular-nums}.timer.warning{color:#e05267}
+.progress-area{margin-top:12px}.progress-text{display:flex;justify-content:space-between;font-size:13px;color:#81798e;margin-bottom:8px}
+.progress{height:9px;background:#eee9f5;border-radius:20px;overflow:hidden}.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#39b779,#7548b8);border-radius:20px;transition:.3s}
+.instruction{background:#eee7fa;border-left:5px solid #8053bd;padding:18px 22px;border-radius:12px;margin-bottom:25px;color:#59427f;font-size:14px;line-height:1.8}
+.section-heading{margin:30px 0 16px;color:#60399c;font-size:21px}
+.question-card{background:white;padding:25px;border-radius:18px;margin-bottom:22px;box-shadow:0 5px 22px rgba(70,40,100,.05);border:1px solid #eeeaf4;transition:.2s}
+.question-card.answered{border-left:5px solid #48ad77}
+.question-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:17px}
+.question-number{font-size:17px;font-weight:700;color:#6540a3}
+.topic{background:#e5f6ec;color:#369566;padding:6px 13px;border-radius:20px;font-size:12px}
+.question-text{font-size:16px;line-height:1.9;margin-bottom:20px;font-weight:500;white-space:pre-line}
+.options{display:grid;gap:12px}
+.option{display:flex;align-items:center;gap:12px;padding:14px 17px;border:1px solid #e9e4f0;border-radius:12px;cursor:pointer;transition:.2s;font-size:14px}
+.option:hover{background:#f2f8f3;border-color:#6cbd8e}
+.option:has(input:checked){background:#eaf7ef;border-color:#43a974;color:#287e51;font-weight:600}
+.option input{accent-color:#46a875;width:17px;height:17px;flex-shrink:0}
+.submit-area{text-align:center;padding:20px 0 50px}
+.submit-btn{background:linear-gradient(110deg,#39ad70,#6841b0);color:white;border:none;padding:16px 45px;font-family:inherit;font-size:16px;font-weight:600;border-radius:40px;cursor:pointer;box-shadow:0 7px 20px rgba(90,60,150,.2);transition:.3s}
+.submit-btn:hover{transform:translateY(-3px)}.submit-btn:disabled{opacity:.6;cursor:not-allowed}
+#result{display:none}
+.result-box{background:white;padding:40px 25px;text-align:center;border-radius:25px;box-shadow:0 8px 30px rgba(70,40,100,.07);margin-bottom:30px}
+.result-icon{font-size:60px;margin-bottom:15px}.result-box h2{color:#60399c;font-size:30px}
+.score{font-size:55px;font-weight:800;color:#39a66e;margin:15px 0}
+.result-detail{color:#777080;line-height:2;font-size:15px}
+.review-title{text-align:center;color:#60399c;margin:35px 0 20px;font-size:25px}
+.review-card{background:white;padding:23px;border-radius:15px;margin-bottom:18px;border:1px solid #eeeaf4;line-height:1.9}
+.review-card h3{color:#60399c;font-size:16px;margin-bottom:12px}
+.correct-answer{color:#278b55;background:#e8f7ed;padding:10px 13px;border-radius:9px;margin:10px 0;font-size:14px}
+.wrong-answer{color:#d14f5e;background:#fff0f0;padding:10px 13px;border-radius:9px;margin:10px 0;font-size:14px}
+.explanation{background:#f1ebfa;color:#59427f;padding:15px;border-radius:10px;margin-top:12px;font-size:14px;white-space:pre-line}
+.retry-btn{display:inline-block;margin:10px;padding:13px 25px;background:#6540a3;color:white;border-radius:30px;text-decoration:none;border:none;font-family:inherit;cursor:pointer}
+footer{background:linear-gradient(110deg,#286e50,#56328c);color:white;text-align:center;padding:30px 15px;font-size:13px;line-height:2}
+@media(max-width:600px){.header h1{font-size:29px}.timer-box{padding:17px}.timer{font-size:24px}.question-card{padding:19px}.question-text{font-size:15px}.score{font-size:43px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">คลัง<span>ข้อสอบ.</span></div>
+  <a href="index.html" class="back">← กลับหน้าหลัก</a>
+</nav>
+
+<header class="header">
+  <div class="tag">✦ ONLINE EXAMINATION</div>
+  <h1>แบบทดสอบวิชา<span>วิทยาศาสตร์</span></h1>
+  <p>ระดับชั้นมัธยมศึกษาปีที่ 4–6<br>ทบทวนความรู้ ฝึกฝนทักษะ และพัฒนาตนเอง</p>
+  <div class="info">
+    <div class="info-box">📋 20 ข้อ</div>
+    <div class="info-box">🏆 20 คะแนน</div>
+    <div class="info-box">⏱️ 60 นาที</div>
+  </div>
+</header>
+
+<main class="container" id="exam">
+  <div class="timer-box">
+    <div>
+      <div class="timer-title">เวลาที่เหลือในการทำข้อสอบ</div>
+      <div class="timer" id="timer">60:00</div>
+    </div>
+    <div style="flex:1;min-width:180px">
+      <div class="progress-area">
+        <div class="progress-text"><span>ความคืบหน้าการทำข้อสอบ</span><span id="progressText">0 / 20 ข้อ</span></div>
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="instruction">
+    <strong>คำชี้แจง</strong><br>
+    1. แบบทดสอบมีจำนวน 20 ข้อ คะแนนเต็ม 20 คะแนน<br>
+    2. ให้นักเรียนเลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
+    3. มีเวลาในการทำข้อสอบ 60 นาที<br>
+    4. เมื่อทำข้อสอบเสร็จแล้วให้กดปุ่มส่งข้อสอบเพื่อดูคะแนนและเฉลย
+  </div>
+
+  <div id="questions"></div>
+  <div class="submit-area">
+    <button class="submit-btn" id="submitBtn" onclick="submitExam()">ส่งข้อสอบและตรวจคะแนน</button>
+    <p style="margin-top:12px;color:#888;font-size:13px">กรุณาตรวจสอบคำตอบก่อนกดส่งข้อสอบ</p>
+  </div>
+</main>
+
+<section id="result" class="container">
+  <div class="result-box">
+    <div class="result-icon">🏆</div>
+    <h2>สรุปผลการสอบ</h2>
+    <div class="score"><span id="score">0</span>/20</div>
+    <div class="result-detail">
+      <div>ตอบถูก <strong id="correctCount">0</strong> ข้อ</div>
+      <div>ตอบผิด <strong id="wrongCount">0</strong> ข้อ</div>
+      <div>ไม่ได้ตอบ <strong id="blankCount">0</strong> ข้อ</div>
+      <div>คิดเป็น <strong id="percentage">0</strong>%</div>
+      <div>เวลาที่ใช้ <strong id="usedTime">0 นาที</strong></div>
+    </div>
+    <p id="resultMessage" style="margin-top:18px;color:#39996a;font-weight:600"></p>
+  </div>
+  <h2 class="review-title">📖 เฉลยพร้อมคำอธิบายอย่างละเอียด</h2>
+  <div id="review"></div>
+  <div class="submit-area">
+    <button class="retry-btn" onclick="location.reload()">↻ ทำข้อสอบอีกครั้ง</button>
+    <a href="index.html" class="retry-btn">กลับหน้าหลัก</a>
+  </div>
+</section>
+
+<footer>
+  <h2>📚 คลังข้อสอบ</h2>
+  เว็บไซต์คลังข้อสอบออนไลน์เพื่อการเรียนรู้<br>
+  จัดทำโดย นางสาวกศิณ์นันท์ วงศ์เสนี<br>
+  นางสาวณัฐธิดา ถกลพัฒนกุล<br>
+  นางสาวสุกัลยา ชื่นชม<br>
+  © 2026 Online Examination System
+</footer>
+
+<script>
+const questions = [
+{
+topic:"โครงสร้างและหน้าที่ของเซลล์ (ม.4)",
+question:"ออร์แกเนลล์ใดทำหน้าที่สร้างพลังงาน ATP ให้แก่เซลล์เป็นหลัก",
+options:["นิวเคลียส","ไมโทคอนเดรีย","ไรโบโซม","กอลจิบอดี"],
+answer:1,
+explanation:"ไมโทคอนเดรียเป็นออร์แกเนลล์ที่ทำหน้าที่สำคัญในการสร้างพลังงานให้แก่เซลล์ผ่านกระบวนการหายใจระดับเซลล์ โดยสร้างสาร ATP ซึ่งเป็นแหล่งพลังงานที่เซลล์นำไปใช้ในกิจกรรมต่าง ๆ\nเหตุผลที่ข้ออื่นไม่ถูกต้อง\n- นิวเคลียส ทำหน้าที่ควบคุมการทำงานของเซลล์และเก็บสารพันธุกรรม\n- ไรโบโซม ทำหน้าที่สังเคราะห์โปรตีน\n- กอลจิบอดี ทำหน้าที่ปรับแต่ง คัดแยก และบรรจุสารเพื่อส่งไปยังส่วนต่าง ๆ"
+},
+{
+topic:"การสังเคราะห์ด้วยแสง (ม.4)",
+question:"สารใดเป็นวัตถุดิบสำคัญที่พืชใช้ในกระบวนการสังเคราะห์ด้วยแสง",
+options:["ออกซิเจนและน้ำตาล","น้ำและแก๊สคาร์บอนไดออกไซด์","ไนโตรเจนและออกซิเจน","น้ำตาลและแร่ธาตุ"],
+answer:1,
+explanation:"การสังเคราะห์ด้วยแสงเป็นกระบวนการที่พืชสร้างอาหารโดยใช้พลังงานจากแสงอาทิตย์ วัตถุดิบสำคัญ ได้แก่ น้ำ (H₂O) จากดิน และแก๊สคาร์บอนไดออกไซด์ (CO₂) จากอากาศ พืชใช้พลังงานแสงและคลอโรฟิลล์เปลี่ยนวัตถุดิบให้เป็นน้ำตาลกลูโคสและปล่อยแก๊สออกซิเจนออกมา\nสมการโดยรวมคือ 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂"
+},
+{
+topic:"พันธุกรรม (ม.4)",
+question:"กำหนดให้ T แทนยีนลักษณะต้นสูง ซึ่งเป็นลักษณะเด่น และ t แทนยีนลักษณะต้นเตี้ย ซึ่งเป็นลักษณะด้อย หากนำต้นถั่ว Tt ผสมกับ Tt ลูกที่เกิดมามีโอกาสเป็นต้นเตี้ยเท่าใด",
+options:["0%","25%","50%","75%"],
+answer:1,
+explanation:"กำหนดให้ T = ต้นสูง (ลักษณะเด่น) และ t = ต้นเตี้ย (ลักษณะด้อย)\nเมื่อนำ Tt ผสมกับ Tt จะได้จีโนไทป์เป็น TT, Tt, Tt และ tt\n- TT = ต้นสูง\n- Tt = ต้นสูง\n- Tt = ต้นสูง\n- tt = ต้นเตี้ย\nมีต้นเตี้ย 1 รูปแบบจากทั้งหมด 4 รูปแบบ ดังนั้นโอกาสเกิดต้นเตี้ย = 1/4 × 100 = 25%"
+},
+{
+topic:"ระบบนิเวศ (ม.4)",
+question:"สิ่งมีชีวิตกลุ่มใดทำหน้าที่เป็นผู้ผลิตในระบบนิเวศ",
+options:["เห็ดและรา","เสือและสิงโต","พืชสีเขียว","แบคทีเรียย่อยสลาย"],
+answer:2,
+explanation:"ผู้ผลิตคือสิ่งมีชีวิตที่สามารถสร้างอาหารได้ด้วยตนเอง โดยส่วนใหญ่ใช้กระบวนการสังเคราะห์ด้วยแสง ตัวอย่าง ได้แก่ ต้นไม้ หญ้า สาหร่าย และพืชน้ำ ผู้ผลิตเป็นจุดเริ่มต้นของการถ่ายทอดพลังงานในห่วงโซ่อาหาร เพราะผู้บริโภคได้รับพลังงานจากการกินผู้ผลิตหรือสิ่งมีชีวิตอื่นต่อไป"
+},
+{
+topic:"ระบบภูมิคุ้มกัน (ม.4)",
+question:"เซลล์เม็ดเลือดขาวมีหน้าที่สำคัญอย่างไร",
+options:["ลำเลียงออกซิเจน","ช่วยป้องกันและกำจัดเชื้อโรค","ช่วยในการแข็งตัวของเลือด","ลำเลียงสารอาหารไปยังเซลล์"],
+answer:1,
+explanation:"เม็ดเลือดขาวเป็นส่วนสำคัญของระบบภูมิคุ้มกัน ทำหน้าที่ป้องกันร่างกายจากเชื้อโรคและสิ่งแปลกปลอม เช่น จับกินและทำลายเชื้อโรค สร้างแอนติบอดีในเม็ดเลือดขาวบางชนิด และช่วยจดจำเชื้อโรคเพื่อให้ร่างกายตอบสนองได้รวดเร็วขึ้นเมื่อพบเชื้อเดิม ส่วนเม็ดเลือดแดงทำหน้าที่ลำเลียงออกซิเจน และเกล็ดเลือดช่วยในการแข็งตัวของเลือด"
+},
+{
+topic:"โครงสร้างอะตอม (ม.5)",
+question:"อะตอมของธาตุชนิดหนึ่งมีเลขอะตอมเท่ากับ 11 และเลขมวลเท่ากับ 23 อะตอมนี้มีจำนวนโปรตอน นิวตรอน และอิเล็กตรอนเท่าใด ตามลำดับ",
+options:["11, 12, 11","12, 11, 11","11, 23, 12","23, 11, 12"],
+answer:0,
+explanation:"กำหนดให้เลขอะตอม = 11 และเลขมวล = 23\nจำนวนโปรตอน = เลขอะตอม = 11\nอะตอมที่เป็นกลางทางไฟฟ้ามีอิเล็กตรอนเท่ากับโปรตอน จึงมีอิเล็กตรอน = 11\nจำนวนนิวตรอน = เลขมวล - เลขอะตอม = 23 - 11 = 12\nดังนั้นมีโปรตอน 11 นิวตรอน 12 และอิเล็กตรอน 11"
+},
+{
+topic:"ตารางธาตุ (ม.5)",
+question:"ธาตุที่อยู่ในหมู่ 1 ของตารางธาตุ (ยกเว้นไฮโดรเจน) มีสมบัติทางเคมีโดยทั่วไปอย่างไร",
+options:["เป็นโลหะที่ว่องไวต่อปฏิกิริยา","เป็นอโลหะที่ไม่ทำปฏิกิริยา","เป็นแก๊สเฉื่อย","เป็นธาตุที่ไม่สามารถให้อิเล็กตรอนได้"],
+answer:0,
+explanation:"ธาตุหมู่ 1 (ยกเว้นไฮโดรเจน) เรียกว่าโลหะแอลคาไล มีอิเล็กตรอนเวเลนซ์ 1 ตัว จึงมีแนวโน้มให้อิเล็กตรอนเพื่อเกิดไอออนประจุ +1 ตัวอย่าง ได้แก่ ลิเทียม (Li) โซเดียม (Na) และโพแทสเซียม (K) ธาตุกลุ่มนี้ว่องไวต่อปฏิกิริยาเคมี โดยเฉพาะเมื่อทำปฏิกิริยากับน้ำ"
+},
+{
+topic:"พันธะเคมี (ม.5)",
+question:"สารประกอบ NaCl เกิดจากพันธะเคมีชนิดใด",
+options:["พันธะโคเวเลนต์","พันธะโลหะ","พันธะไอออนิก","พันธะไฮโดรเจน"],
+answer:2,
+explanation:"NaCl หรือโซเดียมคลอไรด์เกิดจากโซเดียม (Na) และคลอรีน (Cl) โซเดียมมีแนวโน้มให้อิเล็กตรอน 1 ตัว กลายเป็น Na⁺ ส่วนคลอรีนรับอิเล็กตรอน 1 ตัว กลายเป็น Cl⁻ ไอออนทั้งสองมีประจุตรงข้ามกันจึงเกิดแรงดึงดูดทางไฟฟ้าสถิต ทำให้เกิดพันธะไอออนิก"
+},
+{
+topic:"กรด–เบส (ม.5)",
+question:"สารละลายชนิดหนึ่งมีค่า pH เท่ากับ 3 สารละลายนี้มีสมบัติอย่างไร",
+options:["เป็นกรด","เป็นเบส","เป็นกลาง","ไม่สามารถระบุได้"],
+answer:0,
+explanation:"ค่า pH ใช้บอกความเป็นกรด–เบสของสารละลาย โดยทั่วไป pH น้อยกว่า 7 เป็นกรด, pH เท่ากับ 7 เป็นกลาง และ pH มากกว่า 7 เป็นเบส โจทย์กำหนดให้ pH = 3 ซึ่งน้อยกว่า 7 ดังนั้นสารละลายนี้จึงมีสมบัติเป็นกรด"
+},
+{
+topic:"ปฏิกิริยาเคมี (ม.5)",
+question:"เมื่อเพิ่มอุณหภูมิของสารตั้งต้นในปฏิกิริยาเคมี โดยปัจจัยอื่นคงที่ โดยทั่วไปจะเกิดผลอย่างไร",
+options:["อัตราการเกิดปฏิกิริยาลดลง","อัตราการเกิดปฏิกิริยาเพิ่มขึ้น","อัตราการเกิดปฏิกิริยาคงที่เสมอ","ปฏิกิริยาเคมีหยุดทำงาน"],
+answer:1,
+explanation:"เมื่ออุณหภูมิสูงขึ้น อนุภาคของสารจะมีพลังงานจลน์เฉลี่ยเพิ่มขึ้นและเคลื่อนที่เร็วขึ้น ทำให้เกิดการชนกันของอนุภาคที่มีพลังงานเพียงพอและมีทิศทางเหมาะสมมากขึ้น จึงทำให้อัตราการเกิดปฏิกิริยาเคมีโดยทั่วไปเพิ่มขึ้น"
+},
+{
+topic:"การเคลื่อนที่แนวตรง (ม.4)",
+question:"รถยนต์เคลื่อนที่ได้ระยะทาง 120 เมตร ในเวลา 10 วินาที รถยนต์มีอัตราเร็วเฉลี่ยเท่าใด",
+options:["10 เมตร/วินาที","12 เมตร/วินาที","15 เมตร/วินาที","20 เมตร/วินาที"],
+answer:1,
+explanation:"ใช้สูตรอัตราเร็วเฉลี่ย = ระยะทาง / เวลา\nกำหนดให้ระยะทาง = 120 เมตร และเวลา = 10 วินาที\nแทนค่า = 120 / 10 = 12 เมตร/วินาที\nดังนั้นรถยนต์มีอัตราเร็วเฉลี่ย 12 เมตร/วินาที"
+},
+{
+topic:"แรงและกฎการเคลื่อนที่ของนิวตัน (ม.4)",
+question:"วัตถุมวล 5 กิโลกรัม ถูกแรงลัพธ์ 20 นิวตันกระทำ วัตถุจะมีความเร่งเท่าใด",
+options:["2 เมตร/วินาที²","3 เมตร/วินาที²","4 เมตร/วินาที²","5 เมตร/วินาที²"],
+answer:2,
+explanation:"ใช้กฎการเคลื่อนที่ข้อที่ 2 ของนิวตัน F = ma โดย F คือแรงลัพธ์, m คือมวล และ a คือความเร่ง\nกำหนดให้ F = 20 นิวตัน และ m = 5 กิโลกรัม\nจัดรูป a = F/m = 20/5 = 4 เมตร/วินาที²\nดังนั้นวัตถุมีความเร่ง 4 เมตร/วินาที²"
+},
+{
+topic:"งานและพลังงาน (ม.4)",
+question:"ออกแรง 10 นิวตัน ผลักวัตถุให้เคลื่อนที่ไปในทิศทางเดียวกับแรงเป็นระยะทาง 5 เมตร จะเกิดงานเท่าใด",
+options:["15 จูล","25 จูล","50 จูล","100 จูล"],
+answer:2,
+explanation:"ใช้สูตรงาน W = Fs cos θ โดย W คืองาน (จูล), F คือแรง (นิวตัน), s คือระยะกระจัด (เมตร) และ θ คือมุมระหว่างแรงกับการกระจัด\nโจทย์กำหนดให้แรงและการเคลื่อนที่ไปในทิศทางเดียวกัน ดังนั้น θ = 0° และ cos 0° = 1\nW = 10 × 5 × 1 = 50 จูล"
+},
+{
+topic:"ไฟฟ้ากระแสตรง (ม.5)",
+question:"ตัวต้านทานขนาด 4 โอห์ม ต่อกับแหล่งจ่ายไฟฟ้า 12 โวลต์ จะมีกระแสไฟฟ้าไหลผ่านเท่าใด",
+options:["2 แอมแปร์","3 แอมแปร์","4 แอมแปร์","6 แอมแปร์"],
+answer:1,
+explanation:"ใช้กฎของโอห์ม V = IR จัดรูปเพื่อหากระแสไฟฟ้าได้ I = V/R\nกำหนดให้ V = 12 โวลต์ และ R = 4 โอห์ม\nแทนค่า I = 12/4 = 3 แอมแปร์\nดังนั้นกระแสไฟฟ้าที่ไหลผ่านตัวต้านทานเท่ากับ 3 แอมแปร์"
+},
+{
+topic:"คลื่น (ม.5)",
+question:"คลื่นชนิดหนึ่งมีความถี่ 5 เฮิรตซ์ และมีความยาวคลื่น 2 เมตร คลื่นนี้มีอัตราเร็วเท่าใด",
+options:["5 เมตร/วินาที","7 เมตร/วินาที","10 เมตร/วินาที","15 เมตร/วินาที"],
+answer:2,
+explanation:"ใช้สูตรอัตราเร็วของคลื่น v = fλ โดย v คืออัตราเร็วคลื่น, f คือความถี่ และ λ คือความยาวคลื่น\nกำหนดให้ f = 5 เฮิรตซ์ และ λ = 2 เมตร\nแทนค่า v = 5 × 2 = 10 เมตร/วินาที\nดังนั้นคลื่นมีอัตราเร็ว 10 เมตร/วินาที"
+},
+{
+topic:"โครงสร้างโลก (ม.6)",
+question:"ชั้นใดของโลกมีอุณหภูมิสูงมากและประกอบด้วยโลหะเป็นองค์ประกอบหลัก โดยมีสถานะเป็นของแข็ง",
+options:["เปลือกโลก","เนื้อโลก","แก่นโลกชั้นนอก","แก่นโลกชั้นใน"],
+answer:3,
+explanation:"โครงสร้างโลกแบ่งเป็นชั้นสำคัญ ได้แก่ เปลือกโลกซึ่งเป็นชั้นนอกสุด, เนื้อโลกซึ่งอยู่ใต้เปลือกโลก, แก่นโลกชั้นนอกซึ่งมีสถานะเป็นของเหลวและประกอบด้วยเหล็กกับนิกเกิลเป็นหลัก และแก่นโลกชั้นในซึ่งมีสถานะเป็นของแข็ง แม้มีอุณหภูมิสูงมากเนื่องจากมีความดันสูงมาก ดังนั้นคำตอบคือแก่นโลกชั้นใน"
+},
+{
+topic:"การเคลื่อนที่ของแผ่นธรณีภาค (ม.6)",
+question:"เมื่อแผ่นธรณีภาคสองแผ่นเคลื่อนที่เข้าหากัน อาจทำให้เกิดปรากฏการณ์ใด",
+options:["การเกิดเทือกเขาและภูเขาไฟ","การเกิดกระแสน้ำขึ้นน้ำลง","การเกิดสุริยุปราคา","การเปลี่ยนแปลงฤดูกาล"],
+answer:0,
+explanation:"เมื่อแผ่นธรณีภาคเคลื่อนที่เข้าหากัน เรียกว่าขอบแผ่นธรณีภาคแบบมาบรรจบกัน อาจทำให้เกิดเทือกเขา ร่องลึกก้นสมุทร ภูเขาไฟ และแผ่นดินไหว ทั้งนี้ขึ้นอยู่กับชนิดของแผ่นธรณีภาคที่เคลื่อนที่เข้าหากัน"
+},
+{
+topic:"ระบบสุริยะ (ม.6)",
+question:"ดาวเคราะห์ดวงใดอยู่ใกล้ดวงอาทิตย์มากที่สุด",
+options:["ดาวศุกร์","โลก","ดาวพุธ","ดาวอังคาร"],
+answer:2,
+explanation:"ดาวเคราะห์ในระบบสุริยะเรียงตามระยะห่างจากดวงอาทิตย์จากใกล้ไปไกล ได้แก่ ดาวพุธ ดาวศุกร์ โลก ดาวอังคาร ดาวพฤหัสบดี ดาวเสาร์ ดาวยูเรนัส และดาวเนปจูน ดังนั้นดาวพุธจึงเป็นดาวเคราะห์ที่อยู่ใกล้ดวงอาทิตย์มากที่สุด"
+},
+{
+topic:"บรรยากาศของโลก (ม.6)",
+question:"ชั้นบรรยากาศใดเป็นบริเวณที่เกิดปรากฏการณ์สภาพอากาศส่วนใหญ่ เช่น ฝนตก เมฆ และพายุ",
+options:["โทรโพสเฟียร์","สตราโตสเฟียร์","มีโซสเฟียร์","เทอร์โมสเฟียร์"],
+answer:0,
+explanation:"ชั้นโทรโพสเฟียร์เป็นชั้นบรรยากาศที่อยู่ใกล้พื้นผิวโลกมากที่สุด เป็นบริเวณที่เกิดปรากฏการณ์ทางอากาศต่าง ๆ เช่น การเกิดเมฆ ฝนตก พายุ ลม และการเปลี่ยนแปลงของอุณหภูมิอากาศ ดังนั้นชั้นโทรโพสเฟียร์จึงเป็นชั้นบรรยากาศที่เกี่ยวข้องกับสภาพอากาศส่วนใหญ่"
+},
+{
+topic:"การเกิดฤดูกาล (ม.6)",
+question:"สาเหตุสำคัญที่ทำให้โลกเกิดฤดูกาลแตกต่างกันในแต่ละช่วงของปีคือข้อใด",
+options:["โลกอยู่ใกล้ดวงอาทิตย์มากขึ้นในฤดูร้อน","โลกหมุนรอบตัวเองเร็วขึ้นในฤดูร้อน","แกนโลกเอียงขณะโลกโคจรรอบดวงอาทิตย์","ดวงอาทิตย์เปลี่ยนขนาดตามฤดูกาล"],
+answer:2,
+explanation:"โลกมีแกนหมุนเอียงประมาณ 23.5 องศา เมื่อเทียบกับแนวตั้งฉากกับระนาบวงโคจร ขณะที่โลกโคจรรอบดวงอาทิตย์ ทำให้แต่ละซีกโลกได้รับแสงอาทิตย์แตกต่างกันในแต่ละช่วงของปี ส่งผลให้เกิดฤดูกาล สาเหตุสำคัญจึงเป็นการเอียงของแกนโลกขณะโคจรรอบดวงอาทิตย์ ไม่ใช่การอยู่ใกล้หรือไกลดวงอาทิตย์เป็นหลัก"
+}
+];
+
+const questionsArea = document.getElementById("questions");
+const groups = [
+  {title:"หมวดชีววิทยา",start:0,end:5},
+  {title:"หมวดเคมี",start:5,end:10},
+  {title:"หมวดฟิสิกส์",start:10,end:15},
+  {title:"หมวดโลก ดาราศาสตร์ และอวกาศ",start:15,end:20}
+];
+
+groups.forEach(group => {
+  questionsArea.insertAdjacentHTML("beforeend", `<h2 class="section-heading">${group.title}</h2>`);
+  for(let index=group.start;index<group.end;index++){
+    const q=questions[index];
+    const optionsHTML=q.options.map((option,i)=>`
+      <label class="option">
+        <input type="radio" name="q${index}" value="${i}" onchange="updateProgress()">
+        <span>${String.fromCharCode(65+i)}. ${option}</span>
+      </label>`).join("");
+    questionsArea.insertAdjacentHTML("beforeend",`
+      <div class="question-card" id="card${index}">
+        <div class="question-top">
+          <div class="question-number">ข้อที่ ${index+1}</div>
+          <div class="topic">${q.topic}</div>
+        </div>
+        <div class="question-text">${q.question}</div>
+        <div class="options">${optionsHTML}</div>
+      </div>`);
+  }
+});
+
+function updateProgress(){
+  let answered=0;
+  questions.forEach((q,index)=>{
+    const selected=document.querySelector(`input[name="q${index}"]:checked`);
+    const card=document.getElementById(`card${index}`);
+    if(selected){answered++;card.classList.add("answered")}
+    else{card.classList.remove("answered")}
+  });
+  document.getElementById("progressText").textContent=`${answered} / ${questions.length} ข้อ`;
+  document.getElementById("progressBar").style.width=(answered/questions.length*100)+"%";
+}
+
+let remainingTime=60*60;
+const totalTime=remainingTime;
+let submitted=false;
+const timerDisplay=document.getElementById("timer");
+const countdown=setInterval(()=>{
+  if(submitted)return;
+  remainingTime--;
+  const minutes=Math.floor(remainingTime/60);
+  const seconds=remainingTime%60;
+  timerDisplay.textContent=String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0");
+  if(remainingTime<=300)timerDisplay.classList.add("warning");
+  if(remainingTime<=0){
+    clearInterval(countdown);
+    alert("หมดเวลาทำข้อสอบ ระบบจะส่งคำตอบให้อัตโนมัติ");
+    submitExam(true);
+  }
+},1000);
+
+function submitExam(autoSubmit=false){
+  if(submitted)return;
+  const answered=document.querySelectorAll('#questions input:checked').length;
+  if(!autoSubmit){
+    if(answered<questions.length){
+      const confirmSubmit=confirm(`คุณตอบแล้ว ${answered} จาก ${questions.length} ข้อ\nยังมีข้อที่ไม่ได้ตอบ\nต้องการส่งข้อสอบหรือไม่?`);
+      if(!confirmSubmit)return;
+    }else if(!confirm("คุณแน่ใจหรือไม่ว่าต้องการส่งข้อสอบ?"))return;
+  }
+  submitted=true;
+  clearInterval(countdown);
+  document.getElementById("submitBtn").disabled=true;
+  let correct=0,wrong=0,blank=0;
+  let reviewHTML="";
+  questions.forEach((q,index)=>{
+    const selected=document.querySelector(`input[name="q${index}"]:checked`);
+    const userAnswer=selected?Number(selected.value):null;
+    const isCorrect=userAnswer===q.answer;
+    if(userAnswer===null)blank++;
+    else if(isCorrect)correct++;
+    else wrong++;
+    const correctLabel=String.fromCharCode(65+q.answer);
+    const userLabel=userAnswer===null?"ไม่ได้ตอบ":String.fromCharCode(65+userAnswer)+". "+q.options[userAnswer];
+    reviewHTML+=`
+      <div class="review-card">
+        <h3>ข้อที่ ${index+1} : ${q.topic}</h3>
+        <p style="font-size:14px;white-space:pre-line">${q.question}</p>
+        <div class="${isCorrect?'correct-answer':'wrong-answer'}">
+          คำตอบของคุณ: ${userLabel}
+          ${userAnswer===null?"":(isCorrect?" ✓ ถูกต้อง":" ✗ ไม่ถูกต้อง")}
+        </div>
+        <div class="correct-answer">เฉลย: ${correctLabel}. ${q.options[q.answer]}</div>
+        <div class="explanation"><strong>คำอธิบายและวิธีทำ</strong><br>${q.explanation}</div>
+      </div>`;
+  });
+  const percentage=(correct/questions.length)*100;
+  const usedSeconds=totalTime-remainingTime;
+  const usedMinutes=Math.floor(usedSeconds/60);
+  const usedRemainder=usedSeconds%60;
+  document.getElementById("score").textContent=correct;
+  document.getElementById("correctCount").textContent=correct;
+  document.getElementById("wrongCount").textContent=wrong;
+  document.getElementById("blankCount").textContent=blank;
+  document.getElementById("percentage").textContent=percentage;
+  document.getElementById("usedTime").textContent=`${usedMinutes} นาที ${usedRemainder} วินาที`;
+  let message="";
+  if(percentage>=80)message="🌟 ยอดเยี่ยมมาก! คุณมีความเข้าใจในเนื้อหาเป็นอย่างดี";
+  else if(percentage>=60)message="👏 ทำได้ดี! ลองทบทวนเนื้อหาเพิ่มเติมเพื่อพัฒนาคะแนน";
+  else if(percentage>=50)message="💜 พยายามต่อไป! การฝึกฝนจะช่วยให้คุณเก่งขึ้น";
+  else message="🌱 อย่าเพิ่งท้อใจ ลองทบทวนเฉลยและทำข้อสอบอีกครั้ง";
+  document.getElementById("resultMessage").textContent=message;
+  document.getElementById("review").innerHTML=reviewHTML;
+  document.getElementById("exam").style.display="none";
+  document.getElementById("result").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
+'''
+
+path = Path("/mnt/data/science.html")
+path.write_text(html, encoding="utf-8")
+print(f"สร้างไฟล์เรียบร้อย: {path} ({len(html):,} ตัวอักษร)")
