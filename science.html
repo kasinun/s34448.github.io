@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -18,18 +17,18 @@
 
 body {
     font-family: 'Prompt', sans-serif;
-    background: #f8f7fc;
-    color: #29253d;
+    background: #f6f4fb;
+    color: #302b3d;
 }
 
 /* NAVBAR */
 nav {
     background: white;
-    padding: 16px 8%;
+    padding: 17px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 3px 20px rgba(70,40,100,0.08);
+    box-shadow: 0 3px 20px rgba(70,40,100,.08);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -42,240 +41,396 @@ nav {
 }
 
 .logo span {
-    color: #36a66b;
+    color: #35a36a;
 }
 
-.back-btn {
+.back {
     text-decoration: none;
-    background: #6035a5;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
+    color: #6544a1;
     font-size: 14px;
-    transition: 0.3s;
+    font-weight: 500;
 }
 
-.back-btn:hover {
-    background: #36a66b;
+.back:hover {
+    color: #35a36a;
 }
 
 /* HEADER */
 .header {
-    background: linear-gradient(120deg, #e1f5e9, #eee4fa);
+    background: linear-gradient(120deg,#dff5e8,#e9ddfa);
+    padding: 55px 7%;
     text-align: center;
-    padding: 65px 20px;
 }
 
-.header .icon {
-    font-size: 65px;
-    margin-bottom: 10px;
+.header .tag {
+    display: inline-block;
+    padding: 8px 20px;
+    background: white;
+    color: #38976a;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 18px;
 }
 
 .header h1 {
-    color: #6035a5;
     font-size: 38px;
-    margin-bottom: 10px;
+    color: #60399c;
+    font-weight: 800;
+}
+
+.header h1 span {
+    color: #36a36b;
 }
 
 .header p {
-    color: #777;
+    color: #70697c;
+    margin-top: 12px;
     line-height: 1.8;
-}
-
-/* CONTAINER */
-.container {
-    max-width: 950px;
-    margin: 40px auto;
-    padding: 0 20px;
 }
 
 /* INFO */
 .info {
-    background: white;
-    border-radius: 18px;
-    padding: 22px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.info-box {
+    background: white;
+    padding: 12px 22px;
+    border-radius: 13px;
+    color: #60419b;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(70,40,100,.06);
+}
+
+/* MAIN */
+.container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+/* TIMER */
+.timer-box {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(70,40,100,.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     gap: 15px;
-    box-shadow: 0 5px 20px rgba(70,50,100,0.06);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
-.info-item {
-    text-align: center;
-    color: #6035a5;
-    font-weight: 600;
+.timer-title {
+    color: #6c5a84;
+    font-size: 14px;
 }
 
-/* CATEGORY */
-.category-title {
-    color: #6035a5;
-    font-size: 22px;
-    margin: 35px 0 15px;
-    padding-left: 12px;
-    border-left: 5px solid #36a66b;
+.timer {
+    font-size: 28px;
+    font-weight: 800;
+    color: #36a36b;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer.warning {
+    color: #e05267;
+}
+
+.progress-area {
+    margin-top: 12px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #81798e;
+    margin-bottom: 8px;
+}
+
+.progress {
+    height: 9px;
+    background: #eee9f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#39b779,#7548b8);
+    border-radius: 20px;
+    transition: .3s;
+}
+
+/* INSTRUCTION */
+.instruction {
+    background: #eee7fa;
+    border-left: 5px solid #8053bd;
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    color: #59427f;
+    font-size: 14px;
+    line-height: 1.8;
 }
 
 /* QUESTION */
-.question {
+.question-card {
     background: white;
     padding: 25px;
     border-radius: 18px;
-    margin-bottom: 18px;
-    box-shadow: 0 5px 20px rgba(70,50,100,0.05);
+    margin-bottom: 22px;
+    box-shadow: 0 5px 22px rgba(70,40,100,.05);
+    border: 1px solid #eeeaf4;
+    transition: .2s;
 }
 
-.question h3 {
-    color: #493477;
+.question-card.answered {
+    border-left: 5px solid #48ad77;
+}
+
+.question-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.question-number {
     font-size: 17px;
-    line-height: 1.8;
-    margin-bottom: 18px;
+    font-weight: 700;
+    color: #6540a3;
+}
+
+.topic {
+    background: #e5f6ec;
+    color: #369566;
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.question-text {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    font-weight: 500;
+    white-space: pre-line;
+}
+
+.options {
+    display: grid;
+    gap: 12px;
 }
 
 .option {
-    display: block;
-    padding: 12px 15px;
-    margin: 9px 0;
-    border: 1px solid #e6e0ef;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 17px;
+    border: 1px solid #e9e4f0;
     border-radius: 12px;
     cursor: pointer;
-    transition: 0.2s;
-    line-height: 1.6;
+    transition: .2s;
+    font-size: 14px;
 }
 
 .option:hover {
-    background: #f0ebfa;
-    border-color: #9b77d0;
+    background: #f2f8f3;
+    border-color: #6cbd8e;
+}
+
+.option:has(input:checked) {
+    background: #eaf7ef;
+    border-color: #43a974;
+    color: #287e51;
+    font-weight: 600;
 }
 
 .option input {
-    margin-right: 10px;
-    accent-color: #6035a5;
+    accent-color: #46a875;
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+.option.disabled {
+    cursor: default;
+    pointer-events: none;
 }
 
 /* BUTTONS */
-.button-area {
+.submit-area {
     text-align: center;
-    margin: 35px 0;
+    padding: 20px 0 50px;
 }
 
-.main-btn {
-    border: none;
-    padding: 14px 30px;
-    border-radius: 30px;
-    background: linear-gradient(110deg, #39ad70, #6841b0);
+.submit-btn {
+    background: linear-gradient(110deg,#39ad70,#6841b0);
     color: white;
-    font-family: 'Prompt', sans-serif;
+    border: none;
+    padding: 16px 45px;
+    font-family: inherit;
     font-size: 16px;
     font-weight: 600;
+    border-radius: 40px;
     cursor: pointer;
-    margin: 7px;
-    transition: 0.3s;
+    box-shadow: 0 7px 20px rgba(90,60,150,.2);
+    transition: .3s;
 }
 
-.main-btn:hover {
+.submit-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 7px 18px rgba(91,65,160,0.2);
 }
 
-.secondary-btn {
-    background: #6045ad;
-}
-
-.reset-btn {
-    background: #777;
+.submit-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
 }
 
 /* RESULT */
 #result {
     display: none;
-    background: white;
-    padding: 30px 20px;
-    border-radius: 20px;
-    text-align: center;
-    margin: 30px 0;
-    box-shadow: 0 5px 20px rgba(70,50,100,0.08);
 }
 
-#result h2 {
-    color: #6035a5;
-    margin-bottom: 12px;
+.result-box {
+    background: white;
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(70,40,100,.07);
+    margin-bottom: 30px;
+}
+
+.result-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.result-box h2 {
+    color: #60399c;
+    font-size: 30px;
 }
 
 .score {
-    color: #36a66b;
-    font-size: 45px;
+    font-size: 55px;
     font-weight: 800;
-    margin: 10px 0;
+    color: #39a66e;
+    margin: 15px 0;
 }
 
-/* ANSWERS */
-#answerSection {
-    display: none;
-    margin-top: 40px;
+.result-detail {
+    color: #777080;
+    line-height: 2;
+    font-size: 15px;
 }
 
-.answer-card {
+.review-title {
+    text-align: center;
+    color: #60399c;
+    margin: 35px 0 20px;
+    font-size: 25px;
+}
+
+.review-card {
     background: white;
-    padding: 22px;
-    margin-bottom: 15px;
+    padding: 23px;
     border-radius: 15px;
-    border-left: 5px solid #36a66b;
-    box-shadow: 0 4px 15px rgba(70,50,100,0.05);
+    margin-bottom: 18px;
+    border: 1px solid #eeeaf4;
+    line-height: 1.9;
 }
 
-.answer-card h3 {
-    color: #6035a5;
-    margin-bottom: 10px;
-    font-size: 17px;
+.review-card h3 {
+    color: #60399c;
+    font-size: 16px;
+    margin-bottom: 12px;
 }
 
 .correct-answer {
-    color: #24945a;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.explanation {
-    color: #666;
-    line-height: 1.9;
+    color: #278b55;
+    background: #e8f7ed;
+    padding: 10px 13px;
+    border-radius: 9px;
+    margin: 10px 0;
     font-size: 14px;
 }
 
-footer {
-    background: linear-gradient(110deg, #286e50, #56328c);
-    color: white;
-    text-align: center;
-    padding: 25px;
-    margin-top: 60px;
+.wrong-answer {
+    color: #d14f5e;
+    background: #fff0f0;
+    padding: 10px 13px;
+    border-radius: 9px;
+    margin: 10px 0;
+    font-size: 14px;
 }
 
-/* RESPONSIVE */
+.explanation {
+    background: #f1ebfa;
+    color: #59427f;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 12px;
+    font-size: 14px;
+    white-space: pre-line;
+}
+
+.retry-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 13px 25px;
+    background: #6540a3;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+    background: linear-gradient(110deg,#286e50,#56328c);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    font-size: 13px;
+    line-height: 2;
+}
+
 @media(max-width:600px) {
-    nav {
-        padding: 14px 5%;
-    }
-
-    .logo {
-        font-size: 18px;
-    }
-
-    .back-btn {
-        font-size: 12px;
-        padding: 8px 13px;
-    }
-
     .header h1 {
         font-size: 29px;
     }
 
-    .question {
-        padding: 18px;
+    .timer-box {
+        padding: 17px;
     }
 
-    .info {
-        flex-direction: column;
+    .timer {
+        font-size: 24px;
+    }
+
+    .question-card {
+        padding: 19px;
+    }
+
+    .question-text {
+        font-size: 15px;
+    }
+
+    .score {
+        font-size: 43px;
     }
 }
 </style>
@@ -286,512 +441,252 @@ footer {
 <!-- NAVBAR -->
 <nav>
     <div class="logo">คลัง<span>ข้อสอบ.</span></div>
-    <a href="index.html" class="back-btn">← กลับหน้าแรก</a>
+    <a href="index.html" class="back">← กลับหน้าหลัก</a>
 </nav>
 
 <!-- HEADER -->
 <header class="header">
-    <div class="icon">🔬</div>
-    <h1>แบบทดสอบวิชาวิทยาศาสตร์</h1>
-    <p>รวบรวมเนื้อหาวิทยาศาสตร์ระดับชั้นมัธยมศึกษาปีที่ 4–6</p>
-    <p>ทบทวนความรู้ ฝึกฝนทักษะ และประเมินความเข้าใจของตนเอง</p>
+    <div class="tag">✦ ONLINE EXAMINATION</div>
+
+    <h1>แบบทดสอบวิชา<span>วิทยาศาสตร์</span></h1>
+
+    <p>
+        ระดับชั้นมัธยมศึกษาปีที่ 4–6<br>
+        ทบทวนความรู้ ฝึกฝนทักษะ และพัฒนาตนเอง
+    </p>
+
+    <div class="info">
+        <div class="info-box">📋 20 ข้อ</div>
+        <div class="info-box">🏆 20 คะแนน</div>
+        <div class="info-box">⏱️ 60 นาที</div>
+    </div>
 </header>
 
-<div class="container">
+<!-- EXAM -->
+<main class="container" id="exam">
 
-    <!-- INFO -->
-    <div class="info">
-        <div class="info-item">📋 จำนวน 20 ข้อ</div>
-        <div class="info-item">⭐ คะแนนเต็ม 20 คะแนน</div>
-        <div class="info-item">⏱️ ไม่มีการจำกัดเวลา</div>
-        <div class="info-item">📝 เลือกคำตอบที่ถูกต้องที่สุด</div>
-    </div>
-
-    <!-- QUIZ -->
-    <form id="quizForm">
-
-        <div id="questions"></div>
-
-        <div class="button-area">
-            <button type="button" class="main-btn" onclick="checkAnswers()">
-                ส่งคำตอบและตรวจคะแนน
-            </button>
-
-            <button type="button" class="main-btn reset-btn" onclick="resetQuiz()">
-                เริ่มทำข้อสอบใหม่
-            </button>
+    <div class="timer-box">
+        <div>
+            <div class="timer-title">เวลาที่เหลือในการทำข้อสอบ</div>
+            <div class="timer" id="timer">60:00</div>
         </div>
 
-    </form>
+        <div style="flex:1;min-width:180px;">
+            <div class="progress-area">
+                <div class="progress-text">
+                    <span>ความคืบหน้าการทำข้อสอบ</span>
+                    <span id="progressText">0 / 20 ข้อ</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- RESULT -->
-    <div id="result">
-        <h2>ผลการทดสอบของคุณ</h2>
-        <div class="score" id="scoreText">0/20</div>
-        <p id="resultMessage"></p>
-        <p id="answeredText"></p>
+    <div class="instruction">
+        <strong>คำชี้แจง</strong><br>
+        1. แบบทดสอบมีจำนวน 20 ข้อ คะแนนเต็ม 20 คะแนน<br>
+        2. ให้นักเรียนเลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
+        3. มีเวลาในการทำข้อสอบ 60 นาที<br>
+        4. เมื่อทำข้อสอบเสร็จแล้วให้กดปุ่มส่งข้อสอบเพื่อดูคะแนนและเฉลย
+    </div>
 
-        <button class="main-btn secondary-btn" onclick="showAnswers()">
-            ดูเฉลยพร้อมคำอธิบาย
+    <div id="questions"></div>
+
+    <div class="submit-area">
+        <button class="submit-btn" id="submitBtn" onclick="submitExam()">
+            ส่งข้อสอบและตรวจคะแนน
         </button>
+        <p style="margin-top:12px;color:#888;font-size:13px;">
+            กรุณาตรวจสอบคำตอบก่อนกดส่งข้อสอบ
+        </p>
     </div>
 
-    <!-- ANSWER SECTION -->
-    <div id="answerSection">
+</main>
 
-        <div class="category-title">📖 เฉลยพร้อมคำอธิบายวิทยาศาสตร์</div>
+<!-- RESULT -->
+<section id="result" class="container">
 
-        <div id="answers"></div>
+    <div class="result-box">
+        <div class="result-icon">🏆</div>
+        <h2>สรุปผลการสอบ</h2>
 
-        <div class="button-area">
-            <button class="main-btn reset-btn" onclick="resetQuiz()">
-                กลับไปทำข้อสอบใหม่
-            </button>
-            <a href="index.html" class="back-btn">กลับหน้าแรก</a>
+        <div class="score">
+            <span id="score">0</span>/20
         </div>
 
+        <div class="result-detail">
+            <div>ตอบถูก <strong id="correctCount">0</strong> ข้อ</div>
+            <div>ตอบผิด <strong id="wrongCount">0</strong> ข้อ</div>
+            <div>ไม่ได้ตอบ <strong id="blankCount">0</strong> ข้อ</div>
+            <div>คิดเป็น <strong id="percentage">0</strong>%</div>
+            <div>เวลาที่ใช้ <strong id="usedTime">0 นาที</strong></div>
+        </div>
+
+        <p id="resultMessage" style="margin-top:18px;color:#39996a;font-weight:600;"></p>
     </div>
 
-</div>
+    <h2 class="review-title">🔬 เฉลยพร้อมคำอธิบายอย่างละเอียด</h2>
+
+    <div id="review"></div>
+
+    <div class="submit-area">
+        <button class="retry-btn" onclick="retryQuiz()">ทำข้อสอบอีกครั้ง</button>
+        <a href="index.html" class="retry-btn">กลับหน้าหลัก</a>
+    </div>
+
+</section>
 
 <footer>
-    <p>📚 คลังข้อสอบออนไลน์</p>
-    <p>แบบทดสอบวิชาวิทยาศาสตร์ ระดับชั้นมัธยมศึกษาปีที่ 4–6</p>
-    <p>© 2026 Online Examination System</p>
+    <div>คลังข้อสอบออนไลน์</div>
+    <div>เว็บไซต์เพื่อการศึกษาและทบทวนความรู้</div>
 </footer>
 
 <script>
-
-/* ข้อมูลข้อสอบและเฉลย */
-const quizData = [
-
-    {
-        category: "ชีววิทยา",
-        question: "ออร์แกเนลล์ใดทำหน้าที่สร้างพลังงาน ATP ให้แก่เซลล์เป็นหลัก",
-        options: [
-            "ก. นิวเคลียส",
-            "ข. ไมโทคอนเดรีย",
-            "ค. ไรโบโซม",
-            "ง. กอลจิบอดี"
-        ],
-        answer: 1,
-        explanation: "ไมโทคอนเดรียเป็นออร์แกเนลล์ที่ทำหน้าที่สำคัญในการหายใจระดับเซลล์ โดยเปลี่ยนพลังงานจากสารอาหารให้อยู่ในรูป ATP ซึ่งเป็นพลังงานที่เซลล์นำไปใช้ในกระบวนการต่าง ๆ"
-    },
-
-    {
-        category: "ชีววิทยา",
-        question: "สารใดเป็นวัตถุดิบสำคัญที่พืชใช้ในกระบวนการสังเคราะห์ด้วยแสง",
-        options: [
-            "ก. ออกซิเจนและน้ำตาล",
-            "ข. น้ำและคาร์บอนไดออกไซด์",
-            "ค. ไนโตรเจนและออกซิเจน",
-            "ง. โปรตีนและไขมัน"
-        ],
-        answer: 1,
-        explanation: "พืชใช้ น้ำ (H₂O) และคาร์บอนไดออกไซด์ (CO₂) เป็นวัตถุดิบในการสังเคราะห์ด้วยแสง โดยอาศัยพลังงานแสงและคลอโรฟิลล์ เพื่อสร้างน้ำตาลและปล่อยออกซิเจนออกมา"
-    },
-
-    {
-        category: "ชีววิทยา",
-        question: "ถ้านำต้นถั่วที่มีจีโนไทป์ Tt ผสมกับต้นถั่ว Tt โดย T ควบคุมลักษณะต้นสูงและ t ควบคุมลักษณะต้นเตี้ย โอกาสที่ลูกจะมีลักษณะต้นเตี้ยเป็นเท่าใด",
-        options: [
-            "ก. 0%",
-            "ข. 25%",
-            "ค. 50%",
-            "ง. 75%"
-        ],
-        answer: 1,
-        explanation: "การผสม Tt × Tt จะได้จีโนไทป์ TT, Tt, Tt และ tt ในอัตราส่วน 1:2:1 ลักษณะต้นเตี้ยต้องเป็น tt จึงมีโอกาส 1 ใน 4 หรือ 25%"
-    },
-
-    {
-        category: "ชีววิทยา",
-        question: "สิ่งมีชีวิตกลุ่มใดทำหน้าที่เป็นผู้ผลิตในระบบนิเวศ",
-        options: [
-            "ก. เสือ",
-            "ข. เห็ด",
-            "ค. พืชสีเขียว",
-            "ง. แบคทีเรียก่อโรค"
-        ],
-        answer: 2,
-        explanation: "พืชสีเขียวเป็นผู้ผลิต เพราะสามารถสร้างอาหารเองได้ด้วยกระบวนการสังเคราะห์ด้วยแสง และเป็นแหล่งพลังงานเริ่มต้นให้แก่สิ่งมีชีวิตในห่วงโซ่อาหาร"
-    },
-
-    {
-        category: "ชีววิทยา",
-        question: "เม็ดเลือดขาวมีหน้าที่สำคัญอย่างไรในร่างกายมนุษย์",
-        options: [
-            "ก. ลำเลียงออกซิเจน",
-            "ข. ป้องกันและกำจัดเชื้อโรค",
-            "ค. ช่วยให้เลือดแข็งตัว",
-            "ง. ลำเลียงสารอาหาร"
-        ],
-        answer: 1,
-        explanation: "เม็ดเลือดขาวเป็นส่วนหนึ่งของระบบภูมิคุ้มกัน ทำหน้าที่ตรวจจับ ต่อสู้ และกำจัดเชื้อโรคหรือสิ่งแปลกปลอมที่เข้าสู่ร่างกาย"
-    },
-
-    {
-        category: "เคมี",
-        question: "ธาตุชนิดหนึ่งมีเลขอะตอม 11 และเลขมวล 23 หากอะตอมเป็นกลางทางไฟฟ้า จะมีโปรตอน นิวตรอน และอิเล็กตรอนเท่าใดตามลำดับ",
-        options: [
-            "ก. 11, 12, 11",
-            "ข. 11, 23, 12",
-            "ค. 12, 11, 11",
-            "ง. 23, 11, 12"
-        ],
-        answer: 0,
-        explanation: "เลขอะตอมเท่ากับจำนวนโปรตอน จึงมีโปรตอน 11 ตัว อะตอมเป็นกลางจึงมีอิเล็กตรอน 11 ตัว ส่วนนิวตรอนคำนวณจากเลขมวลลบเลขอะตอม คือ 23 - 11 = 12 ตัว"
-    },
-
-    {
-        category: "เคมี",
-        question: "ธาตุในหมู่ 1 ของตารางธาตุ (ยกเว้นไฮโดรเจน) มีสมบัติเด่นอย่างไร",
-        options: [
-            "ก. เป็นโลหะที่ว่องไวต่อปฏิกิริยา",
-            "ข. เป็นแก๊สเฉื่อย",
-            "ค. เป็นอโลหะทั้งหมด",
-            "ง. ไม่ทำปฏิกิริยากับสารใดเลย"
-        ],
-        answer: 0,
-        explanation: "ธาตุหมู่ 1 หรือโลหะแอลคาไลมีอิเล็กตรอนเวเลนซ์ 1 ตัว จึงสูญเสียอิเล็กตรอนได้ง่ายและมีความว่องไวต่อปฏิกิริยาเคมี โดยเฉพาะเมื่อทำปฏิกิริยากับน้ำ"
-    },
-
-    {
-        category: "เคมี",
-        question: "สารประกอบโซเดียมคลอไรด์ (NaCl) มีพันธะเคมีชนิดใด",
-        options: [
-            "ก. พันธะโคเวเลนต์",
-            "ข. พันธะโลหะ",
-            "ค. พันธะไอออนิก",
-            "ง. พันธะไฮโดรเจน"
-        ],
-        answer: 2,
-        explanation: "NaCl เกิดจากโซเดียมถ่ายโอนอิเล็กตรอนให้คลอรีน ทำให้เกิด Na⁺ และ Cl⁻ ซึ่งมีแรงดึงดูดทางไฟฟ้าสถิตระหว่างไอออน จึงเป็นพันธะไอออนิก"
-    },
-
-    {
-        category: "เคมี",
-        question: "สารละลายที่มีค่า pH เท่ากับ 3 มีสมบัติเป็นอย่างไร",
-        options: [
-            "ก. เป็นกรด",
-            "ข. เป็นกลาง",
-            "ค. เป็นเบส",
-            "ง. ไม่สามารถระบุได้"
-        ],
-        answer: 0,
-        explanation: "ค่า pH ต่ำกว่า 7 แสดงว่าสารละลายมีสมบัติเป็นกรด ค่า pH เท่ากับ 7 เป็นกลาง และค่า pH มากกว่า 7 เป็นเบส ดังนั้น pH 3 จึงเป็นกรด"
-    },
-
-    {
-        category: "เคมี",
-        question: "โดยทั่วไปเมื่อเพิ่มอุณหภูมิของปฏิกิริยาเคมี อัตราการเกิดปฏิกิริยาจะเปลี่ยนแปลงอย่างไร",
-        options: [
-            "ก. ลดลงเสมอ",
-            "ข. เพิ่มขึ้น",
-            "ค. ไม่เปลี่ยนแปลง",
-            "ง. ปฏิกิริยาหยุดทันที"
-        ],
-        answer: 1,
-        explanation: "เมื่ออุณหภูมิสูงขึ้น อนุภาคของสารจะมีพลังงานจลน์เฉลี่ยมากขึ้น เคลื่อนที่เร็วขึ้น และเกิดการชนที่มีพลังงานเพียงพอมากขึ้น จึงทำให้อัตราการเกิดปฏิกิริยาโดยทั่วไปเพิ่มขึ้น"
-    },
-
-    {
-        category: "ฟิสิกส์",
-        question: "รถยนต์เคลื่อนที่ได้ระยะทาง 120 เมตร ในเวลา 10 วินาที รถยนต์มีอัตราเร็วเฉลี่ยเท่าใด",
-        options: [
-            "ก. 10 เมตร/วินาที",
-            "ข. 12 เมตร/วินาที",
-            "ค. 15 เมตร/วินาที",
-            "ง. 20 เมตร/วินาที"
-        ],
-        answer: 1,
-        explanation: "อัตราเร็วเฉลี่ยคำนวณจากระยะทางหารด้วยเวลา ดังนั้น v = 120 ÷ 10 = 12 เมตรต่อวินาที"
-    },
-
-    {
-        category: "ฟิสิกส์",
-        question: "วัตถุมวล 5 กิโลกรัม ถูกแรงลัพธ์ 20 นิวตันกระทำ วัตถุจะมีความเร่งเท่าใด",
-        options: [
-            "ก. 2 เมตร/วินาที²",
-            "ข. 3 เมตร/วินาที²",
-            "ค. 4 เมตร/วินาที²",
-            "ง. 5 เมตร/วินาที²"
-        ],
-        answer: 2,
-        explanation: "จากกฎข้อที่ 2 ของนิวตัน F = ma ดังนั้น a = F ÷ m = 20 ÷ 5 = 4 เมตรต่อวินาทีกำลังสอง"
-    },
-
-    {
-        category: "ฟิสิกส์",
-        question: "ออกแรง 10 นิวตัน ผลักวัตถุให้เคลื่อนที่ไปในทิศทางเดียวกับแรงเป็นระยะทาง 5 เมตร งานที่เกิดขึ้นมีค่าเท่าใด",
-        options: [
-            "ก. 10 จูล",
-            "ข. 25 จูล",
-            "ค. 50 จูล",
-            "ง. 100 จูล"
-        ],
-        answer: 2,
-        explanation: "งานคำนวณจาก W = Fs cos θ เมื่อแรงและการกระจัดมีทิศทางเดียวกัน มุม θ = 0 องศา ดังนั้น W = 10 × 5 × 1 = 50 จูล"
-    },
-
-    {
-        category: "ฟิสิกส์",
-        question: "วงจรไฟฟ้ามีความต่างศักย์ 12 โวลต์ และมีความต้านทาน 4 โอห์ม จะมีกระแสไฟฟ้าไหลผ่านเท่าใด",
-        options: [
-            "ก. 2 แอมแปร์",
-            "ข. 3 แอมแปร์",
-            "ค. 4 แอมแปร์",
-            "ง. 6 แอมแปร์"
-        ],
-        answer: 1,
-        explanation: "ใช้กฎของโอห์ม V = IR ดังนั้น I = V ÷ R = 12 ÷ 4 = 3 แอมแปร์"
-    },
-
-    {
-        category: "ฟิสิกส์",
-        question: "คลื่นมีความถี่ 5 เฮิรตซ์ และมีความยาวคลื่น 2 เมตร คลื่นนี้มีอัตราเร็วเท่าใด",
-        options: [
-            "ก. 5 เมตร/วินาที",
-            "ข. 8 เมตร/วินาที",
-            "ค. 10 เมตร/วินาที",
-            "ง. 15 เมตร/วินาที"
-        ],
-        answer: 2,
-        explanation: "อัตราเร็วคลื่นคำนวณจาก v = fλ โดย f คือความถี่ และ λ คือความยาวคลื่น ดังนั้น v = 5 × 2 = 10 เมตรต่อวินาที"
-    },
-
-    {
-        category: "โลกและดาราศาสตร์",
-        question: "ชั้นใดของโลกมีสถานะเป็นของแข็งและประกอบด้วยโลหะเป็นส่วนใหญ่",
-        options: [
-            "ก. เปลือกโลก",
-            "ข. เนื้อโลก",
-            "ค. แก่นโลกชั้นนอก",
-            "ง. แก่นโลกชั้นใน"
-        ],
-        answer: 3,
-        explanation: "แก่นโลกชั้นในมีองค์ประกอบหลักเป็นเหล็กและนิกเกิล มีสถานะเป็นของแข็ง แม้อุณหภูมิจะสูงมาก แต่ความดันมหาศาลทำให้สารคงสถานะเป็นของแข็ง"
-    },
-
-    {
-        category: "โลกและดาราศาสตร์",
-        question: "เมื่อแผ่นธรณีภาคเคลื่อนที่เข้าหากัน อาจก่อให้เกิดลักษณะภูมิประเทศใด",
-        options: [
-            "ก. เทือกเขาและภูเขาไฟ",
-            "ข. ที่ราบลุ่มแม่น้ำเท่านั้น",
-            "ค. เนินทราย",
-            "ง. ชายหาด"
-        ],
-        answer: 0,
-        explanation: "เมื่อแผ่นธรณีภาคเคลื่อนที่เข้าหากัน อาจเกิดการชนกันหรือมุดตัวของแผ่นธรณีภาค ทำให้เกิดเทือกเขา ร่องลึกก้นสมุทร และภูเขาไฟในบางบริเวณ"
-    },
-
-    {
-        category: "โลกและดาราศาสตร์",
-        question: "ดาวเคราะห์ดวงใดอยู่ใกล้ดวงอาทิตย์มากที่สุด",
-        options: [
-            "ก. ดาวศุกร์",
-            "ข. โลก",
-            "ค. ดาวพุธ",
-            "ง. ดาวอังคาร"
-        ],
-        answer: 2,
-        explanation: "ดาวพุธเป็นดาวเคราะห์ลำดับที่ 1 ของระบบสุริยะ จึงเป็นดาวเคราะห์ที่อยู่ใกล้ดวงอาทิตย์มากที่สุด"
-    },
-
-    {
-        category: "โลกและดาราศาสตร์",
-        question: "ปรากฏการณ์สภาพอากาศต่าง ๆ เช่น เมฆ ฝน และพายุ เกิดขึ้นเป็นส่วนใหญ่ในบรรยากาศชั้นใด",
-        options: [
-            "ก. โทรโพสเฟียร์",
-            "ข. สตราโตสเฟียร์",
-            "ค. มีโซสเฟียร์",
-            "ง. เทอร์โมสเฟียร์"
-        ],
-        answer: 0,
-        explanation: "โทรโพสเฟียร์เป็นบรรยากาศชั้นล่างสุด มีไอน้ำและการเคลื่อนที่ของอากาศจำนวนมาก จึงเป็นบริเวณที่เกิดสภาพอากาศต่าง ๆ เช่น เมฆ ฝน และพายุ"
-    },
-
-    {
-        category: "โลกและดาราศาสตร์",
-        question: "สาเหตุสำคัญที่ทำให้โลกเกิดฤดูกาลแตกต่างกันในแต่ละช่วงของปีคืออะไร",
-        options: [
-            "ก. โลกอยู่ใกล้ดวงอาทิตย์ตลอดทั้งปี",
-            "ข. ดวงอาทิตย์เปลี่ยนขนาดในแต่ละเดือน",
-            "ค. แกนโลกเอียงขณะโคจรรอบดวงอาทิตย์",
-            "ง. โลกหยุดหมุนรอบตัวเอง"
-        ],
-        answer: 2,
-        explanation: "แกนโลกเอียงประมาณ 23.5 องศาเมื่อเทียบกับแนวตั้งฉากของระนาบวงโคจร และโลกโคจรรอบดวงอาทิตย์ ทำให้แต่ละซีกโลกได้รับแสงและพลังงานแตกต่างกันในแต่ละช่วงปี จึงเกิดฤดูกาล"
-    }
-
+    const questions = [
+{section:"หมวดชีววิทยา",topic:"โครงสร้างและหน้าที่ของเซลล์ (ม.4)",q:"ออร์แกเนลล์ใดทำหน้าที่สร้างพลังงาน ATP ให้แก่เซลล์เป็นหลัก",o:["นิวเคลียส","ไมโทคอนเดรีย","ไรโบโซม","กอลจิบอดี"],a:1,e:"ตอบ ข. ไมโทคอนเดรีย\nไมโทคอนเดรียทำหน้าที่สำคัญในการสร้างพลังงานให้แก่เซลล์ผ่านกระบวนการหายใจระดับเซลล์ โดยสร้างสาร ATP ซึ่งเป็นแหล่งพลังงานที่เซลล์นำไปใช้ในกิจกรรมต่าง ๆ\n\nนิวเคลียสควบคุมการทำงานและเก็บสารพันธุกรรม ไรโบโซมสังเคราะห์โปรตีน ส่วนกอลจิบอดีปรับแต่ง คัดแยก และบรรจุสาร"},
+{section:"หมวดชีววิทยา",topic:"การสังเคราะห์ด้วยแสง (ม.4)",q:"สารใดเป็นวัตถุดิบสำคัญที่พืชใช้ในกระบวนการสังเคราะห์ด้วยแสง",o:["ออกซิเจนและน้ำตาล","น้ำและแก๊สคาร์บอนไดออกไซด์","ไนโตรเจนและออกซิเจน","น้ำตาลและแร่ธาตุ"],a:1,e:"ตอบ ข. น้ำและแก๊สคาร์บอนไดออกไซด์\nพืชใช้ น้ำ (H₂O) และแก๊สคาร์บอนไดออกไซด์ (CO₂) เป็นวัตถุดิบ โดยอาศัยพลังงานแสงและคลอโรฟิลล์เปลี่ยนเป็นน้ำตาลกลูโคสและปล่อยออกซิเจน\n\nสมการโดยรวม: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂"},
+{section:"หมวดชีววิทยา",topic:"พันธุกรรม (ม.4)",q:"กำหนดให้ T แทนยีนลักษณะต้นสูง ซึ่งเป็นลักษณะเด่น และ t แทนยีนลักษณะต้นเตี้ย ซึ่งเป็นลักษณะด้อย หากนำต้นถั่ว Tt ผสมกับ Tt ลูกที่เกิดมามีโอกาสเป็นต้นเตี้ยเท่าใด",o:["0%","25%","50%","75%"],a:1,e:"ตอบ ข. 25%\nเมื่อนำ Tt × Tt จะได้รูปแบบยีน TT, Tt, Tt และ tt\n\nTT, Tt และ Tt เป็นต้นสูง ส่วน tt เป็นต้นเตี้ย จึงมีต้นเตี้ย 1 รูปแบบจากทั้งหมด 4 รูปแบบ\n\nโอกาสเกิดต้นเตี้ย = 1/4 × 100 = 25%"},
+{section:"หมวดชีววิทยา",topic:"ระบบนิเวศ (ม.4)",q:"สิ่งมีชีวิตกลุ่มใดทำหน้าที่เป็นผู้ผลิตในระบบนิเวศ",o:["เห็ดและรา","เสือและสิงโต","พืชสีเขียว","แบคทีเรียย่อยสลาย"],a:2,e:"ตอบ ค. พืชสีเขียว\nผู้ผลิตคือสิ่งมีชีวิตที่สามารถสร้างอาหารได้ด้วยตนเอง โดยส่วนใหญ่ใช้กระบวนการสังเคราะห์ด้วยแสง เช่น ต้นไม้ หญ้า สาหร่าย และพืชน้ำ\n\nผู้ผลิตเป็นจุดเริ่มต้นของการถ่ายทอดพลังงานในห่วงโซ่อาหาร"},
+{section:"หมวดชีววิทยา",topic:"ระบบภูมิคุ้มกัน (ม.4)",q:"เซลล์เม็ดเลือดขาวมีหน้าที่สำคัญอย่างไร",o:["ลำเลียงออกซิเจน","ช่วยป้องกันและกำจัดเชื้อโรค","ช่วยในการแข็งตัวของเลือด","ลำเลียงสารอาหารไปยังเซลล์"],a:1,e:"ตอบ ข. ช่วยป้องกันและกำจัดเชื้อโรค\nเม็ดเลือดขาวเป็นส่วนสำคัญของระบบภูมิคุ้มกัน ทำหน้าที่ป้องกันร่างกายจากเชื้อโรคและสิ่งแปลกปลอม เช่น จับกินและทำลายเชื้อโรค สร้างแอนติบอดีในเม็ดเลือดขาวบางชนิด และช่วยจดจำเชื้อโรค\n\nเม็ดเลือดแดงทำหน้าที่ลำเลียงออกซิเจน ส่วนเกล็ดเลือดช่วยในการแข็งตัวของเลือด"},
+{section:"หมวดเคมี",topic:"โครงสร้างอะตอม (ม.5)",q:"อะตอมของธาตุชนิดหนึ่งมีเลขอะตอมเท่ากับ 11 และเลขมวลเท่ากับ 23 อะตอมนี้มีจำนวนโปรตอน นิวตรอน และอิเล็กตรอนเท่าใด ตามลำดับ",o:["11, 12, 11","12, 11, 11","11, 23, 12","23, 11, 12"],a:0,e:"ตอบ ก. 11, 12, 11\nจำนวนโปรตอนเท่ากับเลขอะตอม จึงมีโปรตอน 11 ตัว\n\nอะตอมที่เป็นกลางทางไฟฟ้ามีอิเล็กตรอนเท่ากับโปรตอน จึงมีอิเล็กตรอน 11 ตัว\n\nนิวตรอน = เลขมวล − เลขอะตอม = 23 − 11 = 12 ตัว"},
+{section:"หมวดเคมี",topic:"ตารางธาตุ (ม.5)",q:"ธาตุที่อยู่ในหมู่ 1 ของตารางธาตุ (ยกเว้นไฮโดรเจน) มีสมบัติทางเคมีโดยทั่วไปอย่างไร",o:["เป็นโลหะที่ว่องไวต่อปฏิกิริยา","เป็นอโลหะที่ไม่ทำปฏิกิริยา","เป็นแก๊สเฉื่อย","เป็นธาตุที่ไม่สามารถให้อิเล็กตรอนได้"],a:0,e:"ตอบ ก. เป็นโลหะที่ว่องไวต่อปฏิกิริยา\nธาตุหมู่ 1 (ยกเว้นไฮโดรเจน) เรียกว่าโลหะแอลคาไล มีอิเล็กตรอนเวเลนซ์ 1 ตัว จึงมีแนวโน้มให้อิเล็กตรอนเพื่อเกิดไอออนประจุ +1\n\nตัวอย่าง ได้แก่ ลิเทียม (Li) โซเดียม (Na) และโพแทสเซียม (K) ซึ่งว่องไวต่อปฏิกิริยา โดยเฉพาะกับน้ำ"},
+{section:"หมวดเคมี",topic:"พันธะเคมี (ม.5)",q:"สารประกอบ NaCl เกิดจากพันธะเคมีชนิดใด",o:["พันธะโคเวเลนต์","พันธะโลหะ","พันธะไอออนิก","พันธะไฮโดรเจน"],a:2,e:"ตอบ ค. พันธะไอออนิก\nโซเดียม (Na) มีแนวโน้มให้อิเล็กตรอน 1 ตัว กลายเป็น Na⁺ ส่วนคลอรีน (Cl) มีแนวโน้มรับอิเล็กตรอน 1 ตัว กลายเป็น Cl⁻\n\nไอออนที่มีประจุตรงข้ามกันเกิดแรงดึงดูดทางไฟฟ้าสถิต จึงเกิดพันธะไอออนิก"},
+{section:"หมวดเคมี",topic:"กรด–เบส (ม.5)",q:"สารละลายชนิดหนึ่งมีค่า pH เท่ากับ 3 สารละลายนี้มีสมบัติอย่างไร",o:["เป็นกรด","เป็นเบส","เป็นกลาง","ไม่สามารถระบุได้"],a:0,e:"ตอบ ก. เป็นกรด\nเกณฑ์ทั่วไปของค่า pH คือ น้อยกว่า 7 เป็นกรด เท่ากับ 7 เป็นกลาง และมากกว่า 7 เป็นเบส\n\nโจทย์กำหนด pH = 3 ซึ่งน้อยกว่า 7 ดังนั้นสารละลายนี้จึงเป็นกรด"},
+{section:"หมวดเคมี",topic:"ปฏิกิริยาเคมี (ม.5)",q:"เมื่อเพิ่มอุณหภูมิของสารตั้งต้นในปฏิกิริยาเคมี โดยปัจจัยอื่นคงที่ โดยทั่วไปจะเกิดผลอย่างไร",o:["อัตราการเกิดปฏิกิริยาลดลง","อัตราการเกิดปฏิกิริยาเพิ่มขึ้น","อัตราการเกิดปฏิกิริยาคงที่เสมอ","ปฏิกิริยาเคมีหยุดทำงาน"],a:1,e:"ตอบ ข. อัตราการเกิดปฏิกิริยาเพิ่มขึ้น\nเมื่ออุณหภูมิสูงขึ้น อนุภาคของสารมีพลังงานจลน์เฉลี่ยเพิ่มขึ้นและเคลื่อนที่เร็วขึ้น ทำให้มีการชนกันของอนุภาคที่มีพลังงานเพียงพอและมีทิศทางเหมาะสมมากขึ้น\n\nจึงทำให้อัตราการเกิดปฏิกิริยาเคมีโดยทั่วไปเพิ่มขึ้น"},
+{section:"หมวดฟิสิกส์",topic:"การเคลื่อนที่แนวตรง (ม.4)",q:"รถยนต์เคลื่อนที่ได้ระยะทาง 120 เมตร ในเวลา 10 วินาที รถยนต์มีอัตราเร็วเฉลี่ยเท่าใด",o:["10 เมตร/วินาที","12 เมตร/วินาที","15 เมตร/วินาที","20 เมตร/วินาที"],a:1,e:"ตอบ ข. 12 เมตร/วินาที\nใชัสูตร อัตราเร็วเฉลี่ย = ระยะทาง ÷ เวลา\n\nแทนค่า = 120 ÷ 10 = 12 เมตร/วินาที\n\nดังนั้นรถยนต์มีอัตราเร็วเฉลี่ย 12 เมตร/วินาที"},
+{section:"หมวดฟิสิกส์",topic:"แรงและกฎการเคลื่อนที่ของนิวตัน (ม.4)",q:"วัตถุมวล 5 กิโลกรัม ถูกแรงลัพธ์ 20 นิวตันกระทำ วัตถุจะมีความเร่งเท่าใด",o:["2 เมตร/วินาที²","3 เมตร/วินาที²","4 เมตร/วินาที²","5 เมตร/วินาที²"],a:2,e:"ตอบ ค. 4 เมตร/วินาที²\nใช้กฎการเคลื่อนที่ข้อที่ 2 ของนิวตัน F = ma\n\nจัดรูปเพื่อหาความเร่ง: a = F/m\nแทนค่า a = 20/5 = 4 เมตร/วินาที²\n\nดังนั้นวัตถุมีความเร่ง 4 เมตร/วินาที²"},
+{section:"หมวดฟิสิกส์",topic:"งานและพลังงาน (ม.4)",q:"ออกแรง 10 นิวตัน ผลักวัตถุให้เคลื่อนที่ไปในทิศทางเดียวกับแรงเป็นระยะทาง 5 เมตร จะเกิดงานเท่าใด",o:["15 จูล","25 จูล","50 จูล","100 จูล"],a:2,e:"ตอบ ค. 50 จูล\nใช้สูตร W = Fs cos θ โดย W คืองาน, F คือแรง, s คือระยะกระจัด และ θ คือมุมระหว่างแรงกับการกระจัด\n\nแรงและการเคลื่อนที่ไปในทิศทางเดียวกัน จึงมี θ = 0° และ cos 0° = 1\n\nW = 10 × 5 × 1 = 50 จูล"},
+{section:"หมวดฟิสิกส์",topic:"ไฟฟ้ากระแสตรง (ม.5)",q:"ตัวต้านทานขนาด 4 โอห์ม ต่อกับแหล่งจ่ายไฟฟ้า 12 โวลต์ จะมีกระแสไฟฟ้าไหลผ่านเท่าใด",o:["2 แอมแปร์","3 แอมแปร์","4 แอมแปร์","6 แอมแปร์"],a:1,e:"ตอบ ข. 3 แอมแปร์\nใช้กฎของโอห์ม V = IR และจัดรูปเพื่อหากระแสไฟฟ้าได้ I = V/R\n\nกำหนด V = 12 โวลต์ และ R = 4 โอห์ม\nแทนค่า I = 12/4 = 3 แอมแปร์"},
+{section:"หมวดฟิสิกส์",topic:"คลื่น (ม.5)",q:"คลื่นชนิดหนึ่งมีความถี่ 5 เฮิรตซ์ และมีความยาวคลื่น 2 เมตร คลื่นนี้มีอัตราเร็วเท่าใด",o:["5 เมตร/วินาที","7 เมตร/วินาที","10 เมตร/วินาที","15 เมตร/วินาที"],a:2,e:"ตอบ ค. 10 เมตร/วินาที\nใชัสูตรอัตราเร็วคลื่น v = fλ โดย f คือความถี่ และ λ คือความยาวคลื่น\n\nกำหนด f = 5 เฮิรตซ์ และ λ = 2 เมตร\nแทนค่า v = 5 × 2 = 10 เมตร/วินาที"},
+{section:"หมวดโลก ดาราศาสตร์ และอวกาศ",topic:"โครงสร้างโลก (ม.6)",q:"ชั้นใดของโลกมีอุณหภูมิสูงมากและประกอบด้วยโลหะเป็นองค์ประกอบหลัก โดยมีสถานะเป็นของแข็ง",o:["เปลือกโลก","เนื้อโลก","แก่นโลกชั้นนอก","แก่นโลกชั้นใน"],a:3,e:"ตอบ ง. แก่นโลกชั้นใน\nโครงสร้างโลกมีชั้นสำคัญ ได้แก่ เปลือกโลก เนื้อโลก แก่นโลกชั้นนอก และแก่นโลกชั้นใน\n\nแก่นโลกชั้นนอกมีสถานะเป็นของเหลว ส่วนแก่นโลกชั้นในมีสถานะเป็นของแข็ง แม้มีอุณหภูมิสูงมาก เนื่องจากมีความดันสูงมาก"},
+{section:"หมวดโลก ดาราศาสตร์ และอวกาศ",topic:"การเคลื่อนที่ของแผ่นธรณีภาค (ม.6)",q:"เมื่อแผ่นธรณีภาคสองแผ่นเคลื่อนที่เข้าหากัน อาจทำให้เกิดปรากฏการณ์ใด",o:["การเกิดเทือกเขาและภูเขาไฟ","การเกิดกระแสน้ำขึ้นน้ำลง","การเกิดสุริยุปราคา","การเปลี่ยนแปลงฤดูกาล"],a:0,e:"ตอบ ก. การเกิดเทือกเขาและภูเขาไฟ\nเมื่อแผ่นธรณีภาคเคลื่อนที่เข้าหากัน เรียกว่าขอบแผ่นธรณีภาคแบบมาบรรจบกัน อาจทำให้เกิดเทือกเขา ร่องลึกก้นสมุทร ภูเขาไฟ และแผ่นดินไหว\n\nปรากฏการณ์ที่เกิดขึ้นขึ้นอยู่กับชนิดของแผ่นธรณีภาคที่เคลื่อนที่เข้าหากัน"},
+{section:"หมวดโลก ดาราศาสตร์ และอวกาศ",topic:"ระบบสุริยะ (ม.6)",q:"ดาวเคราะห์ดวงใดอยู่ใกล้ดวงอาทิตย์มากที่สุด",o:["ดาวศุกร์","โลก","ดาวพุธ","ดาวอังคาร"],a:2,e:"ตอบ ค. ดาวพุธ\nดาวเคราะห์เรียงตามระยะห่างจากดวงอาทิตย์จากใกล้ไปไกล ได้แก่ ดาวพุธ ดาวศุกร์ โลก ดาวอังคาร ดาวพฤหัสบดี ดาวเสาร์ ดาวยูเรนัส และดาวเนปจูน\n\nดังนั้นดาวพุธจึงอยู่ใกล้ดวงอาทิตย์มากที่สุด"},
+{section:"หมวดโลก ดาราศาสตร์ และอวกาศ",topic:"บรรยากาศของโลก (ม.6)",q:"ชั้นบรรยากาศใดเป็นบริเวณที่เกิดปรากฏการณ์สภาพอากาศส่วนใหญ่ เช่น ฝนตก เมฆ และพายุ",o:["โทรโพสเฟียร์","สตราโตสเฟียร์","มีโซสเฟียร์","เทอร์โมสเฟียร์"],a:0,e:"ตอบ ก. โทรโพสเฟียร์\nชั้นโทรโพสเฟียร์เป็นชั้นบรรยากาศที่อยู่ใกล้พื้นผิวโลกมากที่สุด เป็นบริเวณที่เกิดปรากฏการณ์ทางอากาศ เช่น เมฆ ฝน พายุ ลม และการเปลี่ยนแปลงของอุณหภูมิอากาศ"},
+{section:"หมวดโลก ดาราศาสตร์ และอวกาศ",topic:"การเกิดฤดูกาล (ม.6)",q:"สาเหตุสำคัญที่ทำให้โลกเกิดฤดูกาลแตกต่างกันในแต่ละช่วงของปีคือข้อใด",o:["โลกอยู่ใกล้ดวงอาทิตย์มากขึ้นในฤดูร้อน","โลกหมุนรอบตัวเองเร็วขึ้นในฤดูร้อน","แกนโลกเอียงขณะโลกโคจรรอบดวงอาทิตย์","ดวงอาทิตย์เปลี่ยนขนาดตามฤดูกาล"],a:2,e:"ตอบ ค. แกนโลกเอียงขณะโลกโคจรรอบดวงอาทิตย์\nโลกมีแกนหมุนเอียงประมาณ 23.5 องศาเมื่อเทียบกับแนวตั้งฉากกับระนาบวงโคจร เมื่อโลกโคจรรอบดวงอาทิตย์ แต่ละซีกโลกจึงได้รับแสงอาทิตย์แตกต่างกันในแต่ละช่วงของปี\n\nสำหรับประเทศไทยมีฤดูร้อน ฤดูฝน และฤดูหนาว สาเหตุสำคัญคือการเอียงของแกนโลก ไม่ใช่การอยู่ใกล้หรือไกลดวงอาทิตย์เป็นหลัก"}
 ];
 
+const letters = ["ก","ข","ค","ง"];
+let remaining = 60 * 60;
+let timerInterval = null;
+let submitted = false;
 
-/* สร้างข้อสอบบนหน้าเว็บ */
-function renderQuestions() {
-
-    const questionContainer = document.getElementById("questions");
-    let html = "";
-    let currentCategory = "";
-
-    quizData.forEach((q, index) => {
-
-        if (q.category !== currentCategory) {
-            currentCategory = q.category;
-
-            html += `
-                <div class="category-title">
-                    ${q.category}
-                </div>
-            `;
+function renderQuestions(){
+    const list = document.getElementById("questions");
+    list.innerHTML = "";
+    let lastSection = "";
+    questions.forEach((item,index)=>{
+        if(item.section !== lastSection){
+            const heading = document.createElement("h2");
+            heading.className = "review-title";
+            heading.textContent = item.section;
+            list.appendChild(heading);
+            lastSection = item.section;
         }
-
-        html += `
-            <div class="question">
-                <h3>${index + 1}. ${q.question}</h3>
-
-                ${q.options.map((option, optionIndex) => `
-                    <label class="option">
-                        <input
-                            type="radio"
-                            name="q${index}"
-                            value="${optionIndex}"
-                        >
-                        ${option}
-                    </label>
-                `).join("")}
-
-            </div>
-        `;
+        const card = document.createElement("article");
+        card.className = "question-card";
+        card.id = "qcard"+index;
+        const top = document.createElement("div");
+        top.className = "question-top";
+        top.innerHTML = `<span class="question-number">ข้อ ${index+1}</span><span class="topic">${item.topic}</span>`;
+        const question = document.createElement("div");
+        question.className = "question-text";
+        question.textContent = item.q;
+        const options = document.createElement("div");
+        options.className = "options";
+        item.o.forEach((option,optIndex)=>{
+            const label = document.createElement("label");
+            label.className = "option";
+            label.innerHTML = `<input type="radio" name="q${index}" value="${optIndex}"><span>${letters[optIndex]}. ${option}</span>`;
+            label.querySelector("input").addEventListener("change",()=>{
+                card.classList.add("answered");
+                updateProgress();
+            });
+            options.appendChild(label);
+        });
+        card.append(top,question,options);
+        list.appendChild(card);
     });
-
-    questionContainer.innerHTML = html;
+    updateProgress();
 }
 
+function updateProgress(){
+    let count = 0;
+    questions.forEach((_,i)=>{if(document.querySelector(`input[name="q${i}"]:checked`))count++;});
+    document.getElementById("progressText").textContent = `${count} / ${questions.length} ข้อ`;
+    document.getElementById("progressBar").style.width = (count/questions.length*100)+"%";
+}
 
-/* ตรวจคำตอบ */
-function checkAnswers() {
+function startTimer(){
+    clearInterval(timerInterval);
+    timerInterval = setInterval(()=>{
+        if(submitted){clearInterval(timerInterval);return;}
+        remaining--;
+        const min = Math.floor(remaining/60);
+        const sec = remaining%60;
+        const el = document.getElementById("timer");
+        el.textContent = `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+        if(remaining<=300)el.classList.add("warning");
+        if(remaining<=0){clearInterval(timerInterval);submitExam(true);}
+    },1000);
+}
 
-    let score = 0;
-    let answered = 0;
-
-    quizData.forEach((q, index) => {
-
-        const selected = document.querySelector(
-            `input[name="q${index}"]:checked`
-        );
-
-        if (selected) {
-            answered++;
-
-            if (Number(selected.value) === q.answer) {
-                score++;
-            }
-        }
-
+function submitExam(auto=false){
+    if(submitted)return;
+    const answered = questions.filter((_,i)=>document.querySelector(`input[name="q${i}"]:checked`)).length;
+    if(!auto && answered<questions.length && !confirm(`คุณตอบแล้ว ${answered} จาก ${questions.length} ข้อ ต้องการส่งข้อสอบหรือไม่?`))return;
+    submitted = true;
+    clearInterval(timerInterval);
+    let correctCount = 0, wrongCount = 0, blankCount = 0;
+    const review = document.getElementById("review");
+    review.innerHTML = "";
+    questions.forEach((item,i)=>{
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const chosen = selected ? Number(selected.value) : -1;
+        const correct = chosen===item.a;
+        if(chosen===-1) blankCount++;
+        else if(correct) correctCount++;
+        else wrongCount++;
+        const card = document.createElement("div");
+        card.className = "review-card";
+        const status = correct ? "✓ ตอบถูกต้อง" : "✗ ยังไม่ถูกต้อง";
+        const answerLine = `คำตอบที่ถูกต้อง: ${letters[item.a]}. ${item.o[item.a]}`;
+        const yourLine = chosen===-1 ? "คำตอบของคุณ: ไม่ได้ตอบ" : `คำตอบของคุณ: ${letters[chosen]}. ${item.o[chosen]}`;
+        card.innerHTML = `<h3>ข้อ ${i+1} — ${item.topic}</h3><div style="margin-top:8px">${item.q}</div><div class="${correct?'correct-answer':'wrong-answer'}">${status}<br>${yourLine}<br>${answerLine}</div><div class="explanation"></div>`;
+        card.querySelector(".explanation").textContent = "คำอธิบาย:\\n"+item.e;
+        review.appendChild(card);
     });
-
+    const score = correctCount;
+    const percent = Math.round(score/questions.length*100);
+    document.getElementById("score").textContent = score;
+    document.getElementById("correctCount").textContent = correctCount;
+    document.getElementById("wrongCount").textContent = wrongCount;
+    document.getElementById("blankCount").textContent = blankCount;
+    document.getElementById("percentage").textContent = percent;
+    const usedSeconds = 3600-remaining;
+    document.getElementById("usedTime").textContent = `${Math.floor(usedSeconds/60)} นาที`;
+    const message = percent>=80 ? "ยอดเยี่ยม! ทำได้ดีมาก" : percent>=60 ? "ทำได้ดี ควรทบทวนเพิ่มเติมในบางหัวข้อ" : "ลองอ่านเฉลยและฝึกทำอีกครั้งนะ";
+    document.getElementById("resultMessage").textContent = message + (auto ? " หมดเวลาทำข้อสอบแล้ว ระบบส่งคำตอบให้อัตโนมัติ" : "");
+    document.getElementById("exam").style.display = "none";
     document.getElementById("result").style.display = "block";
-
-    document.getElementById("scoreText").textContent =
-        score + " / " + quizData.length;
-
-    document.getElementById("answeredText").textContent =
-        "ตอบแล้ว " + answered + " ข้อ จากทั้งหมด " + quizData.length + " ข้อ";
-
-    let message = "";
-
-    if (score >= 18) {
-        message = "ยอดเยี่ยมมาก! คุณมีความเข้าใจเนื้อหาวิทยาศาสตร์เป็นอย่างดี";
-    } else if (score >= 15) {
-        message = "ดีมาก! คุณมีพื้นฐานความรู้ที่ดี";
-    } else if (score >= 10) {
-        message = "ทำได้ดี! ลองทบทวนเนื้อหาเพิ่มเติมอีกเล็กน้อย";
-    } else {
-        message = "พยายามต่อไปนะ ลองอ่านเฉลยและฝึกทำข้อสอบอีกครั้ง";
-    }
-
-    if (answered < quizData.length) {
-        message += " (ยังมีข้อที่ไม่ได้ตอบ)";
-    }
-
-    document.getElementById("resultMessage").textContent = message;
-
-    document.getElementById("answerSection").style.display = "none";
-
-    document.getElementById("result").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
+    window.scrollTo({top:0,behavior:"smooth"});
 }
 
-
-/* แสดงเฉลยแยกจากข้อสอบ */
-function showAnswers() {
-
-    const answerContainer = document.getElementById("answers");
-
-    let html = "";
-
-    quizData.forEach((q, index) => {
-
-        const correctOption = q.options[q.answer];
-
-        html += `
-            <div class="answer-card">
-
-                <h3>ข้อ ${index + 1} : ${q.category}</h3>
-
-                <p class="correct-answer">
-                    คำตอบที่ถูกต้อง: ${correctOption}
-                </p>
-
-                <p class="explanation">
-                    <strong>คำอธิบาย:</strong>
-                    ${q.explanation}
-                </p>
-
-            </div>
-        `;
-
-    });
-
-    answerContainer.innerHTML = html;
-
-    document.getElementById("answerSection").style.display = "block";
-
-    document.getElementById("answerSection").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-}
-
-
-/* เริ่มทำข้อสอบใหม่ */
-function resetQuiz() {
-
-    document.getElementById("quizForm").reset();
-
+function retryQuiz(){
+    submitted = false;
+    remaining = 3600;
+    document.getElementById("timer").textContent = "60:00";
+    document.getElementById("timer").classList.remove("warning");
+    document.getElementById("exam").style.display = "block";
     document.getElementById("result").style.display = "none";
-
-    document.getElementById("answerSection").style.display = "none";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
+    renderQuestions();
+    startTimer();
+    window.scrollTo({top:0,behavior:"smooth"});
 }
 
-
-/* เรียกใช้งาน */
 renderQuestions();
-
+startTimer();
 </script>
-
 </body>
 </html>
-```
