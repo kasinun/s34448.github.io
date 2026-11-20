@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบทดสอบภาษาไทย | คลังข้อสอบ</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:'Prompt',sans-serif;background:#f6f4fb;color:#302b3d}
+nav{background:white;padding:17px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 20px rgba(70,40,100,.08);position:sticky;top:0;z-index:100}
+.logo{font-size:23px;font-weight:800;color:#6035a5}
+.logo span{color:#35a36a}
+.back{text-decoration:none;color:#6544a1;font-size:14px;font-weight:500}
+.back:hover{color:#35a36a}
+.header{background:linear-gradient(120deg,#dff5e8,#e9ddfa);padding:55px 7%;text-align:center}
+.header .tag{display:inline-block;padding:8px 20px;background:white;color:#38976a;border-radius:30px;font-size:13px;margin-bottom:18px}
+.header h1{font-size:38px;color:#60399c;font-weight:800}
+.header h1 span{color:#36a36b}
+.header p{color:#70697c;margin-top:12px;line-height:1.8}
+.info{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:25px}
+.info-box{background:white;padding:12px 22px;border-radius:13px;color:#60419b;font-size:14px;box-shadow:0 4px 15px rgba(70,40,100,.06)}
+.container{max-width:1000px;margin:35px auto;padding:0 20px}
+.timer-box{background:white;padding:20px 25px;border-radius:18px;box-shadow:0 5px 20px rgba(70,40,100,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:25px}
+.timer-title{color:#6c5a84;font-size:14px}
+.timer{font-size:28px;font-weight:800;color:#36a36b;font-variant-numeric:tabular-nums}
+.timer.warning{color:#e05267}
+.progress-area{margin-top:12px}
+.progress-text{display:flex;justify-content:space-between;font-size:13px;color:#81798e;margin-bottom:8px}
+.progress{height:9px;background:#eee9f5;border-radius:20px;overflow:hidden}
+.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#39b779,#7548b8);border-radius:20px;transition:.3s}
+.instruction{background:#eee7fa;border-left:5px solid #8053bd;padding:18px 22px;border-radius:12px;margin-bottom:25px;color:#59427f;font-size:14px;line-height:1.8}
+.question-card{background:white;padding:25px;border-radius:18px;margin-bottom:22px;box-shadow:0 5px 22px rgba(70,40,100,.05);border:1px solid #eeeaf4;transition:.2s}
+.question-card.answered{border-left:5px solid #48ad77}
+.question-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:17px}
+.question-number{font-size:17px;font-weight:700;color:#6540a3}
+.topic{background:#e5f6ec;color:#369566;padding:6px 13px;border-radius:20px;font-size:12px}
+.question-text{font-size:16px;line-height:1.9;margin-bottom:20px;font-weight:500;white-space:pre-line}
+.options{display:grid;gap:12px}
+.option{display:flex;align-items:center;gap:12px;padding:14px 17px;border:1px solid #e9e4f0;border-radius:12px;cursor:pointer;transition:.2s;font-size:14px}
+.option:hover{background:#f2f8f3;border-color:#6cbd8e}
+.option:has(input:checked){background:#eaf7ef;border-color:#43a974;color:#287e51;font-weight:600}
+.option input{accent-color:#46a875;width:17px;height:17px;flex-shrink:0}
+.submit-area{text-align:center;padding:20px 0 50px}
+.submit-btn{background:linear-gradient(110deg,#39ad70,#6841b0);color:white;border:none;padding:16px 45px;font-family:inherit;font-size:16px;font-weight:600;border-radius:40px;cursor:pointer;box-shadow:0 7px 20px rgba(90,60,150,.2);transition:.3s}
+.submit-btn:hover{transform:translateY(-3px)}
+#result{display:none}
+.result-box{background:white;padding:40px 25px;text-align:center;border-radius:25px;box-shadow:0 8px 30px rgba(70,40,100,.07);margin-bottom:30px}
+.result-icon{font-size:60px;margin-bottom:15px}
+.result-box h2{color:#60399c;font-size:30px}
+.score{font-size:55px;font-weight:800;color:#39a66e;margin:15px 0}
+.result-detail{color:#777080;line-height:2;font-size:15px}
+.review-title{text-align:center;color:#60399c;margin:35px 0 20px;font-size:25px}
+.review-card{background:white;padding:23px;border-radius:15px;margin-bottom:18px;border:1px solid #eeeaf4;line-height:1.9}
+.review-card h3{color:#60399c;font-size:16px;margin-bottom:12px}
+.correct-answer{color:#278b55;background:#e8f7ed;padding:10px 13px;border-radius:9px;margin:10px 0;font-size:14px}
+.wrong-answer{color:#d14f5e;background:#fff0f0;padding:10px 13px;border-radius:9px;margin:10px 0;font-size:14px}
+.explanation{background:#f1ebfa;color:#59427f;padding:15px;border-radius:10px;margin-top:12px;font-size:14px;white-space:pre-line}
+.retry-btn{display:inline-block;margin:10px;padding:13px 25px;background:#6540a3;color:white;border-radius:30px;text-decoration:none;border:none;font-family:inherit;cursor:pointer}
+footer{background:linear-gradient(110deg,#286e50,#56328c);color:white;text-align:center;padding:30px 15px;font-size:13px;line-height:2}
+@media(max-width:600px){
+.header h1{font-size:29px}
+.timer-box{padding:17px}
+.timer{font-size:24px}
+.question-card{padding:19px}
+.question-text{font-size:15px}
+.score{font-size:43px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">คลัง<span>ข้อสอบ.</span></div>
+    <a href="index.html" class="back">← กลับหน้าหลัก</a>
+</nav>
+
+<header class="header">
+    <div class="tag">✦ ONLINE EXAMINATION</div>
+    <h1>แบบทดสอบวิชา<span>ภาษาไทย</span></h1>
+    <p>
+        ระดับชั้นมัธยมศึกษาปีที่ 4–6<br>
+        ทบทวนหลักภาษา วรรณคดี และการใช้ภาษาไทย
+    </p>
+    <div class="info">
+        <div class="info-box">📋 20 ข้อ</div>
+        <div class="info-box">🏆 20 คะแนน</div>
+        <div class="info-box">⏱️ 60 นาที</div>
+    </div>
+</header>
+
+<main class="container" id="exam">
+    <div class="timer-box">
+        <div>
+            <div class="timer-title">เวลาที่เหลือในการทำข้อสอบ</div>
+            <div class="timer" id="timer">60:00</div>
+        </div>
+        <div style="flex:1;min-width:180px;">
+            <div class="progress-area">
+                <div class="progress-text">
+                    <span>ความคืบหน้าการทำข้อสอบ</span>
+                    <span id="progressText">0 / 20 ข้อ</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction">
+        <strong>คำชี้แจง</strong><br>
+        1. แบบทดสอบมีจำนวน 20 ข้อ คะแนนเต็ม 20 คะแนน<br>
+        2. ให้นักเรียนเลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
+        3. มีเวลาในการทำข้อสอบ 60 นาที<br>
+        4. เมื่อทำข้อสอบเสร็จแล้วให้กดปุ่มส่งข้อสอบเพื่อดูคะแนนและเฉลย
+    </div>
+
+    <div id="questions"></div>
+
+    <div class="submit-area">
+        <button class="submit-btn" id="submitBtn" onclick="submitExam()">
+            ส่งข้อสอบและตรวจคะแนน
+        </button>
+        <p style="margin-top:12px;color:#888;font-size:13px;">
+            กรุณาตรวจสอบคำตอบก่อนกดส่งข้อสอบ
+        </p>
+    </div>
+</main>
+
+<section id="result" class="container">
+    <div class="result-box">
+        <div class="result-icon">🏆</div>
+        <h2>สรุปผลการสอบ</h2>
+        <div class="score"><span id="score">0</span>/20</div>
+        <div class="result-detail">
+            <div>ตอบถูก <strong id="correctCount">0</strong> ข้อ</div>
+            <div>ตอบผิด <strong id="wrongCount">0</strong> ข้อ</div>
+            <div>ไม่ได้ตอบ <strong id="blankCount">0</strong> ข้อ</div>
+            <div>คิดเป็น <strong id="percentage">0</strong>%</div>
+            <div>เวลาที่ใช้ <strong id="usedTime">0 นาที</strong></div>
+        </div>
+        <p id="resultMessage" style="margin-top:18px;color:#39996a;font-weight:600;"></p>
+    </div>
+
+    <h2 class="review-title">📚 เฉลยพร้อมคำอธิบายอย่างละเอียด</h2>
+    <div id="review"></div>
+
+    <div class="submit-area">
+        <button class="retry-btn" onclick="retryQuiz()">ทำข้อสอบอีกครั้ง</button>
+        <a href="index.html" class="retry-btn">กลับหน้าหลัก</a>
+    </div>
+</section>
+
+<footer>
+    <div>คลังข้อสอบออนไลน์</div>
+    <div>เว็บไซต์เพื่อการศึกษาและทบทวนความรู้</div>
+</footer>
+
+<script>
+const questions = [
+
+{
+section:"หมวดหลักภาษาไทย",
+topic:"ชนิดของคำ",
+q:"ข้อใดเป็นคำวิเศษณ์ทั้งหมด",
+o:["บ้าน โรงเรียน นักเรียน","สวย เร็ว มาก","เดิน วิ่ง กระโดด","ฉัน เธอ เขา"],
+a:1,
+e:"ตอบ ข. สวย เร็ว มาก\nคำวิเศษณ์คือคำที่ใช้ขยายคำอื่น เพื่อให้ความหมายชัดเจนขึ้น เช่น สวย เร็ว มาก ช้า และดี\n\nส่วนบ้าน โรงเรียน นักเรียนเป็นคำนาม เดิน วิ่ง กระโดดเป็นคำกริยา และฉัน เธอ เขาเป็นคำสรรพนาม"
+},
+
+{
+section:"หมวดหลักภาษาไทย",
+topic:"ประโยค",
+q:"ข้อใดเป็นประโยคความรวม",
+o:["นักเรียนอ่านหนังสือ","แม่ทำอาหารและพ่อรดน้ำต้นไม้","เด็กที่ยืนอยู่หน้าห้องเป็นน้องของฉัน","ฝนตกหนักมาก"],
+a:1,
+e:"ตอบ ข. แม่ทำอาหารและพ่อรดน้ำต้นไม้\nประโยคความรวมเกิดจากประโยคใจความสมบูรณ์ตั้งแต่ 2 ประโยคขึ้นไปมาเชื่อมกันด้วยคำสันธาน เช่น และ แต่ หรือ\n\nประโยคนี้ประกอบด้วย แม่ทำอาหาร และ พ่อรดน้ำต้นไม้ ซึ่งเป็นประโยคที่มีใจความสมบูรณ์ทั้งสองส่วน"
+},
+
+{
+section:"หมวดหลักภาษาไทย",
+topic:"คำราชาศัพท์",
+q:"คำราชาศัพท์ของคำว่า กิน สำหรับพระมหากษัตริย์ คือข้อใด",
+o:["รับประทาน","เสวย","ฉัน","บริโภค"],
+a:1,
+e:"ตอบ ข. เสวย\nคำว่า เสวย เป็นคำราชาศัพท์ที่ใช้กับพระมหากษัตริย์และพระบรมวงศานุวงศ์ในบริบทที่เหมาะสม หมายถึง กินหรือรับประทาน\n\nคำว่า ฉัน ใช้กับพระสงฆ์ ส่วนรับประทานเป็นคำสุภาพทั่วไป"
+},
+
+{
+section:"หมวดหลักภาษาไทย",
+topic:"คำสมาส",
+q:"ข้อใดเป็นคำสมาส",
+o:["น้ำปลา","รถไฟ","ราชการ","ลูกเสือ"],
+a:2,
+e:"ตอบ ค. ราชการ\nคำสมาสเป็นคำที่เกิดจากการนำคำบาลีหรือสันสกฤตตั้งแต่ 2 คำมารวมกัน เช่น ราช + การ เป็น ราชการ\n\nส่วนน้ำปลา รถไฟ และลูกเสือเป็นคำประสมที่เกิดจากการนำคำไทยมารวมกัน"
+},
+
+{
+section:"หมวดหลักภาษาไทย",
+topic:"คำพ้อง",
+q:"ข้อใดเป็นคำพ้องเสียง",
+o:["ขัน – ขัน","การ – กาล","เสือ – เสื้อ","บ้าน – บาน"],
+a:2,
+e:"ตอบ ค. เสือ – เสื้อ\nคำพ้องเสียงคือคำที่ออกเสียงเหมือนกัน แต่เขียนต่างกันและมีความหมายต่างกัน\n\nเสือ หมายถึงสัตว์ชนิดหนึ่ง ส่วน เสื้อ หมายถึงเครื่องนุ่งห่ม ทั้งสองคำออกเสียงเหมือนกัน"
+},
+
+{
+section:"หมวดหลักภาษาไทย",
+topic:"ระดับภาษา",
+q:"ข้อใดใช้ภาษาในระดับทางการได้เหมาะสมที่สุด",
+o:["เฮ้ย! วันนี้มีประชุม","ทางโรงเรียนขอเชิญผู้ปกครองเข้าร่วมประชุม","แกช่วยส่งเอกสารให้หน่อย","วันนี้สนุกสุด ๆ ไปเลย"],
+a:1,
+e:"ตอบ ข. ทางโรงเรียนขอเชิญผู้ปกครองเข้าร่วมประชุม\nภาษาระดับทางการเป็นภาษาที่ใช้ในงานราชการ หนังสือราชการ การประชุม และการติดต่อที่เป็นพิธีการ\n\nข้อความนี้ใช้ถ้อยคำสุภาพ ชัดเจน และเหมาะสมกับการสื่อสารอย่างเป็นทางการ"
+},
+
+{
+section:"หมวดหลักภาษาไทย",
+topic:"การใช้คำ",
+q:"ข้อใดใช้คำได้ถูกต้องตามความหมาย",
+o:["เขามีอัธยาศัยดีและชอบช่วยเหลือผู้อื่น","เขาประสบอุบัติเหตุอย่างมีความสุข","นักเรียนขยันจนไม่ยอมเรียนหนังสือ","ฉันรับประทานน้ำอย่างรวดเร็ว"],
+a:0,
+e:"ตอบ ก. เขามีอัธยาศัยดีและชอบช่วยเหลือผู้อื่น\nอัธยาศัย หมายถึงลักษณะนิสัยหรือความประพฤติที่แสดงออกต่อผู้อื่น การใช้คำในประโยคนี้จึงถูกต้องตามความหมาย\n\nตัวเลือกอื่นใช้คำไม่สอดคล้องกับความหมายของประโยค"
+},
+
+{
+section:"หมวดการอ่านและการเขียน",
+topic:"การจับใจความสำคัญ",
+q:"อ่านข้อความต่อไปนี้\n\n'การอ่านหนังสือเป็นกิจกรรมที่ช่วยเพิ่มพูนความรู้ พัฒนาความคิด และทำให้ผู้อ่านมีทักษะการใช้ภาษาที่ดีขึ้น ผู้ที่อ่านหนังสืออย่างสม่ำเสมอจึงมีโอกาสเรียนรู้สิ่งใหม่ ๆ อยู่เสมอ'\n\nใจความสำคัญของข้อความนี้คือข้อใด",
+o:["การอ่านหนังสือทำให้มีเวลาว่างมากขึ้น","การอ่านหนังสือมีประโยชน์ต่อความรู้และความคิด","การอ่านหนังสือเป็นกิจกรรมที่ทำได้เฉพาะในโรงเรียน","การอ่านหนังสือช่วยให้มีเพื่อนมากขึ้น"],
+a:1,
+e:"ตอบ ข. การอ่านหนังสือมีประโยชน์ต่อความรู้และความคิด\nใจความสำคัญคือข้อความหลักที่ผู้เขียนต้องการสื่อ โดยข้อความนี้กล่าวถึงประโยชน์ของการอ่านหนังสือ ทั้งการเพิ่มความรู้ พัฒนาความคิด และพัฒนาทักษะภาษา\n\nดังนั้นข้อ ข จึงครอบคลุมเนื้อหาสำคัญทั้งหมด"
+},
+
+{
+section:"หมวดการอ่านและการเขียน",
+topic:"การเขียนย่อความ",
+q:"การย่อความที่ดีควรมีลักษณะอย่างไร",
+o:["คัดลอกข้อความทุกประโยคมาเรียงใหม่","เพิ่มความคิดเห็นส่วนตัวให้มากที่สุด","เก็บเฉพาะใจความสำคัญด้วยภาษาที่กระชับ","ตัดข้อความทั้งหมดที่ไม่ชอบออก"],
+a:2,
+e:"ตอบ ค. เก็บเฉพาะใจความสำคัญด้วยภาษาที่กระชับ\nการย่อความเป็นการนำเนื้อหาสำคัญจากเรื่องเดิมมาเขียนใหม่ให้สั้นลง โดยยังคงสาระสำคัญครบถ้วน ใช้ภาษาของผู้ย่อเอง และไม่เพิ่มเติมความคิดเห็นส่วนตัวที่ไม่มีอยู่ในต้นฉบับ"
+},
+
+{
+section:"หมวดการอ่านและการเขียน",
+topic:"การเขียนเรียงความ",
+q:"เรียงความโดยทั่วไปประกอบด้วยส่วนสำคัญกี่ส่วน และได้แก่อะไรบ้าง",
+o:["2 ส่วน ได้แก่ เนื้อเรื่องและบทสรุป","3 ส่วน ได้แก่ คำนำ เนื้อเรื่อง และสรุป","4 ส่วน ได้แก่ ชื่อเรื่อง คำนำ เนื้อเรื่อง และบรรณานุกรม","5 ส่วน ได้แก่ คำนำ เนื้อเรื่อง สรุป ภาคผนวก และดัชนี"],
+a:1,
+e:"ตอบ ข. 3 ส่วน ได้แก่ คำนำ เนื้อเรื่อง และสรุป\nเรียงความโดยทั่วไปประกอบด้วย 3 ส่วน\n1. คำนำ ใช้เปิดเรื่องและนำเข้าสู่ประเด็น\n2. เนื้อเรื่อง ใช้อธิบายรายละเอียดและเหตุผล\n3. สรุป ใช้รวบยอดใจความและปิดเรื่องให้สมบูรณ์"
+},
+
+{
+section:"หมวดการอ่านและการเขียน",
+topic:"การใช้เครื่องหมายวรรคตอน",
+q:"เครื่องหมายอัญประกาศ (“ ”) ใช้เพื่อวัตถุประสงค์ใดเป็นหลัก",
+o:["แสดงคำถาม","แสดงข้อความที่ยกมาอ้างหรือคำพูด","แสดงการหยุดพักหายใจ","แสดงการจบประโยค"],
+a:1,
+e:"ตอบ ข. แสดงข้อความที่ยกมาอ้างหรือคำพูด\nเครื่องหมายอัญประกาศใช้คร่อมข้อความที่ยกมาอ้าง คำพูดโดยตรง หรือข้อความที่ต้องการเน้นให้เห็นเป็นพิเศษ\n\nตัวอย่าง เช่น ครูพูดว่า “ความพยายามอยู่ที่ไหน ความสำเร็จอยู่ที่นั่น”"
+},
+
+{
+section:"หมวดการอ่านและการเขียน",
+topic:"การเขียนเชิงอธิบาย",
+q:"ข้อใดเป็นลักษณะสำคัญของการเขียนอธิบาย",
+o:["มุ่งเล่าเรื่องให้เกิดความสนุกสนานเท่านั้น","มุ่งให้ข้อมูลและทำให้ผู้อ่านเข้าใจเรื่องที่กล่าวถึง","มุ่งโน้มน้าวให้ผู้อ่านซื้อสินค้า","มุ่งใช้ถ้อยคำคล้องจองเป็นหลัก"],
+a:1,
+e:"ตอบ ข. มุ่งให้ข้อมูลและทำให้ผู้อ่านเข้าใจเรื่องที่กล่าวถึง\nการเขียนอธิบายมีจุดประสงค์เพื่อให้ความรู้หรือทำให้ผู้อ่านเข้าใจเรื่องใดเรื่องหนึ่งอย่างชัดเจน อาจใช้คำจำกัดความ ตัวอย่าง เหตุผล หรือการเรียงลำดับขั้นตอนประกอบ"
+},
+
+{
+section:"หมวดวรรณคดีและวรรณกรรม",
+topic:"รามเกียรติ์",
+q:"ตัวละครใดในเรื่องรามเกียรติ์เป็นผู้มีความซื่อสัตย์และจงรักภักดีต่อพระราม",
+o:["หนุมาน","ทศกัณฐ์","กุมภกรรณ","อินทรชิต"],
+a:0,
+e:"ตอบ ก. หนุมาน\nหนุมานเป็นทหารเอกของพระราม มีความกล้าหาญ ฉลาด และจงรักภักดีต่อพระรามอย่างมาก มีบทบาทสำคัญในการช่วยเหลือพระรามทำศึกกับฝ่ายลงกา"
+},
+
+{
+section:"หมวดวรรณคดีและวรรณกรรม",
+topic:"อิเหนา",
+q:"วรรณคดีเรื่องอิเหนาได้รับเค้าเรื่องมาจากวรรณกรรมของชนชาติใด",
+o:["จีน","อินเดีย","ชวา","ญี่ปุ่น"],
+a:2,
+e:"ตอบ ค. ชวา\nอิเหนาเป็นวรรณคดีไทยที่มีเค้าเรื่องมาจากนิทานปันหยีของชวา และได้รับการดัดแปลงให้มีลักษณะเหมาะสมกับสังคมและวัฒนธรรมไทย"
+},
+
+{
+section:"หมวดวรรณคดีและวรรณกรรม",
+topic:"พระอภัยมณี",
+q:"ผู้แต่งวรรณคดีเรื่องพระอภัยมณีคือใคร",
+o:["เจ้าฟ้าธรรมธิเบศร","สุนทรภู่","รัชกาลที่ 2","ศรีปราชญ์"],
+a:1,
+e:"ตอบ ข. สุนทรภู่\nพระอภัยมณีเป็นวรรณคดีคำกลอนเรื่องสำคัญของสุนทรภู่ กวีเอกของไทย มีเนื้อหาเกี่ยวกับการผจญภัย ความรัก การเดินทาง และการใช้ปัญญา"
+},
+
+{
+section:"หมวดวรรณคดีและวรรณกรรม",
+topic:"โคลงโลกนิติ",
+q:"วรรณคดีเรื่องโคลงโลกนิติมีจุดมุ่งหมายสำคัญอย่างไร",
+o:["บันทึกเหตุการณ์สงคราม","ให้ข้อคิดและคติสอนใจในการดำเนินชีวิต","เล่าเรื่องการเดินทางของกษัตริย์","บรรยายความงามของธรรมชาติเท่านั้น"],
+a:1,
+e:"ตอบ ข. ให้ข้อคิดและคติสอนใจในการดำเนินชีวิต\nโคลงโลกนิติเป็นวรรณคดีประเภทคำสอน มุ่งให้ข้อคิดเกี่ยวกับการประพฤติตน การคบคน การใช้สติปัญญา และการดำเนินชีวิตในสังคม"
+},
+
+{
+section:"หมวดวรรณคดีและวรรณกรรม",
+topic:"นิราศ",
+q:"ลักษณะเด่นของวรรณคดีประเภทนิราศคือข้อใด",
+o:["เน้นการแสดงตลกขบขัน","เน้นการพรรณนาการเดินทางและความคิดถึงผู้เป็นที่รัก","เน้นการบันทึกกฎหมาย","เน้นการอธิบายหลักวิทยาศาสตร์"],
+a:1,
+e:"ตอบ ข. เน้นการพรรณนาการเดินทางและความคิดถึงผู้เป็นที่รัก\nนิราศเป็นวรรณกรรมที่มักกล่าวถึงการเดินทาง พร้อมพรรณนาสถานที่ ธรรมชาติ และแสดงความรู้สึกอาลัยหรือคิดถึงบุคคลอันเป็นที่รัก"
+},
+
+{
+section:"หมวดวรรณคดีและวรรณกรรม",
+topic:"สุภาษิตพระร่วง",
+q:"สุภาษิตพระร่วงมีคุณค่าเด่นในด้านใด",
+o:["การให้คำแนะนำในการดำเนินชีวิต","การอธิบายวิธีทำอาหาร","การบันทึกประวัติศาสตร์ต่างประเทศ","การสอนคณิตศาสตร์"],
+a:0,
+e:"ตอบ ก. การให้คำแนะนำในการดำเนินชีวิต\nสุภาษิตพระร่วงเป็นวรรณคดีคำสอนที่ให้แนวทางการประพฤติตน เช่น การรู้จักกาลเทศะ การคบคน การรักษาคำพูด และการใช้ชีวิตอย่างมีสติ"
+},
+
+{
+section:"หมวดการใช้ภาษาและการสื่อสาร",
+topic:"โวหารภาพพจน์",
+q:"ข้อความ 'เธอสวยราวกับนางฟ้า' ใช้โวหารภาพพจน์ชนิดใด",
+o:["อุปลักษณ์","อุปมา","บุคลาธิษฐาน","อติพจน์"],
+a:1,
+e:"ตอบ ข. อุปมา\nอุปมาเป็นภาพพจน์ที่เปรียบเทียบสิ่งหนึ่งกับอีกสิ่งหนึ่ง โดยมักมีคำแสดงการเปรียบเทียบ เช่น เหมือน ดุจ ราวกับ ประหนึ่ง\n\nข้อความนี้ใช้คำว่า 'ราวกับ' เพื่อเปรียบความสวยของเธอกับนางฟ้า"
+},
+
+{
+section:"หมวดการใช้ภาษาและการสื่อสาร",
+topic:"สำนวนไทย",
+q:"สำนวน 'น้ำขึ้นให้รีบตัก' มีความหมายตรงกับข้อใด",
+o:["ให้รีบตักน้ำเมื่อฝนตก","เมื่อมีโอกาสดีควรรีบทำ","ไม่ควรทำงานในเวลาว่าง","ควรประหยัดน้ำไว้ใช้"],
+a:1,
+e:"ตอบ ข. เมื่อมีโอกาสดีควรรีบทำ\nสำนวนนี้หมายถึง เมื่อมีโอกาสหรือจังหวะที่เหมาะสม ควรรีบลงมือทำให้เกิดประโยชน์ ไม่ปล่อยให้โอกาสผ่านไป"
+},
+
+{
+section:"หมวดการใช้ภาษาและการสื่อสาร",
+topic:"การฟังและการดู",
+q:"ข้อใดเป็นพฤติกรรมที่เหมาะสมในการฟังการบรรยาย",
+o:["พูดแทรกผู้บรรยายตลอดเวลา","เล่นโทรศัพท์ระหว่างฟัง","ตั้งใจฟัง จดประเด็นสำคัญ และถามเมื่อมีข้อสงสัย","พูดคุยกับเพื่อนเสียงดัง"],
+a:2,
+e:"ตอบ ค. ตั้งใจฟัง จดประเด็นสำคัญ และถามเมื่อมีข้อสงสัย\nการฟังอย่างมีประสิทธิภาพควรตั้งใจฟัง ไม่รบกวนผู้อื่น จับใจความสำคัญ จดบันทึก และสอบถามเมื่อไม่เข้าใจ เพื่อให้ได้รับข้อมูลอย่างครบถ้วน"
+},
+
+{
+section:"หมวดการใช้ภาษาและการสื่อสาร",
+topic:"การใช้ภาษาอย่างมีเหตุผล",
+q:"ข้อใดเป็นการใช้เหตุผลสนับสนุนความคิดเห็นได้เหมาะสมที่สุด",
+o:["ฉันคิดว่าหนังสือเล่มนี้ดี เพราะทุกคนต้องชอบ","ควรปลูกต้นไม้เพิ่ม เพราะช่วยดูดซับคาร์บอนไดออกไซด์และเพิ่มพื้นที่สีเขียว","เรื่องนี้ถูกต้องเพราะฉันพูดเอง","ทุกคนควรเห็นด้วยกับฉันโดยไม่มีข้อโต้แย้ง"],
+a:1,
+e:"ตอบ ข. ควรปลูกต้นไม้เพิ่ม เพราะช่วยดูดซับคาร์บอนไดออกไซด์และเพิ่มพื้นที่สีเขียว\nการใช้เหตุผลที่ดีควรมีข้อสนับสนุนที่สัมพันธ์กับความคิดเห็นและสามารถอธิบายได้\n\nตัวเลือก ข ให้เหตุผลที่ชัดเจนว่าการปลูกต้นไม้มีประโยชน์ต่อสิ่งแวดล้อม"
+}
+
+];
+
+const letters = ["ก","ข","ค","ง"];
+let remaining = 3600;
+let timerInterval = null;
+let submitted = false;
+
+function renderQuestions(){
+    const list = document.getElementById("questions");
+    list.innerHTML = "";
+    let lastSection = "";
+
+    questions.forEach((item,index)=>{
+        if(item.section !== lastSection){
+            const heading = document.createElement("h2");
+            heading.className = "review-title";
+            heading.textContent = item.section;
+            list.appendChild(heading);
+            lastSection = item.section;
+        }
+
+        const card = document.createElement("article");
+        card.className = "question-card";
+        card.id = "qcard"+index;
+
+        const top = document.createElement("div");
+        top.className = "question-top";
+        top.innerHTML = `<span class="question-number">ข้อ ${index+1}</span><span class="topic">${item.topic}</span>`;
+
+        const question = document.createElement("div");
+        question.className = "question-text";
+        question.textContent = item.q;
+
+        const options = document.createElement("div");
+        options.className = "options";
+
+        item.o.forEach((option,optIndex)=>{
+            const label = document.createElement("label");
+            label.className = "option";
+            label.innerHTML = `<input type="radio" name="q${index}" value="${optIndex}"><span>${letters[optIndex]}. ${option}</span>`;
+
+            label.querySelector("input").addEventListener("change",()=>{
+                card.classList.add("answered");
+                updateProgress();
+            });
+
+            options.appendChild(label);
+        });
+
+        card.append(top,question,options);
+        list.appendChild(card);
+    });
+
+    updateProgress();
+}
+
+function updateProgress(){
+    let count = 0;
+
+    questions.forEach((_,i)=>{
+        if(document.querySelector(`input[name="q${i}"]:checked`)) count++;
+    });
+
+    document.getElementById("progressText").textContent = `${count} / ${questions.length} ข้อ`;
+    document.getElementById("progressBar").style.width = (count/questions.length*100)+"%";
+}
+
+function startTimer(){
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(()=>{
+        if(submitted){
+            clearInterval(timerInterval);
+            return;
+        }
+
+        remaining--;
+
+        const min = Math.floor(remaining/60);
+        const sec = remaining%60;
+        const el = document.getElementById("timer");
+
+        el.textContent = `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+
+        if(remaining<=300) el.classList.add("warning");
+
+        if(remaining<=0){
+            clearInterval(timerInterval);
+            submitExam(true);
+        }
+    },1000);
+}
+
+function submitExam(auto=false){
+    if(submitted) return;
+
+    const answered = questions.filter((_,i)=>
+        document.querySelector(`input[name="q${i}"]:checked`)
+    ).length;
+
+    if(!auto && answered<questions.length &&
+       !confirm(`คุณตอบแล้ว ${answered} จาก ${questions.length} ข้อ ต้องการส่งข้อสอบหรือไม่?`)){
+        return;
+    }
+
+    submitted = true;
+    clearInterval(timerInterval);
+
+    let correctCount = 0;
+    let wrongCount = 0;
+    let blankCount = 0;
+
+    const review = document.getElementById("review");
+    review.innerHTML = "";
+
+    questions.forEach((item,i)=>{
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const chosen = selected ? Number(selected.value) : -1;
+        const correct = chosen===item.a;
+
+        if(chosen===-1) blankCount++;
+        else if(correct) correctCount++;
+        else wrongCount++;
+
+        const card = document.createElement("div");
+        card.className = "review-card";
+
+        const status = correct ? "✓ ตอบถูกต้อง" : "✗ ยังไม่ถูกต้อง";
+        const answerLine = `คำตอบที่ถูกต้อง: ${letters[item.a]}. ${item.o[item.a]}`;
+        const yourLine = chosen===-1
+            ? "คำตอบของคุณ: ไม่ได้ตอบ"
+            : `คำตอบของคุณ: ${letters[chosen]}. ${item.o[chosen]}`;
+
+        card.innerHTML = `
+            <h3>ข้อ ${i+1} — ${item.topic}</h3>
+            <div style="margin-top:8px"></div>
+            <div class="${correct?'correct-answer':'wrong-answer'}"></div>
+            <div class="explanation"></div>
+        `;
+
+        card.children[1].textContent = item.q;
+        card.children[2].innerHTML = `${status}<br>${yourLine}<br>${answerLine}`;
+        card.children[3].textContent = "คำอธิบาย:\n"+item.e;
+
+        review.appendChild(card);
+    });
+
+    const score = correctCount;
+    const percent = Math.round(score/questions.length*100);
+
+    document.getElementById("score").textContent = score;
+    document.getElementById("correctCount").textContent = correctCount;
+    document.getElementById("wrongCount").textContent = wrongCount;
+    document.getElementById("blankCount").textContent = blankCount;
+    document.getElementById("percentage").textContent = percent;
+
+    const usedSeconds = 3600-remaining;
+    document.getElementById("usedTime").textContent =
+        `${Math.floor(usedSeconds/60)} นาที`;
+
+    const message = percent>=80
+        ? "ยอดเยี่ยม! ทำได้ดีมาก"
+        : percent>=60
+        ? "ทำได้ดี ควรทบทวนเพิ่มเติมในบางหัวข้อ"
+        : "ลองอ่านเฉลยและฝึกทำอีกครั้งนะ";
+
+    document.getElementById("resultMessage").textContent =
+        message + (auto ? " หมดเวลาทำข้อสอบแล้ว ระบบส่งคำตอบให้อัตโนมัติ" : "");
+
+    document.getElementById("exam").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function retryQuiz(){
+    submitted = false;
+    remaining = 3600;
+
+    document.getElementById("timer").textContent = "60:00";
+    document.getElementById("timer").classList.remove("warning");
+
+    document.getElementById("exam").style.display = "block";
+    document.getElementById("result").style.display = "none";
+
+    renderQuestions();
+    startTimer();
+
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+renderQuestions();
+startTimer();
+</script>
+
+</body>
+</html>
