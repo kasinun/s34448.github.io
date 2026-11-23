@@ -1,12 +1,571 @@
 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบทดสอบวิทยาศาสตร์ | คลังข้อสอบ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+    background: #f6f4fb;
+    color: #302b3d;
+}
+
+nav {
+    background: white;
+    padding: 17px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 20px rgba(70,40,100,.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    color: #6035a5;
+}
+
+.logo span {
+    color: #35a36a;
+}
+
+.back {
+    text-decoration: none;
+    color: #6544a1;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.back:hover {
+    color: #35a36a;
+}
+
+.header {
+    background: linear-gradient(120deg,#dff5e8,#e9ddfa);
+    padding: 55px 7%;
+    text-align: center;
+}
+
+.header .tag {
+    display: inline-block;
+    padding: 8px 20px;
+    background: white;
+    color: #38976a;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.header h1 {
+    font-size: 38px;
+    color: #60399c;
+    font-weight: 800;
+}
+
+.header h1 span {
+    color: #36a36b;
+}
+
+.header p {
+    color: #70697c;
+    margin-top: 12px;
+    line-height: 1.8;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.info-box {
+    background: white;
+    padding: 12px 22px;
+    border-radius: 13px;
+    color: #60419b;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(70,40,100,.06);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.timer-box {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(70,40,100,.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.timer-title {
+    color: #6c5a84;
+    font-size: 14px;
+}
+
+.timer {
+    font-size: 28px;
+    font-weight: 800;
+    color: #36a36b;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer.warning {
+    color: #e05267;
+}
+
+.start-btn {
+    background: linear-gradient(110deg,#39ad70,#6841b0);
+    color: white;
+    border: none;
+    padding: 11px 23px;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.start-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.progress-area {
+    margin-top: 12px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #81798e;
+    margin-bottom: 8px;
+}
+
+.progress {
+    height: 9px;
+    background: #eee9f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#39b779,#7548b8);
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.instruction {
+    background: #eee7fa;
+    border-left: 5px solid #8053bd;
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    color: #59427f;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.question-card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 22px rgba(70,40,100,.05);
+    border: 1px solid #eeeaf4;
+    transition: .2s;
+}
+
+.question-card.answered {
+    border-left: 5px solid #48ad77;
+}
+
+.question-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.question-number {
+    font-size: 17px;
+    font-weight: 700;
+    color: #6540a3;
+}
+
+.topic {
+    background: #e5f6ec;
+    color: #369566;
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.question-text {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    font-weight: 500;
+    white-space: pre-line;
+}
+
+.options {
+    display: grid;
+    gap: 12px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 17px;
+    border: 1px solid #e9e4f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 14px;
+}
+
+.option:hover {
+    background: #f2f8f3;
+    border-color: #6cbd8e;
+}
+
+.option:has(input:checked) {
+    background: #eaf7ef;
+    border-color: #43a974;
+    color: #287e51;
+    font-weight: 600;
+}
+
+.option input {
+    accent-color: #46a875;
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+.option.disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+.submit-area {
+    text-align: center;
+    padding: 20px 0 50px;
+}
+
+.submit-btn {
+    background: linear-gradient(110deg,#39ad70,#6841b0);
+    color: white;
+    border: none;
+    padding: 16px 45px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(90,60,150,.2);
+    transition: .3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+}
+
+.submit-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+#result {
+    display: none;
+}
+
+.result-box {
+    background: white;
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(70,40,100,.07);
+    margin-bottom: 30px;
+}
+
+.result-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.result-box h2 {
+    color: #60399c;
+    font-size: 30px;
+}
+
+.score {
+    font-size: 55px;
+    font-weight: 800;
+    color: #39a66e;
+    margin: 15px 0;
+}
+
+.result-detail {
+    color: #777080;
+    line-height: 2;
+    font-size: 15px;
+}
+
+.review-title {
+    text-align: center;
+    color: #60399c;
+    margin: 35px 0 20px;
+    font-size: 25px;
+}
+
+.review-card {
+    background: white;
+    padding: 23px;
+    border-radius: 15px;
+    margin-bottom: 18px;
+    border: 1px solid #eeeaf4;
+    line-height: 1.9;
+}
+
+.review-card h3 {
+    color: #60399c;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.correct-answer {
+    color: #278b55;
+    background: #e8f7ed;
+    padding: 10px 13px;
+    border-radius: 9px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.wrong-answer {
+    color: #d14f5e;
+    background: #fff0f0;
+    padding: 10px 13px;
+    border-radius: 9px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.explanation {
+    background: #f1ebfa;
+    color: #59427f;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 12px;
+    font-size: 14px;
+    white-space: pre-line;
+}
+
+.retry-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 13px 25px;
+    background: #6540a3;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+footer {
+    background: linear-gradient(110deg,#286e50,#56328c);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    font-size: 13px;
+    line-height: 2;
+}
+
+@media(max-width:600px) {
+    .header h1 {
+        font-size: 29px;
+    }
+
+    .timer-box {
+        padding: 17px;
+    }
+
+    .timer {
+        font-size: 24px;
+    }
+
+    .question-card {
+        padding: 19px;
+    }
+
+    .question-text {
+        font-size: 15px;
+    }
+
+    .score {
+        font-size: 43px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">คลัง<span>ข้อสอบ.</span></div>
+    <a href="index.html" class="back">← กลับหน้าหลัก</a>
+</nav>
+
+<header class="header">
+    <div class="tag">✦ ONLINE EXAMINATION</div>
+
+    <h1>แบบทดสอบวิชา<span>วิทยาศาสตร์</span></h1>
+
+    <p>
+        ระดับชั้นมัธยมศึกษาปีที่ 4–6<br>
+        ทบทวนความรู้ ฝึกฝนทักษะ และพัฒนาตนเอง
+    </p>
+
+    <div class="info">
+        <div class="info-box">📋 20 ข้อ</div>
+        <div class="info-box">🏆 20 คะแนน</div>
+        <div class="info-box">⏱️ 90 นาที</div>
+    </div>
+</header>
+
+<main class="container" id="exam">
+
+    <div class="timer-box">
+        <div>
+            <div class="timer-title">เวลาที่เหลือในการทำข้อสอบ</div>
+            <div class="timer" id="timer">90:00</div>
+            <button class="start-btn" id="startBtn" onclick="startTimer()">
+                ▶ เริ่มจับเวลา
+            </button>
+        </div>
+
+        <div style="flex:1;min-width:180px;">
+            <div class="progress-area">
+                <div class="progress-text">
+                    <span>ความคืบหน้าการทำข้อสอบ</span>
+                    <span id="progressText">0 / 20 ข้อ</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="instruction">
+        <strong>คำชี้แจง</strong><br>
+        1. แบบทดสอบมีจำนวน 20 ข้อ คะแนนเต็ม 20 คะแนน<br>
+        2. ให้นักเรียนเลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
+        3. มีเวลาในการทำข้อสอบ 90 นาที โดยเริ่มนับเมื่อกดปุ่มเริ่มจับเวลา<br>
+        4. เมื่อทำข้อสอบเสร็จแล้วให้กดปุ่มส่งข้อสอบเพื่อดูคะแนนและเฉลย
+    </div>
+
+    <div id="questions"></div>
+
+    <div class="submit-area">
+        <button class="submit-btn" id="submitBtn" onclick="submitExam()">
+            ส่งข้อสอบและตรวจคะแนน
+        </button>
+        <p style="margin-top:12px;color:#888;font-size:13px;">
+            กรุณาตรวจสอบคำตอบก่อนกดส่งข้อสอบ
+        </p>
+    </div>
+
+</main>
+
+<section id="result" class="container">
+
+    <div class="result-box">
+        <div class="result-icon">🏆</div>
+        <h2>สรุปผลการสอบ</h2>
+
+        <div class="score">
+            <span id="score">0</span>/20
+        </div>
+
+        <div class="result-detail">
+            <div>ตอบถูก <strong id="correctCount">0</strong> ข้อ</div>
+            <div>ตอบผิด <strong id="wrongCount">0</strong> ข้อ</div>
+            <div>ไม่ได้ตอบ <strong id="blankCount">0</strong> ข้อ</div>
+            <div>คิดเป็น <strong id="percentage">0</strong>%</div>
+            <div>เวลาที่ใช้ <strong id="usedTime">0 นาที</strong></div>
+        </div>
+
+        <p id="resultMessage" style="margin-top:18px;color:#39996a;font-weight:600;"></p>
+    </div>
+
+    <h2 class="review-title">🔬 เฉลยพร้อมคำอธิบายอย่างละเอียด</h2>
+
+    <div id="review"></div>
+
+    <div class="submit-area">
+        <button class="retry-btn" onclick="retryQuiz()">ทำข้อสอบอีกครั้ง</button>
+        <a href="index.html" class="retry-btn">กลับหน้าหลัก</a>
+    </div>
+
+</section>
+
+<footer>
+    <div>คลังข้อสอบออนไลน์</div>
+    <div>เว็บไซต์เพื่อการศึกษาและทบทวนความรู้</div>
+    <div>จัดทำโดย นางสาวกศิณ์นันท์ วงศ์เสนี</div>
+    <div>นางสาวณัฐธิดา ถกลพัฒนกุล</div>
+    <div>นางสาวสุกัลยา ชื่นชม</div>
+    <div>© 2026 Online Examination System</div>
+</footer>
+
+<script>
+
 const questions = [
+
 {
 section:"หมวดชีววิทยา",
 topic:"พันธุศาสตร์ประชากร (ม.6)",
 q:"ประชากรหนึ่งอยู่ในสมดุลฮาร์ดี–ไวน์เบิร์ก โดยมีสิ่งมีชีวิตที่แสดงลักษณะด้อยคิดเป็น 9% ของประชากร หากกำหนดให้ q เป็นความถี่ของแอลลีลด้อย ความถี่ของผู้ที่เป็นพาหะมีค่าเท่าใด",
 o:["21%","30%","42%","49%"],
 a:2,
-e:"ตอบ ค. 42%\n\nจากกฎฮาร์ดี–ไวน์เบิร์ก\np² + 2pq + q² = 1\n\nลักษณะด้อยแสดงออกเมื่อมีจีโนไทป์เป็น aa ดังนั้น q² = 0.09\nq = √0.09 = 0.3\n\nเมื่อ p + q = 1 จะได้ p = 0.7\n\nความถี่ของพาหะคือ 2pq\n= 2(0.7)(0.3) = 0.42\n\nดังนั้นประชากรที่เป็นพาหะมี 42%"
+e:"ตอบ ค. 42%\n\nจากกฎฮาร์ดี–ไวน์เบิร์ก p² + 2pq + q² = 1\nลักษณะด้อยแสดงออกเมื่อมีจีโนไทป์ aa ดังนั้น q² = 0.09\nq = √0.09 = 0.3\nเมื่อ p + q = 1 จะได้ p = 0.7\n\nความถี่ของพาหะคือ 2pq = 2(0.7)(0.3) = 0.42\nดังนั้นประชากรที่เป็นพาหะมี 42%"
 },
 {
 section:"หมวดชีววิทยา",
@@ -14,7 +573,7 @@ topic:"การถ่ายทอดลักษณะทางพันธุ�
 q:"กำหนดให้ A และ B เป็นแอลลีลเด่นที่อยู่บนโครโมโซมคนละคู่ หากผสม AaBb × AaBb โอกาสที่ลูกจะมีจีโนไทป์แสดงลักษณะเด่น A และลักษณะด้อย b เป็นเท่าใด",
 o:["1/16","3/16","4/16","9/16"],
 a:1,
-e:"ตอบ ข. 3/16\n\nพิจารณาแต่ละยีนแยกจากกัน\n\nจาก Aa × Aa โอกาสได้ลักษณะเด่น A_ เท่ากับ 3/4\n\nจาก Bb × Bb โอกาสได้ลักษณะด้อย bb เท่ากับ 1/4\n\nเนื่องจากยีนอยู่บนโครโมโซมคนละคู่ จึงใช้กฎการคูณความน่าจะเป็นได้\n\nP(A_bb) = 3/4 × 1/4 = 3/16"
+e:"ตอบ ข. 3/16\n\nจาก Aa × Aa โอกาสได้ลักษณะเด่น A_ เท่ากับ 3/4\nจาก Bb × Bb โอกาสได้ลักษณะด้อย bb เท่ากับ 1/4\n\nเนื่องจากยีนอยู่บนโครโมโซมคนละคู่ จึงใช้กฎการคูณความน่าจะเป็นได้\nP(A_bb) = 3/4 × 1/4 = 3/16"
 },
 {
 section:"หมวดชีววิทยา",
@@ -22,7 +581,7 @@ topic:"วัฏจักรเซลล์ (ม.4)",
 q:"เซลล์หนึ่งผ่านระยะ S ของวัฏจักรเซลล์เรียบร้อยแล้ว แต่ยังไม่เริ่มแบ่งนิวเคลียส ปริมาณ DNA ในเซลล์เมื่อเทียบกับระยะ G1 จะเป็นอย่างไร",
 o:["เหลือครึ่งหนึ่ง","เท่าเดิม","เพิ่มเป็น 2 เท่า","เพิ่มเป็น 4 เท่า"],
 a:2,
-e:"ตอบ ค. เพิ่มเป็น 2 เท่า\n\nในระยะ S จะเกิดการจำลอง DNA ทำให้ปริมาณ DNA เพิ่มขึ้นเป็น 2 เท่าจากระยะ G1\n\nหลังผ่านระยะ S เซลล์จะเข้าสู่ระยะ G2 ซึ่งมีปริมาณ DNA เพิ่มขึ้นแล้ว แต่จำนวนโครโมโซมเมื่อพิจารณาจากจำนวนเซนโทรเมียร์ยังคงเดิม\n\nดังนั้นปริมาณ DNA จึงเป็น 2 เท่าของระยะ G1"
+e:"ตอบ ค. เพิ่มเป็น 2 เท่า\n\nในระยะ S จะเกิดการจำลอง DNA ทำให้ปริมาณ DNA เพิ่มขึ้นเป็น 2 เท่าจากระยะ G1\n\nหลังผ่านระยะ S เซลล์จะเข้าสู่ระยะ G2 ซึ่งมีปริมาณ DNA เพิ่มขึ้นแล้ว แต่จำนวนโครโมโซมเมื่อพิจารณาจากจำนวนเซนโทรเมียร์ยังคงเดิม"
 },
 {
 section:"หมวดชีววิทยา",
@@ -30,7 +589,7 @@ topic:"ระบบนิเวศและการถ่ายทอดพล�
 q:"ระบบนิเวศแห่งหนึ่งมีพลังงานสะสมในผู้ผลิต 20,000 กิโลจูล หากพลังงานถ่ายทอดไปยังผู้บริโภคแต่ละลำดับขั้นได้ประมาณ 10% พลังงานที่ผู้บริโภคลำดับที่ 2 ได้รับจะมีค่าเท่าใด",
 o:["20 กิโลจูล","200 กิโลจูล","2,000 กิโลจูล","18,000 กิโลจูล"],
 a:1,
-e:"ตอบ ข. 200 กิโลจูล\n\nผู้ผลิตมีพลังงาน 20,000 กิโลจูล\n\nผู้บริโภคลำดับที่ 1 ได้รับ 10% ของผู้ผลิต\n= 20,000 × 0.1 = 2,000 กิโลจูล\n\nผู้บริโภคลำดับที่ 2 ได้รับ 10% ของผู้บริโภคลำดับที่ 1\n= 2,000 × 0.1 = 200 กิโลจูล\n\nพลังงานจะลดลงตามลำดับขั้นของห่วงโซ่อาหาร เนื่องจากสิ่งมีชีวิตใช้พลังงานในการดำรงชีวิตและสูญเสียพลังงานออกสู่สิ่งแวดล้อม"
+e:"ตอบ ข. 200 กิโลจูล\n\nผู้ผลิตมีพลังงาน 20,000 กิโลจูล\nผู้บริโภคลำดับที่ 1 ได้รับ 10% = 2,000 กิโลจูล\nผู้บริโภคลำดับที่ 2 ได้รับ 10% ของ 2,000 = 200 กิโลจูล\n\nพลังงานจะลดลงตามลำดับขั้นของห่วงโซ่อาหาร เนื่องจากสิ่งมีชีวิตใช้พลังงานในการดำรงชีวิตและสูญเสียพลังงานออกสู่สิ่งแวดล้อม"
 },
 {
 section:"หมวดชีววิทยา",
@@ -40,13 +599,14 @@ o:["ไกลโคไลซิส","วัฏจักรเครบส์","�
 a:1,
 e:"ตอบ ข. วัฏจักรเครบส์\n\nวัฏจักรเครบส์หรือวัฏจักรกรดซิตริกเกิดขึ้นในเมทริกซ์ของไมโทคอนเดรีย โดยสารอะเซทิลโคเอนไซม์เอเข้าสู่กระบวนการและเกิดการสร้าง NADH, FADH₂ และ ATP หรือ GTP รวมถึงปล่อยคาร์บอนไดออกไซด์\n\nไกลโคไลซิสเกิดในไซโทซอล ส่วนการถ่ายทอดอิเล็กตรอนเกิดที่เยื่อหุ้มชั้นในของไมโทคอนเดรีย"
 },
+
 {
 section:"หมวดเคมี",
 topic:"สมดุลเคมี (ม.5)",
 q:"ปฏิกิริยา N₂(g) + 3H₂(g) ⇌ 2NH₃(g) อยู่ในภาวะสมดุลในภาชนะ 1 ลิตร โดยมี N₂ = 0.5 mol, H₂ = 1.5 mol และ NH₃ = 1 mol ค่าคงที่สมดุล Kc มีค่าเท่าใด",
 o:["4/27","8/27","16/27","32/27"],
 a:2,
-e:"ตอบ ค. 16/27\n\nนิพจน์ค่าคงที่สมดุลคือ\nKc = [NH₃]² / ([N₂][H₂]³)\n\nเนื่องจากภาชนะมีปริมาตร 1 ลิตร ความเข้มข้นจึงเท่ากับจำนวนโมล\n\nแทนค่า\nKc = 1² / (0.5 × 1.5³)\n= 1 / (0.5 × 3.375)\n= 1 / 1.6875\n= 16/27\n\nดังนั้น Kc = 16/27"
+e:"ตอบ ค. 16/27\n\nนิพจน์ค่าคงที่สมดุลคือ Kc = [NH₃]² / ([N₂][H₂]³)\n\nเนื่องจากภาชนะมีปริมาตร 1 ลิตร ความเข้มข้นจึงเท่ากับจำนวนโมล\n\nKc = 1² / (0.5 × 1.5³)\n= 1 / 1.6875\n= 16/27"
 },
 {
 section:"หมวดเคมี",
@@ -54,7 +614,7 @@ topic:"กรดและเบส (ม.5)",
 q:"สารละลายกรดอ่อน HA ความเข้มข้น 0.1 mol/L มีค่า Ka = 1 × 10⁻⁵ เมื่อประมาณว่าแตกตัวเพียงเล็กน้อย ค่า pH ของสารละลายมีค่าประมาณเท่าใด",
 o:["2","3","4","5"],
 a:1,
-e:"ตอบ ข. 3\n\nสำหรับกรดอ่อนที่แตกตัวน้อย สามารถประมาณได้ว่า\n[H⁺] ≈ √(Ka × C)\n\nแทนค่า\n[H⁺] ≈ √(10⁻⁵ × 10⁻¹)\n= √(10⁻⁶)\n= 10⁻³ mol/L\n\nดังนั้น pH = -log[H⁺]\n= -log(10⁻³) = 3\n\nจึงได้ค่า pH ประมาณ 3"
+e:"ตอบ ข. 3\n\nสำหรับกรดอ่อนที่แตกตัวน้อย สามารถประมาณได้ว่า [H⁺] ≈ √(Ka × C)\n\nแทนค่า [H⁺] ≈ √(10⁻⁵ × 10⁻¹)\n= √(10⁻⁶) = 10⁻³ mol/L\n\nดังนั้น pH = -log[H⁺] = 3"
 },
 {
 section:"หมวดเคมี",
@@ -62,7 +622,7 @@ topic:"ไฟฟ้าเคมี (ม.6)",
 q:"กำหนดศักย์รีดักชันมาตรฐานของ Cu²⁺/Cu = +0.34 V และ Zn²⁺/Zn = -0.76 V เมื่อนำครึ่งเซลล์ทั้งสองมาต่อเป็นเซลล์กัลวานิก จะมีศักย์ไฟฟ้ามาตรฐานเท่าใด",
 o:["0.42 V","0.76 V","1.10 V","1.42 V"],
 a:2,
-e:"ตอบ ค. 1.10 V\n\nทองแดงมีศักย์รีดักชันสูงกว่า จึงเกิดรีดักชันที่แคโทด ส่วนสังกะสีเกิดออกซิเดชันที่แอโนด\n\nใช้สูตร\nE°cell = E°cathode - E°anode\n\nแทนค่า\n= 0.34 - (-0.76)\n= 1.10 V\n\nดังนั้นศักย์ไฟฟ้ามาตรฐานของเซลล์เท่ากับ 1.10 โวลต์"
+e:"ตอบ ค. 1.10 V\n\nทองแดงมีศักย์รีดักชันสูงกว่า จึงเกิดรีดักชันที่แคโทด ส่วนสังกะสีเกิดออกซิเดชันที่แอโนด\n\nE°cell = E°cathode - E°anode\n= 0.34 - (-0.76)\n= 1.10 V"
 },
 {
 section:"หมวดเคมี",
@@ -75,18 +635,19 @@ e:"ตอบ ค. 32 กรัม\n\nมวลโมลาร์ของ H₂ =
 {
 section:"หมวดเคมี",
 topic:"อัตราการเกิดปฏิกิริยา (ม.5)",
-q:"การทดลองหนึ่งพบว่า เมื่อเพิ่มความเข้มข้นของสาร A เป็น 2 เท่า โดยคงความเข้มข้นของ B ไว้ อัตราการเกิดปฏิกิริยาเพิ่มเป็น 4 เท่า และเมื่อเพิ่มความเข้มข้นของ B เป็น 2 เท่า โดยคง A ไว้ อัตราการเกิดปฏิกิริยาเพิ่มเป็น 2 เท่า สมการอัตราเร็วคือข้อใด",
+q:"เมื่อเพิ่มความเข้มข้นของสาร A เป็น 2 เท่า โดยคงความเข้มข้นของ B ไว้ อัตราการเกิดปฏิกิริยาเพิ่มเป็น 4 เท่า และเมื่อเพิ่มความเข้มข้นของ B เป็น 2 เท่า โดยคง A ไว้ อัตราการเกิดปฏิกิริยาเพิ่มเป็น 2 เท่า สมการอัตราเร็วคือข้อใด",
 o:["rate = k[A][B]","rate = k[A]²[B]","rate = k[A][B]²","rate = k[A]²[B]²"],
 a:1,
-e:"ตอบ ข. rate = k[A]²[B]\n\nเมื่อเพิ่ม [A] เป็น 2 เท่าแล้วอัตราเร็วเพิ่มเป็น 4 เท่า\n2ⁿ = 4 จึงได้ n = 2\n\nเมื่อเพิ่ม [B] เป็น 2 เท่าแล้วอัตราเร็วเพิ่มเป็น 2 เท่า\n2ᵐ = 2 จึงได้ m = 1\n\nดังนั้นสมการอัตราเร็วคือ\nrate = k[A]²[B]\n\nอันดับปฏิกิริยารวมเท่ากับ 2 + 1 = 3"
+e:"ตอบ ข. rate = k[A]²[B]\n\nเมื่อเพิ่ม [A] เป็น 2 เท่าแล้วอัตราเร็วเพิ่มเป็น 4 เท่า ดังนั้นอันดับต่อ A คือ 2\n\nเมื่อเพิ่ม [B] เป็น 2 เท่าแล้วอัตราเร็วเพิ่มเป็น 2 เท่า ดังนั้นอันดับต่อ B คือ 1\n\nสมการอัตราเร็วคือ rate = k[A]²[B] และอันดับปฏิกิริยารวมเท่ากับ 3"
 },
+
 {
 section:"หมวดฟิสิกส์",
 topic:"การเคลื่อนที่แบบโพรเจกไทล์ (ม.4)",
 q:"วัตถุถูกยิงจากพื้นราบด้วยอัตราเร็วต้น 20 m/s ทำมุม 30° กับแนวระดับ และตกกลับสู่ระดับเดิม หากไม่คิดแรงต้านอากาศและกำหนด g = 10 m/s² ระยะทางในแนวระดับที่วัตถุเคลื่อนที่ได้เป็นเท่าใด",
 o:["20√3 เมตร","30 เมตร","20√3 + 10 เมตร","40 เมตร"],
 a:0,
-e:"ตอบ ก. 20√3 เมตร\n\nระยะทางแนวระดับของการเคลื่อนที่แบบโพรเจกไทล์ เมื่อจุดเริ่มต้นและจุดตกอยู่ระดับเดียวกันคือ\nR = u² sin(2θ) / g\n\nแทนค่า u = 20, θ = 30° และ g = 10\nR = 20² × sin 60° / 10\n= 400 × (√3/2) / 10\n= 20√3 เมตร\n\nดังนั้นระยะทางแนวระดับเท่ากับ 20√3 เมตร หรือประมาณ 34.6 เมตร"
+e:"ตอบ ก. 20√3 เมตร\n\nระยะทางแนวระดับของการเคลื่อนที่แบบโพรเจกไทล์ เมื่อจุดเริ่มต้นและจุดตกอยู่ระดับเดียวกันคือ R = u² sin(2θ) / g\n\nแทนค่า u = 20, θ = 30° และ g = 10\nR = 20² × sin 60° / 10\n= 400 × (√3/2) / 10\n= 20√3 เมตร\n\nดังนั้นระยะทางแนวระดับเท่ากับ 20√3 เมตร หรือประมาณ 34.6 เมตร"
 },
 {
 section:"หมวดฟิสิกส์",
@@ -94,7 +655,7 @@ topic:"วงจรไฟฟ้ากระแสตรง (ม.5)",
 q:"ตัวต้านทาน 6 Ω และ 3 Ω ต่อขนานกัน แล้วนำไปต่ออนุกรมกับตัวต้านทาน 4 Ω จากนั้นต่อกับแหล่งจ่ายไฟ 12 V กระแสรวมในวงจรมีค่าเท่าใด",
 o:["1 A","2 A","3 A","4 A"],
 a:1,
-e:"ตอบ ข. 2 A\n\nหาความต้านทานสมมูลของตัวต้านทานที่ต่อขนานกัน\n1/R = 1/6 + 1/3 = 1/6 + 2/6 = 3/6\nดังนั้น R = 2 Ω\n\nเมื่อนำไปต่ออนุกรมกับ 4 Ω\nRรวม = 2 + 4 = 6 Ω\n\nใช้กฎของโอห์ม I = V/R\nI = 12/6 = 2 A\n\nดังนั้นกระแสรวมเท่ากับ 2 แอมแปร์"
+e:"ตอบ ข. 2 A\n\nหาความต้านทานสมมูลของตัวต้านทานที่ต่อขนานกัน\n1/R = 1/6 + 1/3 = 3/6\nดังนั้น R = 2 Ω\n\nเมื่อนำไปต่ออนุกรมกับ 4 Ω\nRรวม = 2 + 4 = 6 Ω\n\nใช้กฎของโอห์ม I = V/R\nI = 12/6 = 2 A"
 },
 {
 section:"หมวดฟิสิกส์",
@@ -102,7 +663,7 @@ topic:"การเคลื่อนที่แบบฮาร์มอนิ�
 q:"ลูกตุ้มอย่างง่ายมีความยาว 1 เมตร ในบริเวณที่มีความเร่งโน้มถ่วง g = π² m/s² คาบการแกว่งของลูกตุ้มมีค่าเท่าใด โดยสมมติว่ามุมแกว่งมีค่าน้อย",
 o:["0.5 วินาที","1 วินาที","2 วินาที","4 วินาที"],
 a:2,
-e:"ตอบ ค. 2 วินาที\n\nคาบของลูกตุ้มอย่างง่ายเมื่อมุมแกว่งมีค่าน้อยคือ\nT = 2π√(L/g)\n\nแทนค่า L = 1 และ g = π²\nT = 2π√(1/π²)\n= 2π × 1/π\n= 2 วินาที\n\nดังนั้นคาบการแกว่งเท่ากับ 2 วินาที"
+e:"ตอบ ค. 2 วินาที\n\nคาบของลูกตุ้มอย่างง่ายเมื่อมุมแกว่งมีค่าน้อยคือ T = 2π√(L/g)\n\nแทนค่า L = 1 และ g = π²\nT = 2π√(1/π²)\n= 2π × 1/π\n= 2 วินาที"
 },
 {
 section:"หมวดฟิสิกส์",
@@ -110,7 +671,7 @@ topic:"การแทรกสอดของคลื่น (ม.5)",
 q:"การทดลองสลิตคู่ใช้แสงความยาวคลื่น 600 nm โดยระยะห่างระหว่างสลิต 0.5 mm และระยะจากสลิตถึงฉาก 2 m ระยะห่างระหว่างแถบสว่างที่อยู่ติดกันมีค่าเท่าใด",
 o:["1.2 mm","2.0 mm","2.4 mm","3.0 mm"],
 a:2,
-e:"ตอบ ค. 2.4 mm\n\nระยะห่างระหว่างแถบสว่างที่ติดกันคำนวณได้จาก\nΔy = λL/d\n\nแปลงหน่วย\nλ = 600 × 10⁻⁹ m\nL = 2 m\nd = 0.5 × 10⁻³ m\n\nแทนค่า\nΔy = (600 × 10⁻⁹ × 2)/(0.5 × 10⁻³)\n= 2.4 × 10⁻³ m\n= 2.4 mm\n\nดังนั้นระยะห่างระหว่างแถบสว่างเท่ากับ 2.4 มิลลิเมตร"
+e:"ตอบ ค. 2.4 mm\n\nระยะห่างระหว่างแถบสว่างที่ติดกันคำนวณได้จาก Δy = λL/d\n\nแปลงหน่วย λ = 600 × 10⁻⁹ m, L = 2 m, d = 0.5 × 10⁻³ m\n\nΔy = (600 × 10⁻⁹ × 2)/(0.5 × 10⁻³)\n= 2.4 × 10⁻³ m\n= 2.4 mm"
 },
 {
 section:"หมวดฟิสิกส์",
@@ -118,7 +679,7 @@ topic:"ปรากฏการณ์โฟโตอิเล็กทริก 
 q:"โลหะชนิดหนึ่งมีความถี่ขีดเริ่มเป็น f₀ หากฉายแสงที่มีความถี่ 2f₀ ลงบนโลหะ พลังงานจลน์สูงสุดของโฟโตอิเล็กตรอนจะมีค่าเท่าใด",
 o:["hf₀/2","hf₀","2hf₀","3hf₀"],
 a:1,
-e:"ตอบ ข. hf₀\n\nสมการโฟโตอิเล็กทริกของไอน์สไตน์คือ\nKmax = hf - W\n\nโดย W คือฟังก์ชันงานของโลหะ และ W = hf₀\n\nเมื่อความถี่แสงที่ตกกระทบคือ 2f₀\nKmax = h(2f₀) - hf₀\n= 2hf₀ - hf₀\n= hf₀\n\nดังนั้นพลังงานจลน์สูงสุดเท่ากับ hf₀"
+e:"ตอบ ข. hf₀\n\nสมการโฟโตอิเล็กทริกของไอน์สไตน์คือ Kmax = hf - W\n\nโดย W คือฟังก์ชันงานของโลหะ และ W = hf₀\n\nเมื่อความถี่แสงที่ตกกระทบคือ 2f₀\nKmax = h(2f₀) - hf₀\n= 2hf₀ - hf₀\n= hf₀"
 },
 {
 section:"หมวดฟิสิกส์",
@@ -126,15 +687,16 @@ topic:"กฎการอนุรักษ์โมเมนตัม (ม.4)",
 q:"วัตถุมวล 2 kg เคลื่อนที่ด้วยความเร็ว 6 m/s ชนติดกับวัตถุมวล 2 kg ที่หยุดนิ่ง หลังชนวัตถุทั้งสองเคลื่อนที่ไปด้วยกัน ความเร็วหลังชนมีค่าเท่าใด",
 o:["1.5 m/s","2 m/s","3 m/s","6 m/s"],
 a:2,
-e:"ตอบ ค. 3 m/s\n\nใช้กฎการอนุรักษ์โมเมนตัม\nโมเมนตัมก่อนชน = โมเมนตัมหลังชน\n\nm₁u₁ + m₂u₂ = (m₁ + m₂)v\n\nแทนค่า\n(2 × 6) + (2 × 0) = (2 + 2)v\n12 = 4v\nv = 3 m/s\n\nดังนั้นวัตถุทั้งสองเคลื่อนที่ด้วยความเร็ว 3 เมตรต่อวินาที"
+e:"ตอบ ค. 3 m/s\n\nใช้กฎการอนุรักษ์โมเมนตัม\nm₁u₁ + m₂u₂ = (m₁ + m₂)v\n\nแทนค่า (2 × 6) + (2 × 0) = (2 + 2)v\n12 = 4v\nv = 3 m/s\n\nดังนั้นวัตถุทั้งสองเคลื่อนที่ด้วยความเร็ว 3 เมตรต่อวินาที"
 },
+
 {
 section:"หมวดโลก ดาราศาสตร์ และอวกาศ",
 topic:"คลื่นไหวสะเทือน (ม.6)",
 q:"สถานีตรวจวัดแห่งหนึ่งพบว่าคลื่น P เดินทางมาถึงก่อนคลื่น S เป็นเวลา 20 วินาที หากคลื่น P มีอัตราเร็ว 8 km/s และคลื่น S มีอัตราเร็ว 4 km/s ระยะห่างจากสถานีถึงจุดกำเนิดแผ่นดินไหวมีค่าประมาณเท่าใด",
 o:["80 km","120 km","160 km","200 km"],
 a:2,
-e:"ตอบ ค. 160 km\n\nกำหนดให้ระยะทางจากจุดกำเนิดถึงสถานีเป็น d\n\nเวลาที่คลื่น P ใช้ = d/8\nเวลาที่คลื่น S ใช้ = d/4\n\nคลื่น S มาถึงช้ากว่า 20 วินาที\nดังนั้น d/4 - d/8 = 20\n\nจัดรูป\n2d/8 - d/8 = 20\nd/8 = 20\nd = 160 km\n\nดังนั้นจุดกำเนิดแผ่นดินไหวอยู่ห่างจากสถานีประมาณ 160 กิโลเมตร"
+e:"ตอบ ค. 160 km\n\nกำหนดให้ระยะทางจากจุดกำเนิดถึงสถานีเป็น d\n\nเวลาที่คลื่น P ใช้ = d/8\nเวลาที่คลื่น S ใช้ = d/4\n\nคลื่น S มาถึงช้ากว่า 20 วินาที\nดังนั้น d/4 - d/8 = 20\n\nจัดรูป d/8 = 20\nดังนั้น d = 160 km"
 },
 {
 section:"หมวดโลก ดาราศาสตร์ และอวกาศ",
@@ -142,7 +704,7 @@ topic:"ดาวฤกษ์และความส่องสว่าง (�
 q:"ดาวฤกษ์ดวงหนึ่งมีรัศมีเป็น 2 เท่าของดาวฤกษ์อีกดวง และมีอุณหภูมิพื้นผิวเป็น 2 เท่าของดาวดวงนั้น ความส่องสว่างแท้จริงของดาวดวงแรกจะเป็นกี่เท่าของดาวดวงที่สอง",
 o:["8 เท่า","16 เท่า","32 เท่า","64 เท่า"],
 a:3,
-e:"ตอบ ง. 64 เท่า\n\nใช้กฎสเตฟาน–โบลทซ์มันน์\nL = 4πR²σT⁴\n\nเมื่อเปรียบเทียบดาวสองดวง\nอัตราส่วนความส่องสว่าง = (R₁/R₂)² × (T₁/T₂)⁴\n\nแทนค่า\n= 2² × 2⁴\n= 4 × 16\n= 64\n\nดังนั้นดาวดวงแรกมีความส่องสว่างแท้จริงเป็น 64 เท่าของดาวดวงที่สอง"
+e:"ตอบ ง. 64 เท่า\n\nใช้กฎสเตฟาน–โบลต์ซมันน์ L = 4πR²σT⁴\n\nเมื่อเปรียบเทียบดาวสองดวง\nอัตราส่วนความส่องสว่าง = (R₁/R₂)² × (T₁/T₂)⁴\n\nแทนค่า = 2² × 2⁴\n= 4 × 16\n= 64\n\nดังนั้นดาวดวงแรกมีความส่องสว่างแท้จริงเป็น 64 เท่าของดาวดวงที่สอง"
 },
 {
 section:"หมวดโลก ดาราศาสตร์ และอวกาศ",
@@ -150,7 +712,7 @@ topic:"กฎของเคปเลอร์ (ม.6)",
 q:"ดาวเคราะห์ดวงหนึ่งโคจรรอบดาวฤกษ์ดวงเดียวกับโลก โดยมีคาบการโคจร 8 ปี หากโลกมีคาบการโคจร 1 ปี และกำหนดให้ใช้หน่วยระยะทางเป็นหน่วยดาราศาสตร์ ดาวเคราะห์ดวงนี้มีความยาวกึ่งแกนเอกของวงโคจรเท่าใด",
 o:["2 AU","3 AU","4 AU","8 AU"],
 a:2,
-e:"ตอบ ค. 4 AU\n\nใช้กฎข้อที่ 3 ของเคปเลอร์\nT² ∝ a³\n\nเมื่อเปรียบเทียบกับโลก ซึ่งมี T = 1 ปี และ a = 1 AU\nจะได้ T² = a³\n\nแทนค่า T = 8 ปี\n8² = a³\n64 = a³\na = ∛64 = 4 AU\n\nดังนั้นกึ่งแกนเอกของวงโคจรเท่ากับ 4 หน่วยดาราศาสตร์"
+e:"ตอบ ค. 4 AU\n\nใช้กฎข้อที่ 3 ของเคปเลอร์ T² ∝ a³\n\nเมื่อเปรียบเทียบกับโลก ซึ่งมี T = 1 ปี และ a = 1 AU จะได้ T² = a³\n\nแทนค่า T = 8 ปี\n8² = a³\n64 = a³\na = ∛64 = 4 AU\n\nดังนั้นกึ่งแกนเอกของวงโคจรเท่ากับ 4 หน่วยดาราศาสตร์"
 },
 {
 section:"หมวดโลก ดาราศาสตร์ และอวกาศ",
@@ -166,6 +728,259 @@ topic:"สมดุลพลังงานของโลก (ม.6)",
 q:"พื้นผิวดาวเคราะห์ได้รับพลังงานจากดาวฤกษ์ 1,000 W/m² และมีค่าอัลบีโด 0.30 หากพิจารณาเฉพาะพลังงานที่พื้นผิวดูดกลืนไว้ พลังงานที่ดูดกลืนมีค่าเท่าใด",
 o:["300 W/m²","500 W/m²","700 W/m²","1,300 W/m²"],
 a:2,
-e:"ตอบ ค. 700 W/m²\n\nอัลบีโดคือสัดส่วนของพลังงานที่สะท้อนกลับออกไป\n\nพลังงานที่สะท้อน = 0.30 × 1,000\n= 300 W/m²\n\nพลังงานที่ดูดกลืน = พลังงานที่ได้รับ - พลังงานที่สะท้อน\n= 1,000 - 300\n= 700 W/m²\n\nดังนั้นพื้นผิวดูดกลืนพลังงานไว้ 700 W/m²"
+e:"ตอบ ค. 700 W/m²\n\nอัลบีโดคือสัดส่วนของพลังงานที่สะท้อนกลับออกไป\n\nพลังงานที่สะท้อน = 0.30 × 1,000 = 300 W/m²\n\nพลังงานที่ดูดกลืน = พลังงานที่ได้รับ - พลังงานที่สะท้อน\n= 1,000 - 300\n= 700 W/m²\n\nดังนั้นพื้นผิวดูดกลืนพลังงานไว้ 700 W/m²"
 }
+
 ];
+
+const letters = ["ก","ข","ค","ง"];
+
+let remaining = 90 * 60;
+let timerInterval = null;
+let submitted = false;
+let timerStarted = false;
+
+function renderQuestions(){
+    const list = document.getElementById("questions");
+    list.innerHTML = "";
+
+    let lastSection = "";
+
+    questions.forEach((item,index)=>{
+
+        if(item.section !== lastSection){
+            const heading = document.createElement("h2");
+            heading.className = "review-title";
+            heading.textContent = item.section;
+            list.appendChild(heading);
+            lastSection = item.section;
+        }
+
+        const card = document.createElement("article");
+        card.className = "question-card";
+        card.id = "qcard"+index;
+
+        const top = document.createElement("div");
+        top.className = "question-top";
+        top.innerHTML = `<span class="question-number">ข้อ ${index+1}</span>
+                         <span class="topic">${item.topic}</span>`;
+
+        const question = document.createElement("div");
+        question.className = "question-text";
+        question.textContent = item.q;
+
+        const options = document.createElement("div");
+        options.className = "options";
+
+        item.o.forEach((option,optIndex)=>{
+            const label = document.createElement("label");
+            label.className = "option";
+
+            label.innerHTML = `
+                <input type="radio" name="q${index}" value="${optIndex}">
+                <span>${letters[optIndex]}. ${option}</span>
+            `;
+
+            label.querySelector("input").addEventListener("change",()=>{
+                card.classList.add("answered");
+                updateProgress();
+            });
+
+            options.appendChild(label);
+        });
+
+        card.append(top,question,options);
+        list.appendChild(card);
+    });
+
+    updateProgress();
+}
+
+function updateProgress(){
+    let count = 0;
+
+    questions.forEach((_,i)=>{
+        if(document.querySelector(`input[name="q${i}"]:checked`)){
+            count++;
+        }
+    });
+
+    document.getElementById("progressText").textContent =
+        `${count} / ${questions.length} ข้อ`;
+
+    document.getElementById("progressBar").style.width =
+        (count/questions.length*100)+"%";
+}
+
+function startTimer(){
+
+    if(timerStarted || submitted) return;
+
+    timerStarted = true;
+
+    const startBtn = document.getElementById("startBtn");
+    startBtn.disabled = true;
+    startBtn.textContent = "กำลังจับเวลา...";
+
+    timerInterval = setInterval(()=>{
+
+        if(submitted){
+            clearInterval(timerInterval);
+            return;
+        }
+
+        remaining--;
+
+        const min = Math.floor(remaining/60);
+        const sec = remaining%60;
+
+        const el = document.getElementById("timer");
+
+        el.textContent =
+            `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+
+        if(remaining<=300){
+            el.classList.add("warning");
+        }
+
+        if(remaining<=0){
+            clearInterval(timerInterval);
+            submitExam(true);
+        }
+
+    },1000);
+}
+
+function submitExam(auto=false){
+
+    if(submitted) return;
+
+    if(!timerStarted && !auto){
+        if(!confirm("คุณยังไม่ได้เริ่มจับเวลา ต้องการส่งข้อสอบเลยหรือไม่?")){
+            return;
+        }
+    }
+
+    const answered = questions.filter((_,i)=>
+        document.querySelector(`input[name="q${i}"]:checked`)
+    ).length;
+
+    if(!auto && answered<questions.length){
+        if(!confirm(`คุณตอบแล้ว ${answered} จาก ${questions.length} ข้อ ต้องการส่งข้อสอบหรือไม่?`)){
+            return;
+        }
+    }
+
+    submitted = true;
+    clearInterval(timerInterval);
+
+    let correctCount = 0;
+    let wrongCount = 0;
+    let blankCount = 0;
+
+    const review = document.getElementById("review");
+    review.innerHTML = "";
+
+    questions.forEach((item,i)=>{
+
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const chosen = selected ? Number(selected.value) : -1;
+        const correct = chosen===item.a;
+
+        if(chosen===-1){
+            blankCount++;
+        }else if(correct){
+            correctCount++;
+        }else{
+            wrongCount++;
+        }
+
+        const card = document.createElement("div");
+        card.className = "review-card";
+
+        const status = correct ? "✓ ตอบถูกต้อง" : "✗ ยังไม่ถูกต้อง";
+
+        const answerLine =
+            `คำตอบที่ถูกต้อง: ${letters[item.a]}. ${item.o[item.a]}`;
+
+        const yourLine = chosen===-1
+            ? "คำตอบของคุณ: ไม่ได้ตอบ"
+            : `คำตอบของคุณ: ${letters[chosen]}. ${item.o[chosen]}`;
+
+        card.innerHTML = `
+            <h3>ข้อ ${i+1} — ${item.topic}</h3>
+            <div style="margin-top:8px">${item.q}</div>
+            <div class="${correct?'correct-answer':'wrong-answer'}">
+                ${status}<br>
+                ${yourLine}<br>
+                ${answerLine}
+            </div>
+            <div class="explanation"></div>
+        `;
+
+        card.querySelector(".explanation").textContent =
+            "คำอธิบาย:\n"+item.e;
+
+        review.appendChild(card);
+    });
+
+    const score = correctCount;
+    const percent = Math.round(score/questions.length*100);
+
+    document.getElementById("score").textContent = score;
+    document.getElementById("correctCount").textContent = correctCount;
+    document.getElementById("wrongCount").textContent = wrongCount;
+    document.getElementById("blankCount").textContent = blankCount;
+    document.getElementById("percentage").textContent = percent;
+
+    const usedSeconds = 90*60-remaining;
+    const usedMinutes = Math.floor(usedSeconds/60);
+    const usedRemainder = usedSeconds%60;
+
+    document.getElementById("usedTime").textContent =
+        `${usedMinutes} นาที ${usedRemainder} วินาที`;
+
+    const message = percent>=80
+        ? "ยอดเยี่ยม! ทำได้ดีมาก"
+        : percent>=60
+        ? "ทำได้ดี ควรทบทวนเพิ่มเติมในบางหัวข้อ"
+        : "ลองอ่านเฉลยและฝึกทำอีกครั้งนะ";
+
+    document.getElementById("resultMessage").textContent =
+        message + (auto ? " หมดเวลาทำข้อสอบแล้ว ระบบส่งคำตอบให้อัตโนมัติ" : "");
+
+    document.getElementById("exam").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function retryQuiz(){
+
+    submitted = false;
+    timerStarted = false;
+    remaining = 90*60;
+
+    clearInterval(timerInterval);
+
+    document.getElementById("timer").textContent = "90:00";
+    document.getElementById("timer").classList.remove("warning");
+
+    const startBtn = document.getElementById("startBtn");
+    startBtn.disabled = false;
+    startBtn.textContent = "▶ เริ่มจับเวลา";
+
+    document.getElementById("exam").style.display = "block";
+    document.getElementById("result").style.display = "none";
+
+    renderQuestions();
+
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+renderQuestions();
+
+</script>
+
+</body>
+</html>
