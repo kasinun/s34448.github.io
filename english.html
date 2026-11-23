@@ -4,345 +4,1285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>แบบทดสอบวิชาภาษาอังกฤษ | คลังข้อสอบ</title>
+<title>แบบทดสอบภาษาอังกฤษระดับโอลิมปิก | คลังข้อสอบ</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-body{font-family:'Prompt',sans-serif;background:#f6f4fb;color:#302b3d}
-nav{background:white;padding:17px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 20px rgba(70,40,100,.08);position:sticky;top:0;z-index:100}
-.logo{font-size:23px;font-weight:800;color:#6035a5}
-.logo span{color:#35a36a}
-.back{text-decoration:none;color:#6544a1;font-size:14px}
-.header{background:linear-gradient(120deg,#dff5e8,#e9ddfa);padding:55px 7%;text-align:center}
-.header .tag{display:inline-block;padding:8px 20px;background:white;color:#38976a;border-radius:30px;font-size:13px;margin-bottom:18px}
-.header h1{font-size:38px;color:#60399c;font-weight:800}
-.header h1 span{color:#36a36b}
-.header p{color:#70697c;margin-top:12px;line-height:1.8}
-.info{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:25px}
-.info-box{background:white;padding:12px 22px;border-radius:13px;color:#60419b;font-size:14px}
-.container{max-width:1000px;margin:35px auto;padding:0 20px}
-.timer-box{background:white;padding:20px 25px;border-radius:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;margin-bottom:25px}
-.timer-title{color:#6c5a84;font-size:14px}
-.timer{font-size:28px;font-weight:800;color:#36a36b}
-.timer.warning{color:#e05267}
-.progress-area{margin-top:12px}
-.progress-text{display:flex;justify-content:space-between;font-size:13px;color:#81798e;margin-bottom:8px}
-.progress{height:9px;background:#eee9f5;border-radius:20px;overflow:hidden}
-.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#39b779,#7548b8);border-radius:20px;transition:.3s}
-.instruction{background:#eee7fa;border-left:5px solid #8053bd;padding:18px 22px;border-radius:12px;margin-bottom:25px;color:#59427f;font-size:14px;line-height:1.8}
-.question-card{background:white;padding:25px;border-radius:18px;margin-bottom:22px;border:1px solid #eeeaf4}
-.question-card.answered{border-left:5px solid #48ad77}
-.question-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:17px}
-.question-number{font-size:17px;font-weight:700;color:#6540a3}
-.topic{background:#e5f6ec;color:#369566;padding:6px 13px;border-radius:20px;font-size:12px}
-.question-text{font-size:16px;line-height:1.9;margin-bottom:20px;font-weight:500}
-.options{display:grid;gap:12px}
-.option{display:flex;align-items:center;gap:12px;padding:14px 17px;border:1px solid #e9e4f0;border-radius:12px;cursor:pointer;font-size:14px}
-.option:hover{background:#f2f8f3;border-color:#6cbd8e}
-.option:has(input:checked){background:#eaf7ef;border-color:#43a974;color:#287e51;font-weight:600}
-.option input{accent-color:#46a875;width:17px;height:17px}
-.submit-area{text-align:center;padding:20px 0 50px}
-.submit-btn{background:linear-gradient(110deg,#39ad70,#6841b0);color:white;border:none;padding:16px 45px;font-family:inherit;font-size:16px;font-weight:600;border-radius:40px;cursor:pointer}
-#result{display:none}
-.result-box{background:white;padding:40px 25px;text-align:center;border-radius:25px;margin-bottom:30px}
-.result-icon{font-size:60px;margin-bottom:15px}
-.result-box h2{color:#60399c;font-size:30px}
-.score{font-size:55px;font-weight:800;color:#39a66e;margin:15px 0}
-.result-detail{color:#777080;line-height:2;font-size:15px}
-.review-title{text-align:center;color:#60399c;margin:35px 0 20px;font-size:25px}
-.review-card{background:white;padding:23px;border-radius:15px;margin-bottom:18px;line-height:1.9}
-.review-card h3{color:#60399c;font-size:16px;margin-bottom:12px}
-.correct-answer{color:#278b55;background:#e8f7ed;padding:10px 13px;border-radius:9px;margin:10px 0;font-size:14px}
-.wrong-answer{color:#d14f5e;background:#fff0f0;padding:10px 13px;border-radius:9px;margin:10px 0;font-size:14px}
-.explanation{background:#f1ebfa;color:#59427f;padding:15px;border-radius:10px;margin-top:12px;font-size:14px;white-space:pre-line}
-.retry-btn{display:inline-block;margin:10px;padding:13px 25px;background:#6540a3;color:white;border-radius:30px;text-decoration:none;border:none;font-family:inherit;cursor:pointer}
-footer{background:linear-gradient(110deg,#286e50,#56328c);color:white;text-align:center;padding:30px 15px;font-size:13px;line-height:2}
-@media(max-width:600px){
-.header h1{font-size:29px}
-.timer-box{padding:17px}
-.timer{font-size:24px}
-.question-card{padding:19px}
-.question-text{font-size:15px}
-.score{font-size:43px}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+    background: #f6f4fb;
+    color: #302b3d;
+}
+
+/* NAVBAR */
+nav {
+    background: white;
+    padding: 17px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 20px rgba(70,40,100,.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 800;
+    color: #6035a5;
+}
+
+.logo span {
+    color: #35a36a;
+}
+
+.back {
+    text-decoration: none;
+    color: #6544a1;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.back:hover {
+    color: #35a36a;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(120deg,#dff5e8,#e9ddfa);
+    padding: 55px 7%;
+    text-align: center;
+}
+
+.header .tag {
+    display: inline-block;
+    padding: 8px 20px;
+    background: white;
+    color: #38976a;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.header h1 {
+    font-size: 38px;
+    color: #60399c;
+    font-weight: 800;
+}
+
+.header h1 span {
+    color: #36a36b;
+}
+
+.header p {
+    color: #70697c;
+    margin-top: 12px;
+    line-height: 1.8;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.info-box {
+    background: white;
+    padding: 12px 22px;
+    border-radius: 13px;
+    color: #60419b;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(70,40,100,.06);
+}
+
+/* MAIN */
+.container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+/* TIMER */
+.timer-box {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(70,40,100,.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.timer-title {
+    color: #6c5a84;
+    font-size: 14px;
+}
+
+.timer {
+    font-size: 28px;
+    font-weight: 800;
+    color: #36a36b;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer.warning {
+    color: #e05267;
+}
+
+.start-timer-btn {
+    margin-top: 10px;
+    padding: 9px 20px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(110deg,#39ad70,#6841b0);
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.start-timer-btn:hover {
+    transform: translateY(-2px);
+}
+
+.start-timer-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.progress-area {
+    margin-top: 12px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #81798e;
+    margin-bottom: 8px;
+}
+
+.progress {
+    height: 9px;
+    background: #eee9f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#39b779,#7548b8);
+    border-radius: 20px;
+    transition: .3s;
+}
+
+/* INSTRUCTION */
+.instruction {
+    background: #eee7fa;
+    border-left: 5px solid #8053bd;
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    color: #59427f;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* QUESTION */
+.section-heading {
+    color: #60399c;
+    font-size: 21px;
+    margin: 30px 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e7def3;
+}
+
+.question-card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 22px rgba(70,40,100,.05);
+    border: 1px solid #eeeaf4;
+    transition: .2s;
+}
+
+.question-card.answered {
+    border-left: 5px solid #48ad77;
+}
+
+.question-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.question-number {
+    font-size: 17px;
+    font-weight: 700;
+    color: #6540a3;
+}
+
+.topic {
+    background: #e5f6ec;
+    color: #369566;
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.question-text {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    font-weight: 500;
+    white-space: pre-line;
+}
+
+.options {
+    display: grid;
+    gap: 12px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 17px;
+    border: 1px solid #e9e4f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 14px;
+}
+
+.option:hover {
+    background: #f2f8f3;
+    border-color: #6cbd8e;
+}
+
+.option:has(input:checked) {
+    background: #eaf7ef;
+    border-color: #43a974;
+    color: #287e51;
+    font-weight: 600;
+}
+
+.option input {
+    accent-color: #46a875;
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+.option.disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* BUTTONS */
+.submit-area {
+    text-align: center;
+    padding: 20px 0 50px;
+}
+
+.submit-btn {
+    background: linear-gradient(110deg,#39ad70,#6841b0);
+    color: white;
+    border: none;
+    padding: 16px 45px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(90,60,150,.2);
+    transition: .3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+}
+
+.submit-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+/* RESULT */
+#result {
+    display: none;
+}
+
+.result-box {
+    background: white;
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0 8px 30px rgba(70,40,100,.07);
+    margin-bottom: 30px;
+}
+
+.result-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.result-box h2 {
+    color: #60399c;
+    font-size: 30px;
+}
+
+.score {
+    font-size: 55px;
+    font-weight: 800;
+    color: #39a66e;
+    margin: 15px 0;
+}
+
+.result-detail {
+    color: #777080;
+    line-height: 2;
+    font-size: 15px;
+}
+
+.review-title {
+    text-align: center;
+    color: #60399c;
+    margin: 35px 0 20px;
+    font-size: 25px;
+}
+
+.review-card {
+    background: white;
+    padding: 23px;
+    border-radius: 15px;
+    margin-bottom: 18px;
+    border: 1px solid #eeeaf4;
+    line-height: 1.9;
+}
+
+.review-card h3 {
+    color: #60399c;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.correct-answer {
+    color: #278b55;
+    background: #e8f7ed;
+    padding: 10px 13px;
+    border-radius: 9px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.wrong-answer {
+    color: #d14f5e;
+    background: #fff0f0;
+    padding: 10px 13px;
+    border-radius: 9px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.explanation {
+    background: #f1ebfa;
+    color: #59427f;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 12px;
+    font-size: 14px;
+    white-space: pre-line;
+}
+
+.retry-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 13px 25px;
+    background: #6540a3;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+    background: linear-gradient(110deg,#286e50,#56328c);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    font-size: 13px;
+    line-height: 2;
+}
+
+@media(max-width:600px) {
+    .header h1 {
+        font-size: 29px;
+    }
+
+    .timer-box {
+        padding: 17px;
+    }
+
+    .timer {
+        font-size: 24px;
+    }
+
+    .question-card {
+        padding: 19px;
+    }
+
+    .question-text {
+        font-size: 15px;
+    }
+
+    .score {
+        font-size: 43px;
+    }
 }
 </style>
 </head>
+
 <body>
 
+<!-- NAVBAR -->
 <nav>
-<div class="logo">คลัง<span>ข้อสอบ.</span></div>
-<a href="index.html" class="back">← กลับหน้าหลัก</a>
+    <div class="logo">คลัง<span>ข้อสอบ.</span></div>
+    <a href="index.html" class="back">← กลับหน้าหลัก</a>
 </nav>
 
+<!-- HEADER -->
 <header class="header">
-<div class="tag">✦ ONLINE EXAMINATION</div>
-<h1>แบบทดสอบวิชา<span>ภาษาอังกฤษ</span></h1>
-<p>ระดับชั้นมัธยมศึกษาปีที่ 4–6<br>ทบทวนความรู้ ฝึกฝนทักษะ และพัฒนาตนเอง</p>
-<div class="info">
-<div class="info-box">📋 20 ข้อ</div>
-<div class="info-box">🏆 20 คะแนน</div>
-<div class="info-box">⏱️ 60 นาที</div>
-</div>
+    <div class="tag">✦ ENGLISH OLYMPIAD EXAMINATION</div>
+
+    <h1>แบบทดสอบวิชา<span>ภาษาอังกฤษ</span></h1>
+
+    <p>
+        ระดับชั้นมัธยมศึกษาปีที่ 4–6<br>
+        ระดับการแข่งขันโอลิมปิกภาษาอังกฤษ<br>
+        Advanced English • Critical Thinking • Reading Comprehension
+    </p>
+
+    <div class="info">
+        <div class="info-box">📋 20 ข้อ</div>
+        <div class="info-box">🏆 20 คะแนน</div>
+        <div class="info-box">⏱️ 90 นาที</div>
+        <div class="info-box">⭐ ระดับโอลิมปิก</div>
+    </div>
 </header>
 
+<!-- EXAM -->
 <main class="container" id="exam">
-<div class="timer-box">
-<div>
-<div class="timer-title">เวลาที่เหลือในการทำข้อสอบ</div>
-<div class="timer" id="timer">60:00</div>
-</div>
-<div style="flex:1;min-width:180px">
-<div class="progress-area">
-<div class="progress-text">
-<span>ความคืบหน้าการทำข้อสอบ</span>
-<span id="progressText">0 / 20 ข้อ</span>
-</div>
-<div class="progress">
-<div class="progress-bar" id="progressBar"></div>
-</div>
-</div>
-</div>
-</div>
 
-<div class="instruction">
-<strong>คำชี้แจง</strong><br>
-1. แบบทดสอบมีจำนวน 20 ข้อ คะแนนเต็ม 20 คะแนน<br>
-2. ให้นักเรียนเลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
-3. มีเวลาในการทำข้อสอบ 60 นาที<br>
-4. เมื่อทำข้อสอบเสร็จแล้วให้กดปุ่มส่งข้อสอบเพื่อดูคะแนนและเฉลย
-</div>
+    <div class="timer-box">
+        <div>
+            <div class="timer-title">เวลาที่เหลือในการทำข้อสอบ</div>
+            <div class="timer" id="timer">90:00</div>
+            <button class="start-timer-btn" id="startTimerBtn"
+                onclick="startExamTimer()">
+                ▶ เริ่มจับเวลา
+            </button>
+        </div>
 
-<div id="questions"></div>
+        <div style="flex:1;min-width:180px;">
+            <div class="progress-area">
+                <div class="progress-text">
+                    <span>ความคืบหน้าการทำข้อสอบ</span>
+                    <span id="progressText">0 / 20 ข้อ</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="submit-area">
-<button class="submit-btn" onclick="submitExam()">ส่งข้อสอบและตรวจคะแนน</button>
-<p style="margin-top:12px;color:#888;font-size:13px">กรุณาตรวจสอบคำตอบก่อนกดส่งข้อสอบ</p>
-</div>
+    <div class="instruction">
+        <strong>คำชี้แจง</strong><br>
+        1. แบบทดสอบมีจำนวน 20 ข้อ คะแนนเต็ม 20 คะแนน<br>
+        2. ข้อสอบเป็นภาษาอังกฤษระดับสูงสำหรับนักเรียน ม.4–ม.6<br>
+        3. ครอบคลุม Advanced Grammar, Vocabulary, Idioms, Reading และ Critical Thinking<br>
+        4. เลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
+        5. มีเวลา 90 นาที โดยเวลาจะเริ่มนับเมื่อกดปุ่ม "เริ่มจับเวลา"<br>
+        6. เมื่อทำข้อสอบเสร็จแล้วให้กดปุ่มส่งข้อสอบเพื่อดูคะแนนและเฉลย<br>
+        7. เมื่อหมดเวลาระบบจะส่งข้อสอบให้อัตโนมัติ
+    </div>
+
+    <div id="questions"></div>
+
+    <div class="submit-area">
+        <button class="submit-btn" id="submitBtn" onclick="submitExam()">
+            ส่งข้อสอบและตรวจคะแนน
+        </button>
+        <p style="margin-top:12px;color:#888;font-size:13px;">
+            กรุณาตรวจสอบคำตอบก่อนกดส่งข้อสอบ
+        </p>
+    </div>
+
 </main>
 
+<!-- RESULT -->
 <section id="result" class="container">
-<div class="result-box">
-<div class="result-icon">🏆</div>
-<h2>สรุปผลการสอบ</h2>
-<div class="score"><span id="score">0</span>/20</div>
-<div class="result-detail">
-<div>ตอบถูก <strong id="correctCount">0</strong> ข้อ</div>
-<div>ตอบผิด <strong id="wrongCount">0</strong> ข้อ</div>
-<div>ไม่ได้ตอบ <strong id="blankCount">0</strong> ข้อ</div>
-<div>คิดเป็น <strong id="percentage">0</strong>%</div>
-<div>เวลาที่ใช้ <strong id="usedTime">0 นาที</strong></div>
-</div>
-<p id="resultMessage" style="margin-top:18px;color:#39996a;font-weight:600"></p>
-</div>
 
-<h2 class="review-title">📝 เฉลยพร้อมคำอธิบายอย่างละเอียด</h2>
-<div id="review"></div>
+    <div class="result-box">
+        <div class="result-icon">🏆</div>
+        <h2>สรุปผลการสอบ</h2>
 
-<div class="submit-area">
-<button class="retry-btn" onclick="retryQuiz()">ทำข้อสอบอีกครั้ง</button>
-<a href="index.html" class="retry-btn">กลับหน้าหลัก</a>
-</div>
+        <div class="score">
+            <span id="score">0</span>/20
+        </div>
+
+        <div class="result-detail">
+            <div>ตอบถูก <strong id="correctCount">0</strong> ข้อ</div>
+            <div>ตอบผิด <strong id="wrongCount">0</strong> ข้อ</div>
+            <div>ไม่ได้ตอบ <strong id="blankCount">0</strong> ข้อ</div>
+            <div>คิดเป็น <strong id="percentage">0</strong>%</div>
+            <div>เวลาที่ใช้ <strong id="usedTime">0 นาที</strong></div>
+        </div>
+
+        <p id="resultMessage"
+           style="margin-top:18px;color:#39996a;font-weight:600;"></p>
+    </div>
+
+    <h2 class="review-title">📖 เฉลยพร้อมคำอธิบายอย่างละเอียด</h2>
+
+    <div id="review"></div>
+
+    <div class="submit-area">
+        <button class="retry-btn" onclick="retryQuiz()">
+            ↻ ทำข้อสอบอีกครั้ง
+        </button>
+
+        <a href="index.html" class="retry-btn">
+            กลับหน้าหลัก
+        </a>
+    </div>
+
 </section>
 
+<!-- FOOTER -->
 <footer>
-<div>คลังข้อสอบออนไลน์</div>
-<div>เว็บไซต์เพื่อการศึกษาและทบทวนความรู้</div>
+    <h2>📚 คลังข้อสอบ</h2>
+    เว็บไซต์คลังข้อสอบออนไลน์เพื่อการเรียนรู้
+    <br>
+    English Olympiad Examination
+    <br>
+    © 2026 Online Examination System
 </footer>
 
 <script>
+
+// ======================================
+// ข้อมูลข้อสอบภาษาอังกฤษระดับโอลิมปิก
+// ======================================
+
 const questions = [
-{section:"คำศัพท์",topic:"คำศัพท์",q:"คำว่า beautiful มีความหมายตรงกับข้อใด",o:["รวดเร็ว","สวยงาม","อันตราย","เงียบสงบ"],a:1,e:"Beautiful แปลว่า สวยงาม ใช้บรรยายคน สิ่งของ หรือสถานที่ที่มีความงดงาม"},
-{section:"คำศัพท์",topic:"คำศัพท์",q:"คำตรงข้ามของคำว่า ancient คือข้อใด",o:["modern","old","historic","traditional"],a:0,e:"Ancient หมายถึง เก่าแก่หรือโบราณ ส่วน modern หมายถึง ทันสมัย จึงเป็นคำตรงข้าม"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"Choose the correct answer: She _____ to school every day.",o:["go","goes","going","gone"],a:1,e:"ประธาน She เป็นเอกพจน์บุรุษที่ 3 ใน Present Simple จึงเติม -s ที่กริยาเป็น goes"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"They _____ football now.",o:["play","plays","are playing","played"],a:2,e:"คำว่า now บอกเหตุการณ์ที่กำลังเกิดขึ้น ใช้ Present Continuous: is/am/are + V-ing"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"I have lived here _____ 2020.",o:["for","since","at","by"],a:1,e:"Since ใช้กับจุดเริ่มต้นของเวลา เช่น since 2020 ส่วน for ใช้กับช่วงระยะเวลา"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"If it rains, we _____ at home.",o:["stay","will stay","stayed","staying"],a:1,e:"ประโยคเงื่อนไขแบบที่ 1 ใช้ If + Present Simple, will + กริยาช่อง 1"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"The book _____ by my teacher yesterday.",o:["gives","gave","was given","is giving"],a:2,e:"ประโยค Passive Voice ในอดีตใช้ was/were + V3 และ yesterday ระบุอดีต"},
-{section:"คำศัพท์",topic:"คำศัพท์",q:"คำว่า environment หมายถึงข้อใด",o:["สิ่งแวดล้อม","การทดลอง","การเดินทาง","ประสบการณ์"],a:0,e:"Environment หมายถึง สิ่งแวดล้อม ทั้งสิ่งมีชีวิตและสิ่งไม่มีชีวิตที่อยู่รอบตัวเรา"},
-{section:"บทสนทนา",topic:"บทสนทนา",q:"A: How are you? B: _____",o:["I am fine, thank you.","I am fifteen.","It is Monday.","You are welcome."],a:0,e:"คำถาม How are you? ใช้ถามสารทุกข์สุกดิบ คำตอบที่เหมาะสมคือ I am fine, thank you."},
-{section:"บทสนทนา",topic:"บทสนทนา",q:"A: Thank you for your help. B: _____",o:["Good luck.","You’re welcome.","I’m sorry.","See you."],a:1,e:"You’re welcome เป็นสำนวนตอบกลับเมื่อมีคนกล่าวขอบคุณ"},
-{section:"การอ่าน",topic:"การอ่าน",q:"ป้าย No Smoking มีความหมายว่าอย่างไร",o:["ห้ามส่งเสียงดัง","ห้ามจอดรถ","ห้ามสูบบุหรี่","ห้ามถ่ายภาพ"],a:2,e:"No Smoking หมายถึง ห้ามสูบบุหรี่ เป็นป้ายห้ามทำกิจกรรมดังกล่าว"},
-{section:"การอ่าน",topic:"การอ่าน",q:"อ่านข้อความ: Tom gets up at 6 a.m. and walks to school. Tom ไปโรงเรียนอย่างไร",o:["โดยรถยนต์","โดยรถประจำทาง","เดิน","โดยจักรยาน"],a:2,e:"ข้อความระบุว่า walks to school คำว่า walk หมายถึง เดิน"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"There _____ many students in the classroom.",o:["is","are","am","be"],a:1,e:"Many students เป็นคำนามพหูพจน์ จึงใช้ are"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"This is _____ than that one.",o:["good","better","best","the best"],a:1,e:"Than ใช้ในการเปรียบเทียบขั้นกว่า คำว่า good มีรูปขั้นกว่าเป็น better"},
-{section:"คำศัพท์",topic:"คำศัพท์",q:"คำว่า reduce มีความหมายว่าอะไร",o:["เพิ่มขึ้น","ลดลง","ทำซ้ำ","แบ่งปัน"],a:1,e:"Reduce หมายถึง ลด ลดลง หรือทำให้ปริมาณน้อยลง"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"She is interested _____ science.",o:["on","at","in","for"],a:2,e:"สำนวนที่ถูกต้องคือ be interested in หมายถึง สนใจในสิ่งใดสิ่งหนึ่ง"},
-{section:"การอ่าน",topic:"การอ่าน",q:"ข้อความ Please keep the door closed. ผู้พูดต้องการให้ทำอะไร",o:["เปิดประตู","ปิดประตูไว้","ทาสีประตู","ล็อกหน้าต่าง"],a:1,e:"Keep the door closed หมายถึง ให้ประตูปิดอยู่"},
-{section:"ไวยากรณ์",topic:"ไวยากรณ์",q:"I _____ my homework before dinner yesterday.",o:["finish","finished","finishes","finishing"],a:1,e:"Yesterday เป็นคำบอกอดีต จึงใช้ Past Simple คือ finished"},
-{section:"คำศัพท์",topic:"คำศัพท์",q:"คำว่า careful มีความหมายตรงกับข้อใด",o:["ระมัดระวัง","ประมาท","หิว","เหนื่อย"],a:0,e:"Careful หมายถึง ระมัดระวังหรือรอบคอบ"},
-{section:"บทสนทนา",topic:"บทสนทนา",q:"A: Would you like some water? B: _____",o:["Yes, please.","I am twelve.","At the station.","Yesterday."],a:0,e:"Would you like...? เป็นการเสนอสิ่งของหรือบริการ คำตอบรับอย่างสุภาพคือ Yes, please."}
+
+{
+section:"Part 1 : Advanced Vocabulary",
+topic:"Advanced Vocabulary",
+q:"1. The scientist's explanation was so ______ that even experienced researchers struggled to understand it.",
+options:[
+"ambiguous",
+"comprehensible",
+"straightforward",
+"unambiguous"
+],
+answer:0,
+explanation:"คำตอบ A. ambiguous = กำกวม / มีความหมายไม่ชัดเจน\n\nวิเคราะห์ตัวเลือก:\n- ambiguous หมายถึง คลุมเครือหรือกำกวม\n- comprehensible หมายถึง เข้าใจได้\n- straightforward หมายถึง ตรงไปตรงมา\n- unambiguous หมายถึง ชัดเจนไม่กำกวม\n\nประโยคกล่าวว่าแม้แต่นักวิจัยที่มีประสบการณ์ก็ยังเข้าใจยาก จึงต้องใช้คำว่า ambiguous"
+},
+
+{
+section:"Part 1 : Advanced Vocabulary",
+topic:"Advanced Vocabulary",
+q:"2. The manager decided to ______ the meeting because several important members were unable to attend.",
+options:[
+"accelerate",
+"postpone",
+"anticipate",
+"terminate"
+],
+answer:1,
+explanation:"คำตอบ B. postpone = เลื่อนออกไป\n\nวิเคราะห์:\n- accelerate = เร่งให้เร็วขึ้น\n- postpone = เลื่อนกำหนดการ\n- anticipate = คาดการณ์\n- terminate = ยุติ\n\nเมื่อสมาชิกสำคัญไม่สามารถเข้าร่วมประชุมได้ ผู้จัดการจึงตัดสินใจเลื่อนการประชุม"
+},
+
+{
+section:"Part 1 : Advanced Vocabulary",
+topic:"Word Formation",
+q:"3. Choose the correct form of the word to complete the sentence.\n\nHis argument was extremely ______ and convinced everyone in the room.",
+options:[
+"persuade",
+"persuasive",
+"persuasion",
+"persuasively"
+],
+answer:1,
+explanation:"คำตอบ B. persuasive = โน้มน้าวใจได้ดี\n\nหลัง was extremely ต้องการคำคุณศัพท์ (Adjective) เพื่อขยายคำว่า argument\n\n- persuade = คำกริยา\n- persuasive = คำคุณศัพท์\n- persuasion = คำนาม\n- persuasively = คำกริยาวิเศษณ์\n\nดังนั้น persuasive จึงถูกต้อง"
+},
+
+{
+section:"Part 1 : Advanced Vocabulary",
+topic:"Idioms",
+q:"4. What does the idiom 'to beat around the bush' mean?",
+options:[
+"To work extremely hard",
+"To avoid talking about the main point",
+"To criticize someone directly",
+"To make a quick decision"
+],
+answer:1,
+explanation:"คำตอบ B. To avoid talking about the main point\n\nBeat around the bush เป็นสำนวน หมายถึง พูดอ้อมค้อม ไม่ยอมพูดประเด็นสำคัญโดยตรง\n\nตัวอย่าง: Stop beating around the bush and tell me what happened.\nหมายถึง เลิกพูดอ้อมค้อมแล้วบอกมาว่าเกิดอะไรขึ้น"
+},
+
+{
+section:"Part 1 : Advanced Vocabulary",
+topic:"Collocations",
+q:"5. Which phrase is the most appropriate collocation?",
+options:[
+"Make a research",
+"Do a decision",
+"Conduct research",
+"Perform an advice"
+],
+answer:2,
+explanation:"คำตอบ C. Conduct research = ดำเนินการวิจัย\n\nCollocation คือกลุ่มคำที่นิยมใช้ร่วมกันในภาษาอังกฤษ\n\nตัวอย่างที่ถูกต้อง:\n- Conduct research = ดำเนินการวิจัย\n- Make a decision = ตัดสินใจ\n- Give advice = ให้คำแนะนำ\n- Do homework = ทำการบ้าน\n\nดังนั้น Conduct research จึงเป็นคำตอบที่ถูกต้อง"
+},
+
+// PART 2
+
+{
+section:"Part 2 : Advanced Grammar",
+topic:"Inversion",
+q:"6. Choose the grammatically correct sentence.",
+options:[
+"Never I have seen such a remarkable performance.",
+"Never have I seen such a remarkable performance.",
+"Never I seen have such a remarkable performance.",
+"Never did I have seen such a remarkable performance."
+],
+answer:1,
+explanation:"คำตอบ B. Never have I seen such a remarkable performance.\n\nเป็นโครงสร้าง Inversion เมื่อขึ้นต้นประโยคด้วยคำปฏิเสธ เช่น Never, Rarely, Seldom ต้องสลับตำแหน่ง Auxiliary Verb กับประธาน\n\nโครงสร้าง:\nNever + auxiliary verb + subject + main verb\n\nดังนั้น Never have I seen จึงถูกต้อง"
+},
+
+{
+section:"Part 2 : Advanced Grammar",
+topic:"Conditional Sentences",
+q:"7. If she ______ harder for the examination, she would have achieved a higher score.",
+options:[
+"studied",
+"had studied",
+"would study",
+"has studied"
+],
+answer:1,
+explanation:"คำตอบ B. had studied\n\nเป็น Third Conditional ใช้กล่าวถึงเหตุการณ์สมมติในอดีตที่ไม่ได้เกิดขึ้นจริง\n\nโครงสร้าง:\nIf + Past Perfect, would have + V3\n\nประโยคนี้หมายถึง หากเธอตั้งใจเรียนมากกว่านี้ เธอคงได้คะแนนสูงกว่านี้ แต่ในความเป็นจริงเธอไม่ได้ตั้งใจเรียนมากพอ"
+},
+
+{
+section:"Part 2 : Advanced Grammar",
+topic:"Subjunctive Mood",
+q:"8. The professor insisted that every student ______ the assignment before Friday.",
+options:[
+"submits",
+"submitted",
+"submit",
+"submitting"
+],
+answer:2,
+explanation:"คำตอบ C. submit\n\nหลังคำกริยาที่แสดงการเรียกร้องหรือยืนยัน เช่น insist, suggest, recommend สามารถใช้ Subjunctive Mood\n\nโครงสร้าง:\nSubject + insist/suggest/recommend + that + subject + V1\n\nดังนั้นใช้ submit โดยไม่เติม s แม้ประธานเป็นเอกพจน์"
+},
+
+{
+section:"Part 2 : Advanced Grammar",
+topic:"Reduced Relative Clauses",
+q:"9. The documents ______ on the desk belong to the principal.",
+options:[
+"lying",
+"lie",
+"are lying",
+"which lying"
+],
+answer:0,
+explanation:"คำตอบ A. lying\n\nเป็น Reduced Relative Clause ที่ลดรูปมาจาก:\nThe documents which are lying on the desk...\n\nเมื่อประโยคเป็น Active Voice สามารถลดรูป Relative Clause โดยใช้ V-ing\n\nดังนั้น The documents lying on the desk จึงถูกต้อง"
+},
+
+{
+section:"Part 2 : Advanced Grammar",
+topic:"Cleft Sentences",
+q:"10. Choose the correct sentence that emphasizes the person who discovered the solution.",
+options:[
+"It was the scientist which discovered the solution.",
+"It was the scientist who discovered the solution.",
+"It is the scientist whom discovered the solution.",
+"It was the scientist whose discovered the solution."
+],
+answer:1,
+explanation:"คำตอบ B. It was the scientist who discovered the solution.\n\nเป็น Cleft Sentence ใช้เน้นบุคคลหรือข้อมูลบางส่วนของประโยค\n\nโครงสร้าง:\nIt is/was + emphasized element + who/that + clause\n\nเมื่อเน้นบุคคล สามารถใช้ who ได้\n\nดังนั้น who discovered the solution จึงถูกต้อง"
+},
+
+// PART 3
+
+{
+section:"Part 3 : Reading Comprehension",
+topic:"Critical Reading",
+q:"11. Read the passage carefully.\n\n\"Although technology has made information more accessible than ever before, access to information does not necessarily guarantee understanding. In fact, the ability to evaluate sources, identify bias, and distinguish evidence from opinion has become increasingly important.\"\n\nWhat is the main idea of the passage?",
+options:[
+"Technology has made education unnecessary.",
+"Having access to information is more important than understanding it.",
+"Critical evaluation skills are essential in the digital age.",
+"People should avoid using online information."
+],
+answer:2,
+explanation:"คำตอบ C. Critical evaluation skills are essential in the digital age.\n\nวิเคราะห์:\nข้อความกล่าวว่าเทคโนโลยีทำให้เข้าถึงข้อมูลได้ง่ายขึ้น แต่การเข้าถึงข้อมูลไม่ได้หมายความว่าจะเข้าใจข้อมูลเสมอไป\n\nสิ่งสำคัญคือความสามารถในการประเมินแหล่งข้อมูล ตรวจสอบอคติ และแยกแยะหลักฐานออกจากความคิดเห็น\n\nดังนั้นใจความสำคัญคือทักษะการคิดวิเคราะห์และประเมินข้อมูลมีความสำคัญอย่างยิ่งในยุคดิจิทัล"
+},
+
+{
+section:"Part 3 : Reading Comprehension",
+topic:"Inference",
+q:"12. Read the passage.\n\n\"When the new policy was introduced, several employees expressed concern. However, after attending the training sessions, most of them gradually recognized its benefits and became more supportive.\"\n\nWhat can be inferred about the employees?",
+options:[
+"They supported the policy immediately.",
+"Their attitudes changed after gaining more information.",
+"They refused to attend the training sessions.",
+"They believed the policy had no advantages."
+],
+answer:1,
+explanation:"คำตอบ B. Their attitudes changed after gaining more information.\n\nวิเคราะห์:\nตอนแรกพนักงานบางส่วนกังวลเกี่ยวกับนโยบายใหม่ แต่หลังจากเข้ารับการอบรม พวกเขาค่อย ๆ มองเห็นประโยชน์และสนับสนุนนโยบายมากขึ้น\n\nจึงอนุมานได้ว่าทัศนคติของพวกเขาเปลี่ยนไปเมื่อได้รับข้อมูลและความเข้าใจมากขึ้น"
+},
+
+{
+section:"Part 3 : Reading Comprehension",
+topic:"Author's Purpose",
+q:"13. Read the passage.\n\n\"Many people believe that failure is the opposite of success. Yet, throughout history, numerous discoveries have emerged from experiments that did not produce the expected results. Failure can therefore serve as a valuable source of knowledge.\"\n\nWhat is the author's purpose?",
+options:[
+"To argue that failure should always be avoided.",
+"To explain that failure can contribute to learning and discovery.",
+"To prove that successful people never make mistakes.",
+"To describe the history of scientific inventions."
+],
+answer:1,
+explanation:"คำตอบ B. To explain that failure can contribute to learning and discovery.\n\nผู้เขียนต้องการชี้ให้เห็นว่าความล้มเหลวไม่ได้เป็นเพียงสิ่งตรงข้ามกับความสำเร็จ แต่ยังสามารถเป็นแหล่งความรู้และนำไปสู่การค้นพบใหม่ ๆ ได้"
+},
+
+{
+section:"Part 3 : Reading Comprehension",
+topic:"Vocabulary in Context",
+q:"14. In the sentence below, what does the word 'substantial' most nearly mean?\n\n\"The research team collected substantial evidence to support their hypothesis.\"",
+options:[
+"Insufficient",
+"Significant and considerable",
+"Unrelated",
+"Temporary"
+],
+answer:1,
+explanation:"คำตอบ B. Significant and considerable = มีปริมาณมากหรือมีความสำคัญมาก\n\nSubstantial หมายถึง มากพอสมควร มีนัยสำคัญ หรือมีปริมาณมาก\n\nในบริบทนี้หมายถึงทีมวิจัยรวบรวมหลักฐานจำนวนมากและมีน้ำหนักเพื่อสนับสนุนสมมติฐาน"
+},
+
+{
+section:"Part 3 : Reading Comprehension",
+topic:"Logical Reasoning",
+q:"15. Read the statement.\n\n\"All members of the debate club are required to attend weekly meetings. Sarah is a member of the debate club.\"\n\nWhich conclusion logically follows?",
+options:[
+"Sarah may attend meetings if she wants.",
+"Sarah is required to attend weekly meetings.",
+"Everyone who attends meetings belongs to the debate club.",
+"Sarah is the president of the debate club."
+],
+answer:1,
+explanation:"คำตอบ B. Sarah is required to attend weekly meetings.\n\nเหตุผล:\n1. สมาชิกทุกคนของชมรมโต้วาทีต้องเข้าร่วมประชุมทุกสัปดาห์\n2. Sarah เป็นสมาชิกของชมรมโต้วาที\n3. ดังนั้น Sarah จึงต้องเข้าร่วมประชุมทุกสัปดาห์\n\nเป็นการอนุมานแบบ Deductive Reasoning จากกฎทั่วไปไปสู่กรณีเฉพาะ"
+},
+
+// PART 4
+
+{
+section:"Part 4 : Advanced Language Skills",
+topic:"Error Identification",
+q:"16. Identify the part of the sentence that contains a grammatical error.\n\n\"Neither the students nor the teacher were aware of the sudden change in schedule.\"",
+options:[
+"Neither the students",
+"nor the teacher",
+"were aware",
+"of the sudden change"
+],
+answer:2,
+explanation:"คำตอบ C. were aware\n\nประโยคนี้ใช้ Neither...nor ซึ่งกริยาจะสอดคล้องกับประธานที่อยู่ใกล้กริยาที่สุด\n\nประธานที่อยู่ใกล้กริยาคือ the teacher ซึ่งเป็นเอกพจน์\n\nจึงต้องแก้ were aware เป็น was aware\n\nประโยคที่ถูกต้อง:\nNeither the students nor the teacher was aware of the sudden change in schedule."
+},
+
+{
+section:"Part 4 : Advanced Language Skills",
+topic:"Sentence Transformation",
+q:"17. Choose the sentence that has the same meaning as:\n\n\"Despite being exhausted, she continued working.\"",
+options:[
+"Although she was exhausted, she continued working.",
+"Because she was exhausted, she stopped working.",
+"She continued working so that she would become exhausted.",
+"She was exhausted because she had stopped working."
+],
+answer:0,
+explanation:"คำตอบ A. Although she was exhausted, she continued working.\n\nDespite + noun / V-ing มีความหมายว่า แม้ว่า\n\nสามารถเปลี่ยนเป็น Although + subject + verb ได้\n\nDespite being exhausted = Although she was exhausted\n\nทั้งสองประโยคสื่อความหมายว่า แม้เธอจะเหนื่อยมาก แต่เธอก็ยังทำงานต่อ"
+},
+
+{
+section:"Part 4 : Advanced Language Skills",
+topic:"Phrasal Verbs",
+q:"18. The committee decided to ______ the proposal after discovering several serious problems.",
+options:[
+"look after",
+"turn down",
+"bring up",
+"carry out"
+],
+answer:1,
+explanation:"คำตอบ B. turn down = ปฏิเสธ\n\nวิเคราะห์:\n- look after = ดูแล\n- turn down = ปฏิเสธ\n- bring up = หยิบยกประเด็นขึ้นมาพูด\n- carry out = ดำเนินการ\n\nเมื่อคณะกรรมการพบปัญหาร้ายแรงหลายประการ จึงตัดสินใจปฏิเสธข้อเสนอ"
+},
+
+{
+section:"Part 4 : Advanced Language Skills",
+topic:"Advanced Connectors",
+q:"19. ______ the experiment was conducted under controlled conditions, the results were still inconclusive.",
+options:[
+"Because",
+"Although",
+"Therefore",
+"Furthermore"
+],
+answer:1,
+explanation:"คำตอบ B. Although = แม้ว่า\n\nประโยคกล่าวว่าแม้การทดลองจะดำเนินการภายใต้สภาวะที่ควบคุมได้ แต่ผลลัพธ์ก็ยังไม่สามารถสรุปได้อย่างชัดเจน\n\nAlthough ใช้เชื่อมข้อความที่มีความขัดแย้งกัน\n\nTherefore = ดังนั้น\nFurthermore = นอกจากนี้\nBecause = เพราะว่า\n\nดังนั้น Although จึงเหมาะสมที่สุด"
+},
+
+{
+section:"Part 4 : Advanced Language Skills",
+topic:"Critical Thinking",
+q:"20. Read the argument carefully.\n\n\"Every student who practices regularly improves their language skills. Alex's language skills have improved. Therefore, Alex must have practiced regularly.\"\n\nWhat is the main logical flaw in this argument?",
+options:[
+"It uses a conclusion that is unrelated to the premise.",
+"It assumes that improvement can only result from regular practice.",
+"It provides too much statistical evidence.",
+"It contradicts the first statement directly."
+],
+answer:1,
+explanation:"คำตอบ B. It assumes that improvement can only result from regular practice.\n\nวิเคราะห์:\nข้อความแรกระบุว่า หากนักเรียนฝึกฝนอย่างสม่ำเสมอ จะพัฒนาทักษะภาษาได้\n\nแต่ไม่ได้หมายความว่าทุกคนที่มีทักษะภาษาพัฒนาขึ้นจะต้องฝึกฝนอย่างสม่ำเสมอเท่านั้น เพราะอาจพัฒนาจากการอ่าน การฟัง การเรียนในห้องเรียน หรือประสบการณ์อื่น ๆ ได้\n\nข้อผิดพลาดนี้เรียกว่า Affirming the Consequent เป็นความผิดพลาดทางตรรกะที่สรุปย้อนกลับจากผลไปหาสาเหตุโดยไม่มีหลักฐานเพียงพอ"
+}
+
 ];
 
-const letters = ["ก","ข","ค","ง"];
-let remaining=3600,timerInterval=null,submitted=false;
+// ======================================
+// สร้างหน้าข้อสอบ
+// ======================================
 
-function renderQuestions(){
-const list=document.getElementById("questions");
-list.innerHTML="";
-let lastSection="";
+const questionsArea = document.getElementById("questions");
 
-questions.forEach((item,index)=>{
-if(item.section!==lastSection){
-const heading=document.createElement("h2");
-heading.className="review-title";
-heading.textContent=item.section;
-list.appendChild(heading);
-lastSection=item.section;
+function renderQuestions() {
+
+    questionsArea.innerHTML = "";
+
+    let lastSection = "";
+
+    questions.forEach((q, index) => {
+
+        if (q.section !== lastSection) {
+
+            const heading = document.createElement("h2");
+            heading.className = "section-heading";
+            heading.textContent = q.section;
+
+            questionsArea.appendChild(heading);
+
+            lastSection = q.section;
+        }
+
+        let optionsHTML = "";
+
+        q.options.forEach((option, i) => {
+
+            optionsHTML += `
+            <label class="option">
+                <input
+                    type="radio"
+                    name="q${index}"
+                    value="${i}"
+                    onchange="updateProgress()"
+                >
+                <span>${String.fromCharCode(65+i)}. ${option}</span>
+            </label>
+            `;
+
+        });
+
+        const card = document.createElement("div");
+
+        card.className = "question-card";
+        card.id = `card${index}`;
+
+        card.innerHTML = `
+            <div class="question-top">
+                <div class="question-number">ข้อที่ ${index+1}</div>
+                <div class="topic">${q.topic}</div>
+            </div>
+
+            <div class="question-text"></div>
+
+            <div class="options">
+                ${optionsHTML}
+            </div>
+        `;
+
+        card.querySelector(".question-text").textContent = q.q;
+
+        questionsArea.appendChild(card);
+
+    });
+
+    updateProgress();
 }
 
-const card=document.createElement("article");
-card.className="question-card";
+// ======================================
+// ระบบความคืบหน้า
+// ======================================
 
-const top=document.createElement("div");
-top.className="question-top";
-top.innerHTML=`<span class="question-number">ข้อ ${index+1}</span><span class="topic">${item.topic}</span>`;
+function updateProgress() {
 
-const question=document.createElement("div");
-question.className="question-text";
-question.textContent=item.q;
+    let answered = 0;
 
-const options=document.createElement("div");
-options.className="options";
+    questions.forEach((q, index) => {
 
-item.o.forEach((option,optIndex)=>{
-const label=document.createElement("label");
-label.className="option";
-label.innerHTML=`<input type="radio" name="q${index}" value="${optIndex}"><span>${letters[optIndex]}. ${option}</span>`;
+        const selected = document.querySelector(
+            `input[name="q${index}"]:checked`
+        );
 
-label.querySelector("input").addEventListener("change",()=>{
-card.classList.add("answered");
-updateProgress();
-});
-options.appendChild(label);
-});
+        const card = document.getElementById(`card${index}`);
 
-card.append(top,question,options);
-list.appendChild(card);
-});
+        if (selected) {
+            answered++;
+            card.classList.add("answered");
+        } else {
+            card.classList.remove("answered");
+        }
 
-updateProgress();
+    });
+
+    document.getElementById("progressText").textContent =
+        `${answered} / ${questions.length} ข้อ`;
+
+    document.getElementById("progressBar").style.width =
+        (answered / questions.length * 100) + "%";
+
 }
 
-function updateProgress(){
-let count=0;
-questions.forEach((_,i)=>{
-if(document.querySelector(`input[name="q${i}"]:checked`))count++;
-});
+// ======================================
+// ระบบจับเวลา 90 นาที
+// เริ่มเมื่อกดปุ่มเท่านั้น
+// ======================================
 
-document.getElementById("progressText").textContent=`${count} / ${questions.length} ข้อ`;
-document.getElementById("progressBar").style.width=(count/questions.length*100)+"%";
+const totalTime = 90 * 60;
+
+let remainingTime = totalTime;
+let submitted = false;
+let examStarted = false;
+let countdown = null;
+
+const timerDisplay = document.getElementById("timer");
+const startTimerBtn = document.getElementById("startTimerBtn");
+
+function startExamTimer() {
+
+    if (examStarted || submitted) return;
+
+    examStarted = true;
+
+    startTimerBtn.disabled = true;
+    startTimerBtn.textContent = "กำลังจับเวลา...";
+
+    countdown = setInterval(() => {
+
+        if (submitted) {
+            clearInterval(countdown);
+            return;
+        }
+
+        remainingTime--;
+
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+
+        timerDisplay.textContent =
+            String(minutes).padStart(2,"0") + ":" +
+            String(seconds).padStart(2,"0");
+
+        if (remainingTime <= 300) {
+            timerDisplay.classList.add("warning");
+        }
+
+        if (remainingTime <= 0) {
+
+            clearInterval(countdown);
+
+            alert("หมดเวลาทำข้อสอบ ระบบจะส่งคำตอบให้อัตโนมัติ");
+
+            submitExam(true);
+
+        }
+
+    }, 1000);
+
 }
 
-function startTimer(){
-clearInterval(timerInterval);
-timerInterval=setInterval(()=>{
-if(submitted){
-clearInterval(timerInterval);
-return;
+// ======================================
+// ระบบส่งข้อสอบและตรวจคะแนน
+// ======================================
+
+function submitExam(autoSubmit = false) {
+
+    if (submitted) return;
+
+    if (!examStarted && !autoSubmit) {
+
+        alert("กรุณากดปุ่มเริ่มจับเวลาก่อนส่งข้อสอบ");
+
+        return;
+    }
+
+    const answered = document.querySelectorAll(
+        '#questions input:checked'
+    ).length;
+
+    if (!autoSubmit) {
+
+        if (answered < questions.length) {
+
+            const confirmSubmit = confirm(
+                `คุณตอบแล้ว ${answered} จาก ${questions.length} ข้อ\nยังมีข้อที่ไม่ได้ตอบ\nต้องการส่งข้อสอบหรือไม่?`
+            );
+
+            if (!confirmSubmit) return;
+
+        } else {
+
+            if (!confirm("คุณแน่ใจหรือไม่ว่าต้องการส่งข้อสอบ?")) {
+                return;
+            }
+
+        }
+
+    }
+
+    submitted = true;
+
+    if (countdown !== null) {
+        clearInterval(countdown);
+    }
+
+    document.getElementById("submitBtn").disabled = true;
+
+    startTimerBtn.disabled = true;
+
+    let correct = 0;
+    let wrong = 0;
+    let blank = 0;
+
+    let reviewHTML = "";
+
+    questions.forEach((q,index) => {
+
+        const selected = document.querySelector(
+            `input[name="q${index}"]:checked`
+        );
+
+        const userAnswer = selected
+            ? Number(selected.value)
+            : null;
+
+        const isCorrect = userAnswer === q.answer;
+
+        if (userAnswer === null) {
+            blank++;
+        } else if (isCorrect) {
+            correct++;
+        } else {
+            wrong++;
+        }
+
+        const correctLabel = String.fromCharCode(65 + q.answer);
+
+        const userLabel = userAnswer === null
+            ? "ไม่ได้ตอบ"
+            : String.fromCharCode(65 + userAnswer)
+              + ". " + q.options[userAnswer];
+
+        reviewHTML += `
+        <div class="review-card">
+
+            <h3>ข้อที่ ${index+1} : ${q.topic}</h3>
+
+            <p style="font-size:14px;white-space:pre-line;">
+                ${escapeHTML(q.q)}
+            </p>
+
+            <div class="${isCorrect ? 'correct-answer' : 'wrong-answer'}">
+                คำตอบของคุณ: ${escapeHTML(userLabel)}
+                ${userAnswer === null ? '' : (isCorrect ? ' ✓ ถูกต้อง' : ' ✗ ไม่ถูกต้อง')}
+            </div>
+
+            <div class="correct-answer">
+                เฉลย: ${correctLabel}. ${escapeHTML(q.options[q.answer])}
+            </div>
+
+            <div class="explanation">
+                <strong>คำอธิบายและวิธีคิด</strong>
+                <br>
+                ${escapeHTML(q.explanation)}
+            </div>
+
+        </div>
+        `;
+
+    });
+
+    const percentage = Math.round((correct / questions.length) * 100);
+
+    const usedSeconds = totalTime - remainingTime;
+    const usedMinutes = Math.floor(usedSeconds / 60);
+    const usedRemainder = usedSeconds % 60;
+
+    document.getElementById("score").textContent = correct;
+
+    document.getElementById("correctCount").textContent = correct;
+
+    document.getElementById("wrongCount").textContent = wrong;
+
+    document.getElementById("blankCount").textContent = blank;
+
+    document.getElementById("percentage").textContent = percentage;
+
+    document.getElementById("usedTime").textContent =
+        `${usedMinutes} นาที ${usedRemainder} วินาที`;
+
+    let message = "";
+
+    if (percentage >= 80) {
+        message = "🌟 ยอดเยี่ยมมาก! คุณมีทักษะภาษาอังกฤษระดับสูง";
+    } else if (percentage >= 60) {
+        message = "👏 ทำได้ดี! ลองพัฒนาทักษะภาษาอังกฤษขั้นสูงเพิ่มเติม";
+    } else if (percentage >= 50) {
+        message = "💜 พยายามต่อไป! ฝึกฝนการใช้ภาษาและการคิดวิเคราะห์เพิ่มเติม";
+    } else {
+        message = "🌱 อย่าเพิ่งท้อใจ ลองศึกษาเฉลยและฝึกทำข้อสอบอีกครั้ง";
+    }
+
+    if (autoSubmit) {
+        message += " หมดเวลาทำข้อสอบแล้ว ระบบส่งคำตอบให้อัตโนมัติ";
+    }
+
+    document.getElementById("resultMessage").textContent = message;
+
+    document.getElementById("review").innerHTML = reviewHTML;
+
+    document.getElementById("exam").style.display = "none";
+
+    document.getElementById("result").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 }
-remaining--;
 
-const min=Math.floor(remaining/60);
-const sec=remaining%60;
-const el=document.getElementById("timer");
+// ======================================
+// ป้องกัน HTML แทรกในข้อความ
+// ======================================
 
-el.textContent=`${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+function escapeHTML(value) {
 
-if(remaining<=300)el.classList.add("warning");
+    return String(value).replace(/[&<>"']/g, function(char) {
 
-if(remaining<=0){
-clearInterval(timerInterval);
-submitExam(true);
-}
-},1000);
-}
+        const entities = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        };
 
-function submitExam(auto=false){
-if(submitted)return;
+        return entities[char];
 
-const answered=questions.filter((_,i)=>
-document.querySelector(`input[name="q${i}"]:checked`)
-).length;
+    });
 
-if(!auto&&answered<questions.length&&
-!confirm(`คุณตอบแล้ว ${answered} จาก ${questions.length} ข้อ ต้องการส่งข้อสอบหรือไม่?`))return;
-
-submitted=true;
-clearInterval(timerInterval);
-
-let correctCount=0,wrongCount=0,blankCount=0;
-const review=document.getElementById("review");
-review.innerHTML="";
-
-questions.forEach((item,i)=>{
-const selected=document.querySelector(`input[name="q${i}"]:checked`);
-const chosen=selected?Number(selected.value):-1;
-const correct=chosen===item.a;
-
-if(chosen===-1)blankCount++;
-else if(correct)correctCount++;
-else wrongCount++;
-
-const card=document.createElement("div");
-card.className="review-card";
-
-const status=correct?"✓ ตอบถูกต้อง":"✗ ยังไม่ถูกต้อง";
-
-const answerLine=`คำตอบที่ถูกต้อง: ${letters[item.a]}. ${item.o[item.a]}`;
-const yourLine=chosen===-1?"คำตอบของคุณ: ไม่ได้ตอบ":`คำตอบของคุณ: ${letters[chosen]}. ${item.o[chosen]}`;
-
-card.innerHTML=`
-<h3>ข้อ ${i+1} — ${item.topic}</h3>
-<div style="margin-top:8px">${item.q}</div>
-<div class="${correct?'correct-answer':'wrong-answer'}">
-${status}<br>${yourLine}<br>${answerLine}
-</div>
-<div class="explanation"></div>
-`;
-
-card.querySelector(".explanation").textContent="คำอธิบาย:\n"+item.e;
-review.appendChild(card);
-});
-
-const percent=Math.round(correctCount/questions.length*100);
-
-document.getElementById("score").textContent=correctCount;
-document.getElementById("correctCount").textContent=correctCount;
-document.getElementById("wrongCount").textContent=wrongCount;
-document.getElementById("blankCount").textContent=blankCount;
-document.getElementById("percentage").textContent=percent;
-
-document.getElementById("usedTime").textContent=
-`${Math.floor((3600-remaining)/60)} นาที`;
-
-const message=percent>=80?"ยอดเยี่ยม! ทำได้ดีมาก":
-percent>=60?"ทำได้ดี ควรทบทวนเพิ่มเติมในบางหัวข้อ":
-"ลองอ่านเฉลยและฝึกทำอีกครั้งนะ";
-
-document.getElementById("resultMessage").textContent=
-message+(auto?" หมดเวลาทำข้อสอบแล้ว ระบบส่งคำตอบให้อัตโนมัติ":"");
-
-document.getElementById("exam").style.display="none";
-document.getElementById("result").style.display="block";
-window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function retryQuiz(){
-submitted=false;
-remaining=3600;
+// ======================================
+// ระบบทำข้อสอบใหม่
+// ======================================
 
-document.getElementById("timer").textContent="60:00";
-document.getElementById("timer").classList.remove("warning");
-document.getElementById("exam").style.display="block";
-document.getElementById("result").style.display="none";
+function retryQuiz() {
+
+    submitted = false;
+
+    examStarted = false;
+
+    remainingTime = totalTime;
+
+    if (countdown !== null) {
+        clearInterval(countdown);
+    }
+
+    countdown = null;
+
+    timerDisplay.textContent = "90:00";
+
+    timerDisplay.classList.remove("warning");
+
+    startTimerBtn.disabled = false;
+
+    startTimerBtn.textContent = "▶ เริ่มจับเวลา";
+
+    document.getElementById("submitBtn").disabled = false;
+
+    document.getElementById("exam").style.display = "block";
+
+    document.getElementById("result").style.display = "none";
+
+    renderQuestions();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+// ======================================
+// เริ่มต้นเว็บไซต์
+// ======================================
 
 renderQuestions();
-startTimer();
-window.scrollTo({top:0,behavior:"smooth"});
-}
 
-renderQuestions();
-startTimer();
 </script>
+
 </body>
 </html>
