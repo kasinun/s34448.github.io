@@ -1,1038 +1,264 @@
 
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>แบบทดสอบคณิตศาสตร์ | คลังข้อสอบ</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Prompt', sans-serif;
-    background: #f6f4fb;
-    color: #302b3d;
-}
-
-/* NAVBAR */
-nav {
-    background: white;
-    padding: 17px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 3px 20px rgba(70,40,100,.08);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo {
-    font-size: 23px;
-    font-weight: 800;
-    color: #6035a5;
-}
-
-.logo span {
-    color: #35a36a;
-}
-
-.back {
-    text-decoration: none;
-    color: #6544a1;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.back:hover {
-    color: #35a36a;
-}
-
-/* HEADER */
-.header {
-    background: linear-gradient(120deg,#dff5e8,#e9ddfa);
-    padding: 55px 7%;
-    text-align: center;
-}
-
-.header .tag {
-    display: inline-block;
-    padding: 8px 20px;
-    background: white;
-    color: #38976a;
-    border-radius: 30px;
-    font-size: 13px;
-    margin-bottom: 18px;
-}
-
-.header h1 {
-    font-size: 38px;
-    color: #60399c;
-    font-weight: 800;
-}
-
-.header h1 span {
-    color: #36a36b;
-}
-
-.header p {
-    color: #70697c;
-    margin-top: 12px;
-    line-height: 1.8;
-}
-
-/* INFO */
-.info {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 25px;
-}
-
-.info-box {
-    background: white;
-    padding: 12px 22px;
-    border-radius: 13px;
-    color: #60419b;
-    font-size: 14px;
-    box-shadow: 0 4px 15px rgba(70,40,100,.06);
-}
-
-/* MAIN */
-.container {
-    max-width: 1000px;
-    margin: 35px auto;
-    padding: 0 20px;
-}
-
-/* TIMER */
-.timer-box {
-    background: white;
-    padding: 20px 25px;
-    border-radius: 18px;
-    box-shadow: 0 5px 20px rgba(70,40,100,.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.timer-title {
-    color: #6c5a84;
-    font-size: 14px;
-}
-
-.timer {
-    font-size: 28px;
-    font-weight: 800;
-    color: #36a36b;
-    font-variant-numeric: tabular-nums;
-}
-
-.timer.warning {
-    color: #e05267;
-}
-
-.start-timer-btn {
-    margin-top: 10px;
-    padding: 9px 20px;
-    border: none;
-    border-radius: 25px;
-    background: linear-gradient(110deg,#39ad70,#6841b0);
-    color: white;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.start-timer-btn:hover {
-    transform: translateY(-2px);
-}
-
-.start-timer-btn:disabled {
-    opacity: .6;
-    cursor: not-allowed;
-    transform: none;
-}
-
-.progress-area {
-    margin-top: 12px;
-}
-
-.progress-text {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    color: #81798e;
-    margin-bottom: 8px;
-}
-
-.progress {
-    height: 9px;
-    background: #eee9f5;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg,#39b779,#7548b8);
-    border-radius: 20px;
-    transition: .3s;
-}
-
-/* INSTRUCTION */
-.instruction {
-    background: #eee7fa;
-    border-left: 5px solid #8053bd;
-    padding: 18px 22px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    color: #59427f;
-    font-size: 14px;
-    line-height: 1.8;
-}
-
-/* QUESTION */
-.question-card {
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    margin-bottom: 22px;
-    box-shadow: 0 5px 22px rgba(70,40,100,.05);
-    border: 1px solid #eeeaf4;
-    transition: .2s;
-}
-
-.question-card.answered {
-    border-left: 5px solid #48ad77;
-}
-
-.question-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 17px;
-}
-
-.question-number {
-    font-size: 17px;
-    font-weight: 700;
-    color: #6540a3;
-}
-
-.topic {
-    background: #e5f6ec;
-    color: #369566;
-    padding: 6px 13px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-.question-text {
-    font-size: 16px;
-    line-height: 1.9;
-    margin-bottom: 20px;
-    font-weight: 500;
-    white-space: pre-line;
-}
-
-.options {
-    display: grid;
-    gap: 12px;
-}
-
-.option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 17px;
-    border: 1px solid #e9e4f0;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: .2s;
-    font-size: 14px;
-}
-
-.option:hover {
-    background: #f2f8f3;
-    border-color: #6cbd8e;
-}
-
-.option:has(input:checked) {
-    background: #eaf7ef;
-    border-color: #43a974;
-    color: #287e51;
-    font-weight: 600;
-}
-
-.option input {
-    accent-color: #46a875;
-    width: 17px;
-    height: 17px;
-    flex-shrink: 0;
-}
-
-.option.disabled {
-    cursor: default;
-    pointer-events: none;
-}
-
-/* BUTTONS */
-.submit-area {
-    text-align: center;
-    padding: 20px 0 50px;
-}
-
-.submit-btn {
-    background: linear-gradient(110deg,#39ad70,#6841b0);
-    color: white;
-    border: none;
-    padding: 16px 45px;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 40px;
-    cursor: pointer;
-    box-shadow: 0 7px 20px rgba(90,60,150,.2);
-    transition: .3s;
-}
-
-.submit-btn:hover {
-    transform: translateY(-3px);
-}
-
-.submit-btn:disabled {
-    opacity: .6;
-    cursor: not-allowed;
-}
-
-/* RESULT */
-#result {
-    display: none;
-}
-
-.result-box {
-    background: white;
-    padding: 40px 25px;
-    text-align: center;
-    border-radius: 25px;
-    box-shadow: 0 8px 30px rgba(70,40,100,.07);
-    margin-bottom: 30px;
-}
-
-.result-icon {
-    font-size: 60px;
-    margin-bottom: 15px;
-}
-
-.result-box h2 {
-    color: #60399c;
-    font-size: 30px;
-}
-
-.score {
-    font-size: 55px;
-    font-weight: 800;
-    color: #39a66e;
-    margin: 15px 0;
-}
-
-.result-detail {
-    color: #777080;
-    line-height: 2;
-    font-size: 15px;
-}
-
-.review-title {
-    text-align: center;
-    color: #60399c;
-    margin: 35px 0 20px;
-    font-size: 25px;
-}
-
-.review-card {
-    background: white;
-    padding: 23px;
-    border-radius: 15px;
-    margin-bottom: 18px;
-    border: 1px solid #eeeaf4;
-    line-height: 1.9;
-}
-
-.review-card h3 {
-    color: #60399c;
-    font-size: 16px;
-    margin-bottom: 12px;
-}
-
-.correct-answer {
-    color: #278b55;
-    background: #e8f7ed;
-    padding: 10px 13px;
-    border-radius: 9px;
-    margin: 10px 0;
-    font-size: 14px;
-}
-
-.wrong-answer {
-    color: #d14f5e;
-    background: #fff0f0;
-    padding: 10px 13px;
-    border-radius: 9px;
-    margin: 10px 0;
-    font-size: 14px;
-}
-
-.explanation {
-    background: #f1ebfa;
-    color: #59427f;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 12px;
-    font-size: 14px;
-    white-space: pre-line;
-}
-
-.retry-btn {
-    display: inline-block;
-    margin: 10px;
-    padding: 13px 25px;
-    background: #6540a3;
-    color: white;
-    border-radius: 30px;
-    text-decoration: none;
-    border: none;
-    font-family: inherit;
-    cursor: pointer;
-}
-
-/* FOOTER */
-footer {
-    background: linear-gradient(110deg,#286e50,#56328c);
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
-    font-size: 13px;
-    line-height: 2;
-}
-
-@media(max-width:600px) {
-    .header h1 {
-        font-size: 29px;
-    }
-
-    .timer-box {
-        padding: 17px;
-    }
-
-    .timer {
-        font-size: 24px;
-    }
-
-    .question-card {
-        padding: 19px;
-    }
-
-    .question-text {
-        font-size: 15px;
-    }
-
-    .score {
-        font-size: 43px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<!-- NAVBAR -->
-<nav>
-    <div class="logo">คลัง<span>ข้อสอบ.</span></div>
-    <a href="index.html" class="back">← กลับหน้าหลัก</a>
-</nav>
-
-<!-- HEADER -->
-<header class="header">
-    <div class="tag">✦ ONLINE EXAMINATION</div>
-
-    <h1>แบบทดสอบวิชา<span>คณิตศาสตร์</span></h1>
-
-    <p>
-        ระดับชั้นมัธยมศึกษาปีที่ 4–6<br>
-        ทบทวนความรู้ ฝึกฝนทักษะ และพัฒนาตนเอง
-    </p>
-
-    <div class="info">
-        <div class="info-box">📋 20 ข้อ</div>
-        <div class="info-box">🏆 20 คะแนน</div>
-        <div class="info-box">⏱️ 90 นาที</div>
-    </div>
-</header>
-
-<!-- EXAM -->
-<main class="container" id="exam">
-
-    <div class="timer-box">
-        <div>
-            <div class="timer-title">เวลาที่เหลือในการทำข้อสอบ</div>
-            <div class="timer" id="timer">90:00</div>
-            <button class="start-timer-btn" id="startTimerBtn" onclick="startExamTimer()">▶ เริ่มจับเวลา</button>
-        </div>
-
-        <div style="flex:1;min-width:180px;">
-            <div class="progress-area">
-                <div class="progress-text">
-                    <span>ความคืบหน้าการทำข้อสอบ</span>
-                    <span id="progressText">0 / 20 ข้อ</span>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="instruction">
-        <strong>คำชี้แจง</strong><br>
-        1. แบบทดสอบมีจำนวน 20 ข้อ คะแนนเต็ม 20 คะแนน<br>
-        2. ให้นักเรียนเลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
-        3. มีเวลาในการทำข้อสอบ 90 นาที โดยเวลาจะเริ่มนับเมื่อกดปุ่ม “เริ่มจับเวลา”<br>
-        4. เมื่อทำข้อสอบเสร็จแล้วให้กดปุ่มส่งข้อสอบเพื่อดูคะแนนและเฉลย
-    </div>
-
-    <div id="questions"></div>
-
-    <div class="submit-area">
-        <button class="submit-btn" id="submitBtn" onclick="submitExam()">
-            ส่งข้อสอบและตรวจคะแนน
-        </button>
-        <p style="margin-top:12px;color:#888;font-size:13px;">
-            กรุณาตรวจสอบคำตอบก่อนกดส่งข้อสอบ
-        </p>
-    </div>
-
-</main>
-
-<!-- RESULT -->
-<section id="result" class="container">
-
-    <div class="result-box">
-        <div class="result-icon">🏆</div>
-        <h2>สรุปผลการสอบ</h2>
-
-        <div class="score">
-            <span id="score">0</span>/20
-        </div>
-
-        <div class="result-detail">
-            <div>ตอบถูก <strong id="correctCount">0</strong> ข้อ</div>
-            <div>ตอบผิด <strong id="wrongCount">0</strong> ข้อ</div>
-            <div>ไม่ได้ตอบ <strong id="blankCount">0</strong> ข้อ</div>
-            <div>คิดเป็น <strong id="percentage">0</strong>%</div>
-            <div>เวลาที่ใช้ <strong id="usedTime">0 นาที</strong></div>
-        </div>
-
-        <p id="resultMessage" style="margin-top:18px;color:#39996a;font-weight:600;"></p>
-    </div>
-
-    <h2 class="review-title">📖 เฉลยพร้อมคำอธิบายอย่างละเอียด</h2>
-
-    <div id="review"></div>
-
-    <div class="submit-area">
-        <button class="retry-btn" onclick="location.reload()">
-            ↻ ทำข้อสอบอีกครั้ง
-        </button>
-        <a href="index.html" class="retry-btn">
-            กลับหน้าหลัก
-        </a>
-    </div>
-
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <h2>📚 คลังข้อสอบ</h2>
-    เว็บไซต์คลังข้อสอบออนไลน์เพื่อการเรียนรู้
-    <br>
-    จัดทำโดย นางสาวกศิณ์นันท์ วงศ์เสนี
-    <br>
-    นางสาวณัฐธิดา ถกลพัฒนกุล
-    <br>
-    นางสาวสุกัลยา ชื่นชม
-    <br>
-    © 2026 Online Examination System
-</footer>
-
-<script>
-
-// ======================================
-// ข้อมูลข้อสอบและเฉลย
-// ======================================
-
 const questions = [
 
 {
-topic:"เซต (ม.4)",
-question:"กำหนดให้ A และ B เป็นเซต โดยที่ n(A) = 18, n(B) = 15 และ n(A ∩ B) = 7 จงหาจำนวนสมาชิกของ A ∪ B",
-options:["20","26","30","40"],
-answer:1,
-explanation:"ใช้สูตรจำนวนสมาชิกของยูเนียนเซต\nn(A ∪ B) = n(A) + n(B) - n(A ∩ B)\n= 18 + 15 - 7\n= 26\nดังนั้น มีสมาชิกในเซต A ∪ B ทั้งหมด 26 สมาชิก"
+topic:"พีชคณิตและค่าสัมบูรณ์",
+question:"จงหาจำนวนคำตอบจริงทั้งหมดของสมการ |x - 2| + |x + 1| = 5",
+options:[
+"0 คำตอบ",
+"1 คำตอบ",
+"2 คำตอบ",
+"3 คำตอบ"
+],
+answer:2,
+explanation:"พิจารณาแบ่งช่วงตามจุดที่ค่าสัมบูรณ์เป็นศูนย์ คือ x = -1 และ x = 2\n\nกรณีที่ 1: x < -1\n|x - 2| = 2 - x และ |x + 1| = -x - 1\nจึงได้ 2 - x - x - 1 = 5\n1 - 2x = 5\nx = -2 ซึ่งเป็นคำตอบที่อยู่ในช่วงนี้\n\nกรณีที่ 2: -1 ≤ x ≤ 2\nผลรวมจะเท่ากับ 3 จึงไม่สามารถเท่ากับ 5 ได้\n\nกรณีที่ 3: x > 2\nx - 2 + x + 1 = 5\n2x - 1 = 5\nx = 3 ซึ่งเป็นคำตอบที่อยู่ในช่วงนี้\n\nดังนั้นมีคำตอบจริงทั้งหมด 2 ค่า คือ x = -2 และ x = 3"
 },
 
 {
-topic:"ตรรกศาสตร์ (ม.4)",
-question:"นิเสธของประพจน์ “ถ้าฝนตกแล้วถนนเปียก” คือข้อใด",
+topic:"อสมการเศษส่วน",
+question:"จงหาช่วงคำตอบของอสมการ (x - 1)(x - 4)/(x + 2) ≤ 0",
 options:[
-"ฝนไม่ตกและถนนไม่เปียก",
-"ฝนตกและถนนไม่เปียก",
-"ฝนไม่ตกหรือถนนเปียก",
-"ฝนตกหรือถนนไม่เปียก"
+"(-∞, -2) ∪ [1, 4]",
+"(-2, 1] ∪ [4, ∞)",
+"(-∞, 1] ∪ [4, ∞)",
+"[-2, 1] ∪ [4, ∞)"
+],
+answer:0,
+explanation:"กำหนดจุดวิกฤตจากตัวเศษและตัวส่วน\nx - 1 = 0 ได้ x = 1\nx - 4 = 0 ได้ x = 4\nx + 2 = 0 ได้ x = -2\n\nแบ่งเส้นจำนวนเป็น 4 ช่วง\n1. x < -2 ได้ค่าลบ\n2. -2 < x < 1 ได้ค่าบวก\n3. 1 < x < 4 ได้ค่าลบ\n4. x > 4 ได้ค่าบวก\n\nต้องการค่าที่น้อยกว่าหรือเท่ากับศูนย์ จึงเลือกช่วงที่ได้ค่าลบและรวมจุดที่ทำให้เศษเป็นศูนย์ ได้แก่ 1 และ 4\nแต่ไม่รวม -2 เพราะทำให้ตัวส่วนเป็นศูนย์\n\nคำตอบคือ (-∞, -2) ∪ [1, 4]"
+},
+
+{
+topic:"สมการกรณฑ์",
+question:"สมการ √(x + 1) = x - 1 มีคำตอบจริงเท่าใด",
+options:[
+"x = 0",
+"x = 1",
+"x = 2",
+"x = 3"
+],
+answer:3,
+explanation:"จาก √(x + 1) = x - 1\nเนื่องจากรากที่สองมีค่าไม่ติดลบ จึงต้องมี x ≥ 1\n\nยกกำลังสองทั้งสองข้าง\nx + 1 = (x - 1)²\nx + 1 = x² - 2x + 1\nx² - 3x = 0\nx(x - 3) = 0\nได้ x = 0 หรือ x = 3\n\nแต่เงื่อนไขกำหนดให้ x ≥ 1 ดังนั้น x = 0 ใช้ไม่ได้\nคำตอบคือ x = 3"
+},
+
+{
+topic:"ลอการิทึมขั้นสูง",
+question:"ถ้า log₂(x - 1) + log₂(x + 1) = 3 แล้ว x มีค่าเท่าใด",
+options:[
+"1",
+"2",
+"3",
+"4"
+],
+answer:2,
+explanation:"กำหนดโดเมนก่อน เนื่องจากค่าภายในลอการิทึมต้องเป็นบวก\nx - 1 > 0 และ x + 1 > 0\nจึงได้ x > 1\n\nใช้สมบัติ logₐm + logₐn = logₐ(mn)\nlog₂[(x - 1)(x + 1)] = 3\nlog₂(x² - 1) = 3\n\nเปลี่ยนเป็นรูปเลขยกกำลัง\nx² - 1 = 2³\nx² - 1 = 8\nx² = 9\nx = ±3\n\nเมื่อพิจารณาเงื่อนไข x > 1 จึงเหลือ x = 3"
+},
+
+{
+topic:"เอกลักษณ์พีชคณิต",
+question:"กำหนดให้ a + b = 5 และ ab = 3 จงหาค่าของ a³ + b³",
+options:[
+"65",
+"70",
+"75",
+"80"
+],
+answer:3,
+explanation:"ใช้เอกลักษณ์\n a³ + b³ = (a + b)³ - 3ab(a + b)\n\nแทนค่า a + b = 5 และ ab = 3\n= 5³ - 3(3)(5)\n= 125 - 45\n= 80\n\nดังนั้นคำตอบคือ 80 โดยไม่จำเป็นต้องหาค่า a และ b แยกกัน"
+},
+
+{
+topic:"ตรีโกณมิติและสมการ",
+question:"เมื่อ 0 ≤ x < 2π สมการ sin x = cos 2x มีคำตอบทั้งหมดกี่ค่า",
+options:[
+"1 ค่า",
+"2 ค่า",
+"3 ค่า",
+"4 ค่า"
+],
+answer:2,
+explanation:"ใช้เอกลักษณ์ cos 2x = 1 - 2sin²x\n\nแทนในสมการ\nsin x = 1 - 2sin²x\n2sin²x + sin x - 1 = 0\n(2sin x - 1)(sin x + 1) = 0\n\nจึงได้ sin x = 1/2 หรือ sin x = -1\n\nในช่วง 0 ≤ x < 2π\nsin x = 1/2 ได้ x = π/6 และ 5π/6\nsin x = -1 ได้ x = 3π/2\n\nรวมมีคำตอบทั้งหมด 3 ค่า"
+},
+
+{
+topic:"เรขาคณิตวิเคราะห์และเส้นสัมผัส",
+question:"เส้นตรง y = m(x - 2) สัมผัสวงกลม x² + y² = 1 จงหาค่าที่เป็นไปได้ของ m",
+options:[
+"m = ±1",
+"m = ±1/2",
+"m = ±1/√3",
+"m = ±√3"
+],
+answer:2,
+explanation:"วงกลม x² + y² = 1 มีจุดศูนย์กลาง (0,0) และรัศมี 1\n\nเขียนเส้นตรงให้อยู่ในรูปมาตรฐาน\nmx - y - 2m = 0\n\nระยะจากจุดศูนย์กลางถึงเส้นตรงต้องเท่ากับรัศมี\n| -2m | / √(m² + 1) = 1\n\nยกกำลังสองทั้งสองข้าง\n4m² = m² + 1\n3m² = 1\nm² = 1/3\n\nดังนั้น m = ±1/√3"
+},
+
+{
+topic:"หลักการนับและการเรียงสับเปลี่ยน",
+question:"ใช้ตัวเลข 0, 1, 2, 3, 4 สร้างจำนวนเต็มบวก 5 หลัก โดยไม่ใช้ตัวเลขซ้ำกัน และต้องเป็นจำนวนคู่ จะสร้างได้ทั้งหมดกี่จำนวน",
+options:[
+"48 จำนวน",
+"54 จำนวน",
+"60 จำนวน",
+"72 จำนวน"
+],
+answer:2,
+explanation:"จำนวนคู่ต้องลงท้ายด้วย 0, 2 หรือ 4\nแบ่งเป็น 2 กรณี\n\nกรณีที่ 1 ลงท้ายด้วย 0\nตำแหน่งแรกเลือกได้ 4 วิธี คือ 1, 2, 3, 4\nตำแหน่งที่เหลือเรียงได้ 3! = 6 วิธี\nรวม 4 × 6 = 24 วิธี\n\nกรณีที่ 2 ลงท้ายด้วย 2 หรือ 4\nเลือกหลักหน่วยได้ 2 วิธี\nหลักหมื่นเลือกได้ 3 วิธี เพราะห้ามเป็น 0 และห้ามซ้ำหลักหน่วย\nตำแหน่งที่เหลือเรียงได้ 3! = 6 วิธี\nรวม 2 × 3 × 6 = 36 วิธี\n\nทั้งหมด 24 + 36 = 60 จำนวน"
+},
+
+{
+topic:"ความน่าจะเป็น",
+question:"สุ่มเลือกไพ่ตัวเลข 2 ใบจากบัตรหมายเลข 1 ถึง 10 โดยไม่ใส่คืน ความน่าจะเป็นที่ผลรวมของตัวเลขทั้งสองเท่ากับ 11 คือเท่าใด",
+options:[
+"1/10",
+"1/9",
+"1/8",
+"1/5"
 ],
 answer:1,
-explanation:"กำหนดให้ p แทนข้อความ ฝนตก และ q แทนข้อความ ถนนเปียก\nประพจน์เดิมคือ p → q\nนิเสธของประพจน์เงื่อนไขคือ p ∧ ~q\nจึงได้ข้อความว่า ฝนตกและถนนไม่เปียก"
+explanation:"จำนวนวิธีเลือกบัตร 2 ใบจาก 10 ใบ โดยไม่สนใจลำดับ คือ\nC(10,2) = 10!/(2!8!) = 45 วิธี\n\nคู่ตัวเลขที่มีผลรวมเป็น 11 ได้แก่\n(1,10), (2,9), (3,8), (4,7), (5,6)\nมีทั้งหมด 5 วิธี\n\nความน่าจะเป็น = 5/45 = 1/9"
 },
 
 {
-topic:"สมการกำลังสอง (ม.4)",
-question:"จงหาคำตอบของสมการ x² - 5x + 6 = 0",
-options:["x = 1, 6","x = 2, 3","x = -2, -3","x = 0, 5"],
-answer:1,
-explanation:"จากสมการ x² - 5x + 6 = 0\nแยกตัวประกอบได้เป็น\n(x - 2)(x - 3) = 0\nดังนั้น x - 2 = 0 หรือ x - 3 = 0\nจะได้ x = 2 หรือ x = 3"
-},
-
-{
-topic:"ฟังก์ชัน (ม.4)",
-question:"กำหนดให้ f(x) = 2x² - 3 จงหาค่า f(-2)",
-options:["3","5","7","11"],
-answer:1,
-explanation:"กำหนดให้ f(x) = 2x² - 3\nแทน x ด้วย -2\nf(-2) = 2(-2)² - 3\n= 2(4) - 3\n= 8 - 3\n= 5"
-},
-
-{
-topic:"ฟังก์ชันเอกซ์โพเนนเชียล (ม.4)",
-question:"ถ้า 3^(x+1) = 81 แล้ว x มีค่าเท่าใด",
-options:["2","3","4","5"],
-answer:1,
-explanation:"จาก 3^(x+1) = 81\nเขียน 81 = 3⁴\nดังนั้น 3^(x+1) = 3⁴\nเมื่อฐานเท่ากัน เลขชี้กำลังเท่ากัน\nx + 1 = 4\nx = 3"
-},
-
-{
-topic:"ลอการิทึม (ม.4)",
-question:"ค่าของ log₂ 32 เท่ากับเท่าใด",
-options:["3","4","5","6"],
-answer:2,
-explanation:"log₂ 32 หมายถึง 2 ยกกำลังเท่าใดแล้วได้ 32\nเนื่องจาก 2⁵ = 32\nดังนั้น log₂ 32 = 5"
-},
-
-{
-topic:"เรขาคณิตวิเคราะห์ (ม.4)",
-question:"ระยะห่างระหว่างจุด A(1,2) และ B(4,6) มีค่าเท่าใด",
-options:["3 หน่วย","4 หน่วย","5 หน่วย","6 หน่วย"],
-answer:2,
-explanation:"ใช้สูตรระยะห่างระหว่างจุดสองจุด\nd = √[(x₂-x₁)² + (y₂-y₁)²]\n= √[(4-1)² + (6-2)²]\n= √(3² + 4²)\n= √(9 + 16)\n= √25 = 5 หน่วย"
-},
-
-{
-topic:"อัตราส่วนตรีโกณมิติ (ม.5)",
-question:"จงหาค่าของ sin 30° + cos 60°",
-options:["0","1/2","1","2"],
-answer:2,
-explanation:"ใช้ค่ามุมพิเศษทางตรีโกณมิติ\nsin 30° = 1/2\ncos 60° = 1/2\nดังนั้น sin 30° + cos 60°\n= 1/2 + 1/2 = 1"
-},
-
-{
-topic:"เมทริกซ์ (ม.5)",
-question:"กำหนดเมทริกซ์ A = [[2,1],[3,4]] จงหาค่า det(A)",
-options:["3","5","7","11"],
-answer:1,
-explanation:"ใช้สูตรดีเทอร์มิแนนต์ของเมทริกซ์ขนาด 2 × 2\n det(A) = ad - bc\n= (2 × 4) - (1 × 3)\n= 8 - 3\n= 5"
-},
-
-{
-topic:"ลำดับเลขคณิต (ม.5)",
-question:"กำหนดลำดับ 5, 8, 11, 14, … จงหาพจน์ที่ 10",
-options:["29","30","32","35"],
-answer:2,
-explanation:"เป็นลำดับเลขคณิต\nพจน์แรก a₁ = 5\nผลต่างร่วม d = 3\nใช้สูตร aₙ = a₁ + (n-1)d\nแทนค่า a₁₀ = 5 + (10-1)(3)\n= 5 + 27\n= 32"
-},
-
-{
-topic:"อนุกรมเรขาคณิต (ม.5)",
-question:"กำหนดอนุกรม 2 + 6 + 18 + 54 + … จงหาผลบวก 5 พจน์แรก",
-options:["120","180","242","250"],
-answer:2,
-explanation:"อนุกรมเรขาคณิตมี a = 2, r = 3 และ n = 5\nใช้สูตร Sₙ = a(rⁿ - 1)/(r - 1)\nS₅ = 2(3⁵ - 1)/(3 - 1)\n= 2(243 - 1)/2\n= 242"
-},
-
-{
-topic:"หลักการนับเบื้องต้น (ม.5)",
-question:"มีหนังสือแตกต่างกัน 5 เล่ม ต้องการนำมาเรียงบนชั้นหนังสือเป็นแถว จะสามารถเรียงได้กี่วิธี",
-options:["25 วิธี","60 วิธี","100 วิธี","120 วิธี"],
+topic:"เมทริกซ์และดีเทอร์มิแนนต์",
+question:"กำหนดเมทริกซ์ A = [[1,k],[k,1]] ค่าของ k ใดทำให้เมทริกซ์ A ไม่มีเมทริกซ์ผกผัน",
+options:[
+"k = 0 เท่านั้น",
+"k = 1 เท่านั้น",
+"k = -1 เท่านั้น",
+"k = ±1"
+],
 answer:3,
-explanation:"เป็นการเรียงสับเปลี่ยนหนังสือที่แตกต่างกัน 5 เล่ม\nใช้สูตร 5!\n= 5 × 4 × 3 × 2 × 1\n= 120 วิธี"
+explanation:"เมทริกซ์จะไม่มีเมทริกซ์ผกผันเมื่อดีเทอร์มิแนนต์มีค่าเป็นศูนย์\n\nสำหรับเมทริกซ์ 2 × 2\n det(A) = ad - bc\n\nดังนั้น det(A) = (1)(1) - (k)(k)\n= 1 - k²\n\nกำหนดให้ 1 - k² = 0\nk² = 1\nk = ±1\n\nดังนั้น k = 1 หรือ k = -1"
 },
 
 {
-topic:"ความน่าจะเป็น (ม.5)",
-question:"ในการทอดลูกเต๋ามาตรฐาน 2 ลูกพร้อมกัน 1 ครั้ง ความน่าจะเป็นที่จะได้ผลรวมของแต้มเท่ากับ 8 คือข้อใด",
-options:["1/6","5/36","1/4","1/3"],
+topic:"จำนวนเชิงซ้อน",
+question:"กำหนดให้ z² = -8 + 6i โดยที่ i² = -1 จงหาค่าหนึ่งของ z",
+options:[
+"1 + 3i",
+"2 + 3i",
+"3 + 2i",
+"1 - 3i"
+],
+answer:0,
+explanation:"ทดลองยกกำลังสองจำนวนเชิงซ้อนแต่ละตัว\n\nพิจารณา z = 1 + 3i\nz² = (1 + 3i)²\n= 1 + 6i + 9i²\nเนื่องจาก i² = -1\n= 1 + 6i - 9\n= -8 + 6i\n\nตรงกับโจทย์ ดังนั้น z = 1 + 3i เป็นคำตอบหนึ่ง\nอีกคำตอบคือ z = -(1 + 3i) = -1 - 3i"
+},
+
+{
+topic:"ทฤษฎีบทเศษเหลือ",
+question:"กำหนด P(x) = x³ + ax² + bx + 6 ถ้า P(x) หารด้วย (x - 1) และ (x + 2) ลงตัว จงหาค่า a - b",
+options:[
+"-3",
+"-1",
+"1",
+"3"
+],
+answer:3,
+explanation:"ใช้ทฤษฎีบทเศษเหลือ\nเมื่อหารด้วย x - 1 ลงตัว จะได้ P(1) = 0\n1 + a + b + 6 = 0\nจึงได้ a + b = -7  ...(1)\n\nเมื่อหารด้วย x + 2 ลงตัว จะได้ P(-2) = 0\n-8 + 4a - 2b + 6 = 0\n4a - 2b = 2\n2a - b = 1  ...(2)\n\nจาก (1) a + b = -7\nและ (2) 2a - b = 1\nบวกสมการทั้งสองได้ 3a = -6\nดังนั้น a = -2\nแทนค่าใน (1) ได้ b = -5\n\nจึงได้ a - b = -2 - (-5) = 3"
+},
+
+{
+topic:"แคลคูลัสและอนุพันธ์",
+question:"กำหนดให้ f(x) = x³ - 3x² - 9x + 5 ค่าสูงสุดสัมพัทธ์ของฟังก์ชันนี้มีค่าเท่าใด",
+options:[
+"5",
+"8",
+"10",
+"12"
+],
+answer:2,
+explanation:"หาอนุพันธ์อันดับหนึ่ง\nf'(x) = 3x² - 6x - 9\n= 3(x² - 2x - 3)\n= 3(x - 3)(x + 1)\n\nให้ f'(x) = 0\nได้ x = 3 และ x = -1\n\nหาอนุพันธ์อันดับสอง\nf''(x) = 6x - 6\n\nเมื่อ x = -1\nf''(-1) = -12 ซึ่งน้อยกว่าศูนย์\nจึงเป็นจุดสูงสุดสัมพัทธ์\n\nแทนค่าในฟังก์ชัน\nf(-1) = (-1)³ - 3(-1)² - 9(-1) + 5\n= -1 - 3 + 9 + 5\n= 10\n\nดังนั้นค่าสูงสุดสัมพัทธ์คือ 10"
+},
+
+{
+topic:"ปริพันธ์และพื้นที่",
+question:"จงหาค่าของ ∫₀² |x - 1| dx",
+options:[
+"1/2",
+"1",
+"3/2",
+"2"
+],
 answer:1,
-explanation:"จำนวนผลลัพธ์ทั้งหมด = 6 × 6 = 36 แบบ\nผลลัพธ์ที่มีผลรวมเท่ากับ 8 ได้แก่\n(2,6), (3,5), (4,4), (5,3), (6,2)\nมีทั้งหมด 5 แบบ\nความน่าจะเป็น = 5/36"
+explanation:"เนื่องจากมีค่าสัมบูรณ์ จึงต้องแยกช่วงที่ x = 1\n\nเมื่อ 0 ≤ x < 1 จะได้ |x - 1| = 1 - x\nเมื่อ 1 ≤ x ≤ 2 จะได้ |x - 1| = x - 1\n\nดังนั้น\n∫₀² |x - 1| dx\n= ∫₀¹ (1 - x) dx + ∫₁² (x - 1) dx\n\nอินทิเกรตแต่ละช่วง\n= [x - x²/2]₀¹ + [x²/2 - x]₁²\n= 1/2 + 1/2\n= 1\n\nดังนั้นคำตอบคือ 1"
 },
 
 {
-topic:"สถิติและค่าเฉลี่ย (ม.6)",
-question:"กำหนดข้อมูล 4, 6, 8, 10, 12 จงหาค่าเฉลี่ยเลขคณิต",
-options:["6","7","8","10"],
+topic:"อสมการและ AM-GM",
+question:"เมื่อ x เป็นจำนวนจริงบวก ค่าต่ำสุดของ x² + 4/x² เท่ากับเท่าใด",
+options:[
+"2",
+"3",
+"4",
+"8"
+],
 answer:2,
-explanation:"ใช้สูตรค่าเฉลี่ยเลขคณิต\nค่าเฉลี่ย = ผลรวมข้อมูล / จำนวนข้อมูล\n= (4 + 6 + 8 + 10 + 12) / 5\n= 40 / 5\n= 8"
+explanation:"ใช้สมบัติ AM-GM สำหรับจำนวนจริงบวก\n\nx² + 4/x² ≥ 2√(x² × 4/x²)\n\n= 2√4\n= 4\n\nเครื่องหมายเท่ากับเกิดเมื่อ\nx² = 4/x²\nx⁴ = 4\nx² = 2\n\nซึ่งมีค่า x เป็นบวกที่ทำให้เกิดความเท่ากันได้\nดังนั้นค่าต่ำสุดคือ 4"
 },
 
 {
-topic:"ความแปรปรวน (ม.6)",
-question:"กำหนดข้อมูล 2, 4, 6, 8 จงหาความแปรปรวนของข้อมูลชุดนี้ โดยถือว่าเป็นประชากร",
-options:["4","5","6","8"],
-answer:1,
-explanation:"ขั้นตอนที่ 1 หาค่าเฉลี่ย\nค่าเฉลี่ย = (2 + 4 + 6 + 8) / 4 = 5\nขั้นตอนที่ 2 หาผลรวมกำลังสองของส่วนเบี่ยงเบน\n(2-5)² + (4-5)² + (6-5)² + (8-5)²\n= 9 + 1 + 1 + 9 = 20\nขั้นตอนที่ 3 หาความแปรปรวนประชากร\nσ² = 20 / 4 = 5"
+topic:"ทฤษฎีจำนวนและการหารลงตัว",
+question:"ถ้า n เป็นจำนวนเต็มบวก และ n + 1 หาร n² + 2n + 3 ลงตัว จงหาค่า n",
+options:[
+"1",
+"2",
+"3",
+"4"
+],
+answer:0,
+explanation:"จัดรูปนิพจน์ใหม่\nn² + 2n + 3 = (n + 1)² + 2\n\nกำหนดให้ n + 1 หารนิพจน์นี้ลงตัว\nแสดงว่า n + 1 ต้องหาร 2 ลงตัวด้วย\n\nเนื่องจาก n เป็นจำนวนเต็มบวก จึงมี n + 1 ≥ 2\nตัวหารบวกของ 2 ที่มีค่าตั้งแต่ 2 ขึ้นไปมีเพียง 2\nดังนั้น n + 1 = 2\nจึงได้ n = 1"
 },
 
 {
-topic:"ดอกเบี้ยทบต้น (ม.5)",
-question:"ฝากเงิน 10,000 บาท ได้รับดอกเบี้ยทบต้น 10% ต่อปี เมื่อครบ 2 ปี จะมีเงินรวมเท่าใด",
-options:["11,000 บาท","12,000 บาท","12,100 บาท","12,500 บาท"],
+topic:"ลำดับและความสัมพันธ์เวียนเกิด",
+question:"กำหนดลำดับโดย a₁ = 1 และ aₙ₊₁ = 2aₙ + 3 จงหาค่าของ a₅",
+options:[
+"29",
+"45",
+"53",
+"61"
+],
+answer:3,
+explanation:"ใช้ความสัมพันธ์เวียนเกิดคำนวณทีละพจน์\n\na₁ = 1\n\na₂ = 2(1) + 3 = 5\n\na₃ = 2(5) + 3 = 13\n\na₄ = 2(13) + 3 = 29\n\na₅ = 2(29) + 3 = 61\n\nดังนั้น a₅ = 61\n\nสามารถตรวจสอบด้วยสูตรทั่วไป aₙ = 4(2ⁿ⁻¹) - 3"
+},
+
+{
+topic:"เรขาคณิตและพื้นที่สามเหลี่ยม",
+question:"กำหนดจุด A(0,0), B(4,0) และ C(1,3) จงหาพื้นที่ของสามเหลี่ยม ABC",
+options:[
+"4 ตารางหน่วย",
+"5 ตารางหน่วย",
+"6 ตารางหน่วย",
+"8 ตารางหน่วย"
+],
 answer:2,
-explanation:"ใช้สูตรดอกเบี้ยทบต้น A = P(1+r)ⁿ\nP = 10,000 บาท\nr = 0.10 และ n = 2\nA = 10,000(1+0.10)²\n= 10,000(1.10)²\n= 10,000 × 1.21\n= 12,100 บาท"
+explanation:"จุด A และ B อยู่บนแกน x เดียวกัน\nดังนั้นฐาน AB มีความยาว 4 หน่วย\n\nจุด C มีพิกัด (1,3) จึงมีระยะห่างจากแกน x เท่ากับ 3 หน่วย\nซึ่งเป็นความสูงของสามเหลี่ยม\n\nใช้สูตรพื้นที่สามเหลี่ยม\nพื้นที่ = 1/2 × ฐาน × สูง\n= 1/2 × 4 × 3\n= 6 ตารางหน่วย"
 },
 
 {
-topic:"จำนวนเชิงซ้อน (ม.5)",
-question:"กำหนดให้ z₁ = 3 + 2i และ z₂ = 1 - 5i จงหาค่า z₁ + z₂",
-options:["4 + 7i","4 - 3i","2 - 3i","3 - 5i"],
-answer:1,
-explanation:"กำหนดให้ z₁ = 3 + 2i และ z₂ = 1 - 5i\nนำส่วนจริงบวกส่วนจริง และส่วนจินตภาพบวกส่วนจินตภาพ\nz₁ + z₂ = (3+1) + (2i-5i)\n= 4 - 3i"
-},
-
-{
-topic:"เวกเตอร์ (ม.5)",
-question:"กำหนดเวกเตอร์ a = (1,2,2) และ b = (2,0,1) จงหาผลคูณเชิงสเกลาร์ a · b",
-options:["2","3","4","5"],
+topic:"ฟังก์ชันและสมการเชิงฟังก์ชัน",
+question:"กำหนดให้ f(x + y) = f(x) + f(y) + 2xy สำหรับจำนวนเต็มบวก x และ y และ f(1) = 3 จงหาค่า f(5)",
+options:[
+"25",
+"30",
+"35",
+"40"
+],
 answer:2,
-explanation:"ใช้สูตรผลคูณเชิงสเกลาร์\na · b = x₁x₂ + y₁y₂ + z₁z₂\n= (1×2) + (2×0) + (2×1)\n= 2 + 0 + 2\n= 4"
+explanation:"ใช้ความสัมพันธ์ที่กำหนด โดยให้ y = 1\n\nf(x + 1) = f(x) + f(1) + 2x(1)\n\nแทน f(1) = 3\nf(x + 1) = f(x) + 3 + 2x\n\nคำนวณทีละค่า\nf(2) = 3 + 3 + 2 = 8\nf(3) = 8 + 3 + 4 = 15\nf(4) = 15 + 3 + 6 = 24\nf(5) = 24 + 3 + 8 = 35\n\nดังนั้น f(5) = 35"
 },
 
 {
-topic:"อนุพันธ์ (ม.6)",
-question:"กำหนดให้ f(x) = 3x² - 4x + 1 จงหาค่า f’(2)",
-options:["4","6","8","10"],
-answer:2,
-explanation:"กำหนดให้ f(x) = 3x² - 4x + 1\nหาอนุพันธ์ได้ f’(x) = 6x - 4\nแทน x = 2\nf’(2) = 6(2) - 4\n= 12 - 4\n= 8"
-},
-
-{
-topic:"ปริพันธ์ (ม.6)",
-question:"จงหาค่าของ ∫₀² (2x + 1) dx",
-options:["4","5","6","8"],
-answer:2,
-explanation:"หาปริพันธ์ไม่จำกัดเขตก่อน\n∫(2x + 1)dx = x² + x\nแทนค่าขอบเขตบนและล่าง\n= [x² + x]₀²\n= (2² + 2) - (0² + 0)\n= 6"
+topic:"สมการกำลังสองและพารามิเตอร์",
+question:"กำหนดสมการ x² - 2ax + a + 2 = 0 ถ้าสมการมีรากจริงซ้ำกัน จงหาผลบวกของค่า a ที่เป็นไปได้ทั้งหมด",
+options:[
+"-2",
+"-1",
+"0",
+"1"
+],
+answer:3,
+explanation:"สมการกำลังสองมีรากจริงซ้ำกันเมื่อ discriminant เท่ากับศูนย์\n\nจากสมการ x² - 2ax + a + 2 = 0\nจะได้ A = 1, B = -2a และ C = a + 2\n\nใช้สูตร Δ = B² - 4AC\nΔ = (-2a)² - 4(1)(a + 2)\n= 4a² - 4a - 8\n\nกำหนดให้ Δ = 0\n4a² - 4a - 8 = 0\nหารด้วย 4\n a² - a - 2 = 0\n(a - 2)(a + 1) = 0\n\nดังนั้น a = 2 หรือ a = -1\nผลบวกของค่าที่เป็นไปได้คือ 2 + (-1) = 1"
 }
 
 ];
-
-// ======================================
-// สร้างหน้าข้อสอบ
-// ======================================
-
-const questionsArea = document.getElementById("questions");
-
-questions.forEach((q, index) => {
-
-    let optionsHTML = "";
-
-    q.options.forEach((option, i) => {
-
-        optionsHTML += `
-        <label class="option">
-            <input
-                type="radio"
-                name="q${index}"
-                value="${i}"
-                onchange="updateProgress()"
-            >
-            <span>${String.fromCharCode(65+i)}. ${option}</span>
-        </label>
-        `;
-
-    });
-
-    questionsArea.innerHTML += `
-    <div class="question-card" id="card${index}">
-
-        <div class="question-top">
-            <div class="question-number">ข้อที่ ${index+1}</div>
-            <div class="topic">${q.topic}</div>
-        </div>
-
-        <div class="question-text">${q.question}</div>
-
-        <div class="options">
-            ${optionsHTML}
-        </div>
-
-    </div>
-    `;
-
-});
-
-// ======================================
-// ระบบความคืบหน้า
-// ======================================
-
-function updateProgress() {
-
-    let answered = 0;
-
-    questions.forEach((q, index) => {
-
-        const selected = document.querySelector(
-            `input[name="q${index}"]:checked`
-        );
-
-        const card = document.getElementById(`card${index}`);
-
-        if (selected) {
-            answered++;
-            card.classList.add("answered");
-        } else {
-            card.classList.remove("answered");
-        }
-
-    });
-
-    document.getElementById("progressText").textContent =
-        `${answered} / 20 ข้อ`;
-
-    document.getElementById("progressBar").style.width =
-        (answered / 20 * 100) + "%";
-
-}
-
-// ======================================
-// ระบบจับเวลา 90 นาที (เริ่มเมื่อกดปุ่ม)
-// ======================================
-
-const totalTime = 90 * 60;
-let remainingTime = totalTime;
-let submitted = false;
-let examStarted = false;
-let countdown = null;
-
-const timerDisplay = document.getElementById("timer");
-const startTimerBtn = document.getElementById("startTimerBtn");
-
-function startExamTimer() {
-
-    if (examStarted || submitted) return;
-
-    examStarted = true;
-    startTimerBtn.disabled = true;
-    startTimerBtn.textContent = "กำลังจับเวลา...";
-
-    countdown = setInterval(() => {
-
-        if (submitted) {
-            clearInterval(countdown);
-            return;
-        }
-
-        remainingTime--;
-
-        let minutes = Math.floor(remainingTime / 60);
-        let seconds = remainingTime % 60;
-
-        timerDisplay.textContent =
-            String(minutes).padStart(2,"0") + ":" +
-            String(seconds).padStart(2,"0");
-
-        if (remainingTime <= 300) {
-            timerDisplay.classList.add("warning");
-        }
-
-        if (remainingTime <= 0) {
-            clearInterval(countdown);
-            alert("หมดเวลาทำข้อสอบ ระบบจะส่งคำตอบให้อัตโนมัติ");
-            submitExam(true);
-        }
-
-    }, 1000);
-}
-
-// ======================================
-// ระบบส่งข้อสอบและตรวจคะแนน
-// ======================================
-
-function submitExam(autoSubmit = false) {
-
-    if (submitted) return;
-
-    if (!examStarted && !autoSubmit) {
-        alert("กรุณากดปุ่มเริ่มจับเวลาก่อนส่งข้อสอบ");
-        return;
-    }
-
-    const answered = document.querySelectorAll(
-        '#questions input:checked'
-    ).length;
-
-    if (!autoSubmit) {
-
-        if (answered < 20) {
-
-            const confirmSubmit = confirm(
-                `คุณตอบแล้ว ${answered} จาก 20 ข้อ\nยังมีข้อที่ไม่ได้ตอบ\nต้องการส่งข้อสอบหรือไม่?`
-            );
-
-            if (!confirmSubmit) return;
-
-        } else {
-
-            if (!confirm("คุณแน่ใจหรือไม่ว่าต้องการส่งข้อสอบ?")) {
-                return;
-            }
-
-        }
-
-    }
-
-    submitted = true;
-    if (countdown !== null) clearInterval(countdown);
-
-    document.getElementById("submitBtn").disabled = true;
-
-    let correct = 0;
-    let wrong = 0;
-    let blank = 0;
-
-    let reviewHTML = "";
-
-    questions.forEach((q,index) => {
-
-        const selected = document.querySelector(
-            `input[name="q${index}"]:checked`
-        );
-
-        const userAnswer = selected
-            ? Number(selected.value)
-            : null;
-
-        const isCorrect = userAnswer === q.answer;
-
-        if (userAnswer === null) {
-            blank++;
-        } else if (isCorrect) {
-            correct++;
-        } else {
-            wrong++;
-        }
-
-        const correctLabel =
-            String.fromCharCode(65 + q.answer);
-
-        const userLabel = userAnswer === null
-            ? "ไม่ได้ตอบ"
-            : String.fromCharCode(65 + userAnswer)
-              + ". " + q.options[userAnswer];
-
-        reviewHTML += `
-        <div class="review-card">
-
-            <h3>ข้อที่ ${index+1} : ${q.topic}</h3>
-
-            <p style="font-size:14px;">
-                ${q.question}
-            </p>
-
-            <div class="${isCorrect ? 'correct-answer' : 'wrong-answer'}">
-                คำตอบของคุณ: ${userLabel}
-                ${userAnswer === null ? '' : (isCorrect ? ' ✓ ถูกต้อง' : ' ✗ ไม่ถูกต้อง')}
-            </div>
-
-            <div class="correct-answer">
-                เฉลย: ${correctLabel}. ${q.options[q.answer]}
-            </div>
-
-            <div class="explanation">
-                <strong>คำอธิบายและวิธีทำ</strong>
-                <br>
-                ${q.explanation}
-            </div>
-
-        </div>
-        `;
-
-    });
-
-    const percentage = (correct / 20) * 100;
-
-    const usedSeconds = totalTime - remainingTime;
-    const usedMinutes = Math.floor(usedSeconds / 60);
-    const usedRemainder = usedSeconds % 60;
-
-    document.getElementById("score").textContent = correct;
-    document.getElementById("correctCount").textContent = correct;
-    document.getElementById("wrongCount").textContent = wrong;
-    document.getElementById("blankCount").textContent = blank;
-    document.getElementById("percentage").textContent = percentage;
-
-    document.getElementById("usedTime").textContent =
-        `${usedMinutes} นาที ${usedRemainder} วินาที`;
-
-    let message = "";
-
-    if (percentage >= 80) {
-        message = "🌟 ยอดเยี่ยมมาก! คุณมีความเข้าใจในเนื้อหาเป็นอย่างดี";
-    } else if (percentage >= 60) {
-        message = "👏 ทำได้ดี! ลองทบทวนเนื้อหาเพิ่มเติมเพื่อพัฒนาคะแนน";
-    } else if (percentage >= 50) {
-        message = "💜 พยายามต่อไป! การฝึกฝนจะช่วยให้คุณเก่งขึ้น";
-    } else {
-        message = "🌱 อย่าเพิ่งท้อใจ ลองทบทวนเฉลยและทำข้อสอบอีกครั้ง";
-    }
-
-    document.getElementById("resultMessage").textContent = message;
-
-    document.getElementById("review").innerHTML = reviewHTML;
-
-    document.getElementById("exam").style.display = "none";
-
-    document.getElementById("result").style.display = "block";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-}
-
-</script>
-
-</body>
-</html>
