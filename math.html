@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -141,6 +142,30 @@ nav {
 
 .timer.warning {
     color: #e05267;
+}
+
+.start-timer-btn {
+    margin-top: 10px;
+    padding: 9px 20px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(110deg,#39ad70,#6841b0);
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.start-timer-btn:hover {
+    transform: translateY(-2px);
+}
+
+.start-timer-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .progress-area {
@@ -458,7 +483,7 @@ footer {
     <div class="info">
         <div class="info-box">📋 20 ข้อ</div>
         <div class="info-box">🏆 20 คะแนน</div>
-        <div class="info-box">⏱️ 60 นาที</div>
+        <div class="info-box">⏱️ 90 นาที</div>
     </div>
 </header>
 
@@ -468,7 +493,8 @@ footer {
     <div class="timer-box">
         <div>
             <div class="timer-title">เวลาที่เหลือในการทำข้อสอบ</div>
-            <div class="timer" id="timer">60:00</div>
+            <div class="timer" id="timer">90:00</div>
+            <button class="start-timer-btn" id="startTimerBtn" onclick="startExamTimer()">▶ เริ่มจับเวลา</button>
         </div>
 
         <div style="flex:1;min-width:180px;">
@@ -488,7 +514,7 @@ footer {
         <strong>คำชี้แจง</strong><br>
         1. แบบทดสอบมีจำนวน 20 ข้อ คะแนนเต็ม 20 คะแนน<br>
         2. ให้นักเรียนเลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว<br>
-        3. มีเวลาในการทำข้อสอบ 60 นาที<br>
+        3. มีเวลาในการทำข้อสอบ 90 นาที โดยเวลาจะเริ่มนับเมื่อกดปุ่ม “เริ่มจับเวลา”<br>
         4. เมื่อทำข้อสอบเสร็จแล้วให้กดปุ่มส่งข้อสอบเพื่อดูคะแนนและเฉลย
     </div>
 
@@ -810,39 +836,54 @@ function updateProgress() {
 }
 
 // ======================================
-// ระบบจับเวลา 60 นาที
+// ระบบจับเวลา 90 นาที (เริ่มเมื่อกดปุ่ม)
 // ======================================
 
-let remainingTime = 60 * 60;
-const totalTime = remainingTime;
+const totalTime = 90 * 60;
+let remainingTime = totalTime;
 let submitted = false;
+let examStarted = false;
+let countdown = null;
 
 const timerDisplay = document.getElementById("timer");
+const startTimerBtn = document.getElementById("startTimerBtn");
 
-const countdown = setInterval(() => {
+function startExamTimer() {
 
-    if (submitted) return;
+    if (examStarted || submitted) return;
 
-    remainingTime--;
+    examStarted = true;
+    startTimerBtn.disabled = true;
+    startTimerBtn.textContent = "กำลังจับเวลา...";
 
-    let minutes = Math.floor(remainingTime / 60);
-    let seconds = remainingTime % 60;
+    countdown = setInterval(() => {
 
-    timerDisplay.textContent =
-        String(minutes).padStart(2,"0") + ":" +
-        String(seconds).padStart(2,"0");
+        if (submitted) {
+            clearInterval(countdown);
+            return;
+        }
 
-    if (remainingTime <= 300) {
-        timerDisplay.classList.add("warning");
-    }
+        remainingTime--;
 
-    if (remainingTime <= 0) {
-        clearInterval(countdown);
-        alert("หมดเวลาทำข้อสอบ ระบบจะส่งคำตอบให้อัตโนมัติ");
-        submitExam(true);
-    }
+        let minutes = Math.floor(remainingTime / 60);
+        let seconds = remainingTime % 60;
 
-}, 1000);
+        timerDisplay.textContent =
+            String(minutes).padStart(2,"0") + ":" +
+            String(seconds).padStart(2,"0");
+
+        if (remainingTime <= 300) {
+            timerDisplay.classList.add("warning");
+        }
+
+        if (remainingTime <= 0) {
+            clearInterval(countdown);
+            alert("หมดเวลาทำข้อสอบ ระบบจะส่งคำตอบให้อัตโนมัติ");
+            submitExam(true);
+        }
+
+    }, 1000);
+}
 
 // ======================================
 // ระบบส่งข้อสอบและตรวจคะแนน
@@ -851,6 +892,11 @@ const countdown = setInterval(() => {
 function submitExam(autoSubmit = false) {
 
     if (submitted) return;
+
+    if (!examStarted && !autoSubmit) {
+        alert("กรุณากดปุ่มเริ่มจับเวลาก่อนส่งข้อสอบ");
+        return;
+    }
 
     const answered = document.querySelectorAll(
         '#questions input:checked'
@@ -877,7 +923,7 @@ function submitExam(autoSubmit = false) {
     }
 
     submitted = true;
-    clearInterval(countdown);
+    if (countdown !== null) clearInterval(countdown);
 
     document.getElementById("submitBtn").disabled = true;
 
