@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -47,7 +48,7 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
         }
 
         .nav-links a {
@@ -272,6 +273,59 @@
             font-size: 13px;
         }
 
+        /* VIDEO LIBRARY */
+        .video-library {
+            background: white;
+        }
+
+        .video-groups {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .video-card {
+            background: linear-gradient(145deg, #ffffff, #f1edfa);
+            border-radius: 22px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 8px 25px rgba(70, 50, 100, 0.08);
+            transition: 0.3s;
+            border: 1px solid #eee7fa;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(70, 50, 100, 0.15);
+        }
+
+        .video-card .video-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .video-card h3 {
+            color: #593c91;
+            margin-bottom: 10px;
+        }
+
+        .video-card p {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .video-card span {
+            display: inline-block;
+            background: linear-gradient(110deg, #39ad70, #6841b0);
+            color: white;
+            padding: 9px 22px;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
         /* ABOUT */
         .about {
             text-align: center;
@@ -342,7 +396,7 @@
                 font-size: 110px;
             }
 
-            .features, .subjects {
+            .features, .subjects, .video-groups {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -363,14 +417,16 @@
             }
 
             .nav-links {
-                gap: 15px;
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .nav-links a {
                 font-size: 12px;
             }
 
-            .features, .subjects {
+            .features, .subjects, .video-groups {
                 grid-template-columns: 1fr;
             }
 
@@ -398,7 +454,8 @@
         <div class="nav-links">
             <a href="#home">หน้าแรก</a>
             <a href="#features">เกี่ยวกับเรา</a>
-            <a href="#subjects">หมวดหมู่</a>
+            <a href="#subjects">หมวดหมู่ข้อสอบ</a>
+            <a href="#video-library">คลังวิดีโอ</a>
             <a href="#contact">ผู้จัดทำ</a>
         </div>
     </nav>
@@ -474,7 +531,6 @@
 
         <div class="subjects">
 
-            <!-- คณิตศาสตร์ -->
             <a href="math.html" class="subject-card"
                style="text-decoration:none;color:inherit;display:block;">
                 <div class="icon">➗</div>
@@ -482,7 +538,6 @@
                 <p>ฝึกคิด วิเคราะห์ และคำนวณ</p>
             </a>
 
-            <!-- วิทยาศาสตร์ -->
             <a href="science.html" class="subject-card"
                style="text-decoration:none;color:inherit;display:block;">
                 <div class="icon">🔬</div>
@@ -490,7 +545,6 @@
                 <p>เรียนรู้ ทดลอง และค้นพบหลักการทางวิทยาศาสตร์</p>
             </a>
 
-            <!-- ภาษาไทย -->
             <a href="thai.html" class="subject-card"
                style="text-decoration:none;color:inherit;display:block;">
                 <div class="icon">📚</div>
@@ -498,7 +552,6 @@
                 <p>พัฒนาทักษะการอ่านและการเขียน</p>
             </a>
 
-            <!-- ภาษาอังกฤษ -->
             <a href="english.html" class="subject-card"
                style="text-decoration:none;color:inherit;display:block;">
                 <div class="icon">🌎</div>
@@ -506,7 +559,6 @@
                 <p>ฝึกทักษะภาษาอังกฤษ</p>
             </a>
 
-            <!-- คอมพิวเตอร์ -->
             <a href="computer.html" class="subject-card"
                style="text-decoration:none;color:inherit;display:block;">
                 <div class="icon">💻</div>
@@ -514,12 +566,66 @@
                 <p>เรียนรู้เทคโนโลยีและดิจิทัล</p>
             </a>
 
-            <!-- สังคมศึกษา -->
             <a href="social.html" class="subject-card"
                style="text-decoration:none;color:inherit;display:block;">
                 <div class="icon">🌍</div>
                 <h3>สังคมศึกษา</h3>
                 <p>เรียนรู้สังคม ประวัติศาสตร์ และหน้าที่พลเมือง</p>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- VIDEO LIBRARY -->
+    <section class="video-library" id="video-library">
+
+        <div class="section-title">
+            <h2>🎬 คลังวิดีโอการเรียนรู้</h2>
+            <p>รวบรวมวิดีโอการสอนแยกตามรายวิชา เพื่อให้นักเรียนสามารถทบทวนบทเรียนได้ทุกที่ทุกเวลา</p>
+        </div>
+
+        <div class="video-groups">
+
+            <a href="videos.html?subject=math" class="video-card">
+                <div class="video-icon">➗</div>
+                <h3>คณิตศาสตร์</h3>
+                <p>วิดีโอสอนคณิตศาสตร์ ระดับชั้น ม.4–6</p>
+                <span>เข้าชมวิดีโอ →</span>
+            </a>
+
+            <a href="videos.html?subject=science" class="video-card">
+                <div class="video-icon">🔬</div>
+                <h3>วิทยาศาสตร์</h3>
+                <p>วิดีโอสอนวิทยาศาสตร์และการทดลอง</p>
+                <span>เข้าชมวิดีโอ →</span>
+            </a>
+
+            <a href="videos.html?subject=thai" class="video-card">
+                <div class="video-icon">📚</div>
+                <h3>ภาษาไทย</h3>
+                <p>วิดีโอหลักภาษา การอ่าน และการเขียน</p>
+                <span>เข้าชมวิดีโอ →</span>
+            </a>
+
+            <a href="videos.html?subject=english" class="video-card">
+                <div class="video-icon">🌎</div>
+                <h3>ภาษาอังกฤษ</h3>
+                <p>วิดีโอฝึกภาษาอังกฤษและไวยากรณ์</p>
+                <span>เข้าชมวิดีโอ →</span>
+            </a>
+
+            <a href="videos.html?subject=computer" class="video-card">
+                <div class="video-icon">💻</div>
+                <h3>คอมพิวเตอร์</h3>
+                <p>วิดีโอเทคโนโลยีและความรู้ดิจิทัล</p>
+                <span>เข้าชมวิดีโอ →</span>
+            </a>
+
+            <a href="videos.html?subject=social" class="video-card">
+                <div class="video-icon">🌍</div>
+                <h3>สังคมศึกษา</h3>
+                <p>วิดีโอประวัติศาสตร์และหน้าที่พลเมือง</p>
+                <span>เข้าชมวิดีโอ →</span>
             </a>
 
         </div>
@@ -564,5 +670,3 @@
 
 </body>
 </html>
-
-จากอันนี้ ใส่มาเลย
