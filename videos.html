@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คลังวิดีโอ | คลังข้อสอบ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+    background: #f8f7fc;
+    color: #29253d;
+}
+
+nav {
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    box-shadow: 0 3px 20px rgba(70,40,100,0.07);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #6035a5;
+}
+
+.logo span {
+    color: #36a66b;
+}
+
+.back {
+    text-decoration: none;
+    color: #6841b0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hero {
+    padding: 65px 8%;
+    text-align: center;
+    background: linear-gradient(120deg,#e3f8ed,#eee5ff);
+}
+
+.hero h1 {
+    font-size: 36px;
+    color: #58349b;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #656074;
+    font-size: 15px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 50px 6%;
+}
+
+.subject-info {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.subject-info h2 {
+    color: #6038a0;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.subject-info p {
+    color: #888;
+    font-size: 14px;
+}
+
+.video-list {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 22px;
+}
+
+.video-item {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(70,50,100,0.07);
+    border: 1px solid #eee7fa;
+    transition: 0.3s;
+}
+
+.video-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(70,50,100,0.13);
+}
+
+.video-icon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.video-item h3 {
+    color: #593c91;
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.video-item p {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.watch-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(110deg,#39ad70,#6841b0);
+    padding: 10px 23px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.watch-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 5px 15px rgba(91,65,160,0.2);
+}
+
+.empty {
+    text-align: center;
+    padding: 45px 15px;
+    color: #888;
+    background: white;
+    border-radius: 20px;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(110deg,#286e50,#56328c);
+    font-size: 13px;
+}
+
+@media(max-width:600px) {
+    nav {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .video-list {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 35px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">คลัง<span>ข้อสอบ.</span></div>
+    <a href="index.html" class="back">← กลับหน้าหลัก</a>
+</nav>
+
+<header class="hero">
+    <h1>🎬 คลังวิดีโอการเรียนรู้</h1>
+    <p>รวบรวมสื่อการเรียนรู้และวิดีโอการสอน เพื่อทบทวนบทเรียนได้ทุกที่ทุกเวลา</p>
+</header>
+
+<main class="container">
+
+    <div class="subject-info">
+        <h2 id="subjectTitle">คลังวิดีโอ</h2>
+        <p id="subjectDescription">เลือกวิดีโอที่ต้องการรับชม</p>
+    </div>
+
+    <div class="video-list" id="videoList"></div>
+
+</main>
+
+<footer>
+    📚 คลังข้อสอบ | Online Examination System
+    <br>
+    เรียนรู้ ฝึกฝน พัฒนาตนเอง
+</footer>
+
+<script>
+
+// ===================================
+// รายการวิดีโอแยกตามรายวิชา
+// ===================================
+
+const videoData = {
+
+    // ภาษาอังกฤษ
+    english: {
+        name: "🌎 ภาษาอังกฤษ",
+        description: "วิดีโอสอนภาษาอังกฤษและไวยากรณ์",
+        videos: [
+            {
+                title: "เพลย์ลิสต์ภาษาอังกฤษ 1",
+                url: "https://youtube.com/playlist?list=PL6gpYRkWxna2COjlTKNqjkf72HpJpsiY8&si=lkgl-XrKgFr-oaYZ",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์ภาษาอังกฤษ 2",
+                url: "https://youtube.com/playlist?list=PL6gpYRkWxna2Z06uKx3ppZkaUGx5ipqbN&si=Wa2_HNS3hueSfRJL",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์ภาษาอังกฤษ 3",
+                url: "https://youtube.com/playlist?list=PLjxxmpT25hs8Xu5UT_obkO0wnqIYhhGtW&si=tsJc5QFs9H2qVf6u",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์ภาษาอังกฤษ 4",
+                url: "https://youtube.com/playlist?list=PLjxxmpT25hs-95CzFYKDxBkBxBeL81cNH&si=0JeGidYEbvAijZQ_",
+                type: "playlist"
+            },
+            {
+                title: "KD English Official",
+                url: "https://youtube.com/@kdenglishofficial?si=0Iu7roOXEzP4YKQt",
+                type: "channel"
+            },
+            {
+                title: "Kru Pann English",
+                url: "https://youtube.com/@krupann.english?si=dIZfUUDOb3ANnp5B",
+                type: "channel"
+            },
+            {
+                title: "Mr. Phoops",
+                url: "https://youtube.com/@mr.phoops?si=JVQGL1xdiYvXFWcV",
+                type: "channel"
+            }
+        ]
+    },
+
+    // คณิตศาสตร์
+    math: {
+        name: "➗ คณิตศาสตร์",
+        description: "วิดีโอสอนคณิตศาสตร์และเทคนิคการทำโจทย์",
+        videos: [
+            {
+                title: "เพลย์ลิสต์คณิตศาสตร์ 1",
+                url: "https://youtube.com/playlist?list=PL6gpYRkWxna1EvKJOEqr4CY-JbC4PDLBt&si=0UriF2wWy8o_BX5b",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์คณิตศาสตร์ 2",
+                url: "https://youtube.com/playlist?list=PLmxYBEigCE-9NM5tzwmmR94T80uOYMoed&si=XLya_lQFegR23h_D",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์คณิตศาสตร์ 3",
+                url: "https://youtube.com/playlist?list=PLmxYBEigCE-_ViM69TsdH3vWp_1SFaFOV&si=dS9Lms8KpPEs9ATq",
+                type: "playlist"
+            },
+            {
+                title: "SmartMathPro",
+                url: "https://youtube.com/@smartmathpro?si=4SAZ0hActU2yzIyg",
+                type: "channel"
+            },
+            {
+                title: "Mr. Phoops",
+                url: "https://youtube.com/@mr.phoops?si=JVQGL1xdiYvXFWcV",
+                type: "channel"
+            }
+        ]
+    },
+
+    // วิทยาศาสตร์
+    science: {
+        name: "🔬 วิทยาศาสตร์",
+        description: "วิดีโอสอนชีววิทยา เคมี ฟิสิกส์ และวิทยาศาสตร์",
+        videos: [
+            {
+                title: "Mr. Phoops",
+                url: "https://youtube.com/@mr.phoops?si=JVQGL1xdiYvXFWcV",
+                type: "channel"
+            },
+            {
+                title: "Easy Bio Kru Fai",
+                url: "https://youtube.com/@easybiokrufai?si=0sb_UFuRafzSsUGb",
+                type: "channel"
+            },
+            {
+                title: "Chemistry K9258",
+                url: "https://youtube.com/@chemistry_k9258?si=HDm0D9eSwfo5PdtA",
+                type: "channel"
+            },
+            {
+                title: "เพลย์ลิสต์วิทยาศาสตร์ 1",
+                url: "https://youtube.com/playlist?list=PL6gpYRkWxna229B3O11932u8QC956rw_m&si=SIN-I9pk0-mYgtmC",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์วิทยาศาสตร์ 2",
+                url: "https://youtube.com/playlist?list=PLeeP8Z5POz0JC7ftMJ-9i4a6kg0CbfW4a&si=ZWvLOx7kdOECHncY",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์วิทยาศาสตร์ 3",
+                url: "https://youtube.com/playlist?list=PLZH3OJ3TyhbkXulZQ7iJfnn5AgSzXKtPV&si=XUdUd8g6KhW_qUts",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์วิทยาศาสตร์ 4",
+                url: "https://youtube.com/playlist?list=PLmxYBEigCE--vS0ipBs-UxJ6Fxb-V2YbR&si=SKprT9xRzxIPsZvv",
+                type: "playlist"
+            },
+            {
+                title: "เพลย์ลิสต์วิทยาศาสตร์ 5",
+                url: "https://youtube.com/playlist?list=PLmxYBEigCE-9YM4FcMfeh1RJVBpmkaX1_&si=FZDsIu68gkiVC27e",
+                type: "playlist"
+            }
+        ]
+    },
+
+    // สังคมศึกษา
+    social: {
+        name: "🌍 สังคมศึกษา",
+        description: "วิดีโอประวัติศาสตร์ สังคม และหน้าที่พลเมือง",
+        videos: [
+            {
+                title: "เพลย์ลิสต์สังคมศึกษา",
+                url: "https://youtube.com/playlist?list=PLmxYBEigCE-_BijJLsWeM1lnj2LBguQY2&si=V7tiD0iP_oDey4ch",
+                type: "playlist"
+            },
+            {
+                title: "Point of View",
+                url: "https://youtube.com/@pointofview?si=bav8Xn3wiYEXQA14",
+                type: "channel"
+            }
+        ]
+    },
+
+    // คอมพิวเตอร์
+    computer: {
+        name: "💻 คอมพิวเตอร์",
+        description: "วิดีโอเทคโนโลยี คอมพิวเตอร์ และความรู้ดิจิทัล",
+        videos: [
+            {
+                title: "ติวสอบคอมพิวเตอร์",
+                url: "https://youtube.com/@tiwcombynoppon?si=YZBPSIEDEfTRdHoa",
+                type: "channel"
+            },
+            {
+                title: "ความรู้เกี่ยวกับการสอบตำรวจ",
+                url: "https://youtube.com/@goventrancepolice8343?si=DvvXqfP2gyKlRyB7",
+                type: "channel"
+            },
+            {
+                title: "เพลย์ลิสต์คอมพิวเตอร์",
+                url: "https://youtube.com/playlist?list=PLWIKgUu12MTDn48D_SiX4BGrDirDCGFNN&si=spAP9aUTQx61CMxT",
+                type: "playlist"
+            },
+            {
+                title: "BorntoDev",
+                url: "https://youtube.com/@borntodev?si=aR-Pkbptz1f3WSA8",
+                type: "channel"
+            }
+        ]
+    },
+
+    // ภาษาไทย
+    thai: {
+        name: "📚 ภาษาไทย",
+        description: "วิดีโอเรียนภาษาไทยและทบทวนบทเรียน",
+        videos: [
+            {
+                title: "The Master Gorpor",
+                url: "https://youtube.com/@themastergorpor?si=U12tX5RMOu4FnMds",
+                type: "channel"
+            },
+            {
+                title: "วิดีโอการเรียนภาษาไทย 1",
+                url: "https://youtu.be/AjGrEyrWEqE?si=88B4p7a5yw8RiP_n",
+                type: "video"
+            },
+            {
+                title: "วิดีโอการเรียนภาษาไทย 2",
+                url: "https://youtu.be/LaBpghU7mHc?si=jlKEIpG1Oxw-gKqW",
+                type: "video"
+            }
+        ]
+    }
+
+};
+
+// ===================================
+// แสดงรายการวิดีโอตามวิชาที่เลือก
+// ===================================
+
+const params = new URLSearchParams(window.location.search);
+const subject = params.get("subject");
+
+const selectedSubject = videoData[subject];
+
+const titleElement = document.getElementById("subjectTitle");
+const descriptionElement = document.getElementById("subjectDescription");
+const videoList = document.getElementById("videoList");
+
+if (selectedSubject) {
+
+    titleElement.textContent = selectedSubject.name;
+    descriptionElement.textContent =
+        selectedSubject.description + " | ทั้งหมด " +
+        selectedSubject.videos.length + " รายการ";
+
+    selectedSubject.videos.forEach((video, index) => {
+
+        let icon = "▶️";
+        let typeText = "วิดีโอ YouTube";
+
+        if (video.type === "playlist") {
+            icon = "📂";
+            typeText = "เพลย์ลิสต์ YouTube";
+        }
+
+        if (video.type === "channel") {
+            icon = "📺";
+            typeText = "ช่อง YouTube";
+        }
+
+        if (video.type === "video") {
+            icon = "🎬";
+            typeText = "วิดีโอ YouTube";
+        }
+
+        const card = document.createElement("div");
+        card.className = "video-item";
+
+        const iconElement = document.createElement("div");
+        iconElement.className = "video-icon";
+        iconElement.textContent = icon;
+
+        const heading = document.createElement("h3");
+        heading.textContent = video.title;
+
+        const description = document.createElement("p");
+        description.textContent = typeText;
+
+        const link = document.createElement("a");
+        link.className = "watch-btn";
+        link.href = video.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "▶ เปิดดูบน YouTube →";
+
+        card.appendChild(iconElement);
+        card.appendChild(heading);
+        card.appendChild(description);
+        card.appendChild(link);
+
+        videoList.appendChild(card);
+
+    });
+
+} else {
+
+    titleElement.textContent = "ไม่พบหมวดหมู่วิดีโอ";
+
+    descriptionElement.textContent =
+        "กรุณากลับไปเลือกวิชาที่ต้องการรับชม";
+
+    const message = document.createElement("div");
+    message.className = "empty";
+    message.textContent = "ไม่พบข้อมูลวิชาที่เลือก กรุณากลับไปหน้าหลัก";
+
+    videoList.appendChild(message);
+
+}
+
+</script>
+
+</body>
+</html>
